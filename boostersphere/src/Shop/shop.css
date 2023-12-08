@@ -3,5 +3,22 @@
   padding: 10px;
   display: flex;
   align-items: center ;
+  gap: 15px
+}
 
+.headerInputContainer {
+  display: flex;
+  flex-grow: 1;
+}
+
+.headerInput {
+  outline: none;
+  padding: 7px;
+  margin-left: 10px;
+  flex: 1;
+}
+
+.headerText {
+  color: white;
+  font-size: 13px;
 }
