@@ -12,6 +12,7 @@ exports.up = function(knex) {
     table.integer('fundRequired');
     table.integer('volunteerNeeded')
     table.integer('userId');
+    table.foreign('userId').references('users.userId');
   })
 };
 
