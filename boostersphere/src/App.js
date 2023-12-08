@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthContext } from './context/AuthContext';
 import { Events } from './Events/Events';
@@ -11,18 +11,34 @@ import { Register } from './Register/Register';
 import { HomePage } from './Home/HomePage';
 import { Funds } from './Funds/Funds.js';
 import { Shop } from './Shop/Shop';
-
+import { AddUsers } from './AddUsers/AddUsers.js';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 
 export const userContext = React.createContext();
 
 function App() {
-
   const [details, setDetails] = useState();
   const [userdata, setUserdata] = useState();
   const [thisuser, setThisuser] = useState();
   const [fulluserData, setFullUserData] = useState();
   const { currentUser } = useContext(AuthContext)
+
+  const auth = getAuth();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserdata(user);
+        setThisuser(user.displayName);
+      } else {
+        setUserdata(null);
+        setThisuser(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [auth]);
 
 
   const RequireAuth = ({ children }) => {
