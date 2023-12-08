@@ -44,6 +44,7 @@ export const Events = () => {
     });
   };
 
+
   const handleFormChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -73,6 +74,7 @@ export const Events = () => {
       })
       .catch((err) => console.error('Error adding event:', err));
   };
+
 
   return (
     <>
@@ -125,3 +127,4 @@ export const Events = () => {
     </>
   );
 };
+

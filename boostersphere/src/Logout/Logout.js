@@ -15,8 +15,10 @@ export const Logout = () => {
 <>
 <div className="navigation">
   
-  <a className="button" href="" onClick={() => {handleLogout()}}>
-    <img src={mopey} alt='profile' onClick={() => {handleLogout()}}/>
+
+  <a class="button" href="" onClick={() => {handleLogout()}}>
+    <img src={mopey} alt='profile' onClick={() => {handleLogout()}} className='logoutImg'/>
+
 
     <div className="logout" onClick={() => {handleLogout()}}>Logout</div>
     </a>
