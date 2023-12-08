@@ -1,0 +1,27 @@
+.mainpage{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #282c34;
+  color: white;
+}
+
+.nav{
+  background-color: #282c34;
+}
+
+.NavBar{
+  color: white;
+}
+
+.welcome{
+  font-weight: bolder;
+}
+
+.name{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
