@@ -5,7 +5,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable('donations', table => {
     table.increments();
-    table.integer('amount'); 
+    table.float('amount'); 
     table.string('name');
   })
 };
