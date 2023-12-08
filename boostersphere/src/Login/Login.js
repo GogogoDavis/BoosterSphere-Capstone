@@ -32,7 +32,7 @@ export const Login = () => {
       setUserdata(user)
       setThisuser(user.displayName)
       dispatch({type:"LOGIN", payload:user})
-    
+    //setisAdmin()
       navigate("/Home")
       console.log(user)
       // ...

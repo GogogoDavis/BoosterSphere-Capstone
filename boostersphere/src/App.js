@@ -1,5 +1,5 @@
 import './App.css';
-import React, {  useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthContext } from './context/AuthContext';
 import { Events } from './Events/Events';
@@ -10,6 +10,7 @@ import { Landing } from './Landing/Landing';
 import { Register } from './Register/Register';
 import { HomePage } from './Home/HomePage';
 import { Funds } from './Funds/Funds.js';
+import { Shop } from './Shop/Shop';
 
 
 export const userContext = React.createContext();
@@ -39,13 +40,11 @@ function App() {
             <Route path='/' element={<Landing />} />
             <Route path='/Visitor' element={<Visitor />} />
 
-
             <Route path='/Events' element={
               <RequireAuth>
                 <Events />
               </RequireAuth>} />
 
-              
             <Route path='/Home' element={
               <RequireAuth>
                 <HomePage />
@@ -56,14 +55,13 @@ function App() {
                 <Funds />
               </RequireAuth>} />
 
-
+            <Route path='/Shop' element={<Shop />} />
             <Route path='/Register' element={<Register />} />
             <Route path='/details/:id' element={<Details item={details} />} />
+            <Route path='/Add' element={<AddUsers />} />
 
           </Routes>
         </userContext.Provider>
-
-
 
       </div>
     </>
