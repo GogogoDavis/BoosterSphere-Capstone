@@ -14,13 +14,14 @@ import { Shop } from './Shop/Shop';
 import { AddUsers } from './AddUsers/AddUsers.js';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
+
 export const userContext = React.createContext();
 
 function App() {
   const [details, setDetails] = useState();
   const [userdata, setUserdata] = useState();
   const [thisuser, setThisuser] = useState();
-
+  const [fulluserData, setFullUserData] = useState();
   const { currentUser } = useContext(AuthContext)
 
   const auth = getAuth();
@@ -50,7 +51,7 @@ function App() {
 
       <div className="App">
 
-        <userContext.Provider value={{ details, setDetails, userdata, setUserdata, thisuser, setThisuser }}>
+        <userContext.Provider value={{ details, setDetails, userdata, setUserdata, thisuser, setThisuser, fulluserData, setFullUserData}}>
           <Routes>
             <Route path='/Login' element={<Login />} />
             <Route path='/' element={<Landing />} />
@@ -74,7 +75,6 @@ function App() {
             <Route path='/Shop' element={<Shop />} />
             <Route path='/Register' element={<Register />} />
             <Route path='/details/:id' element={<Details item={details} />} />
-            <Route path='/Add' element={<AddUsers />} />
 
           </Routes>
         </userContext.Provider>
