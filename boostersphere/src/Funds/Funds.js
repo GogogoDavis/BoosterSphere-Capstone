@@ -4,7 +4,7 @@ import './Funds.css';
 
 export const Funds = () => {
     const [goals, setGoals] = useState([
-        { id: 1, currentAmount: '', goalAmount: '', showProgress: true, isEditMode: false },
+        { id: 1, name: 'Goal 1', currentAmount: '', goalAmount: '', showProgress: true, isEditMode: false },
     ]);
 
     const handleCurrentAmountChange = (event, goalId) => {
@@ -41,9 +41,17 @@ export const Funds = () => {
         setGoals(updatedGoals);
     };
 
+    const handleGoalNameChange = (event, goalId) => {
+        const updatedGoals = goals.map((goal) =>
+            goal.id === goalId ? { ...goal, name: event.target.value } : goal
+        );
+        setGoals(updatedGoals);
+    };
+
     const handleAddGoal = () => {
         const newGoal = {
             id: goals.length + 1,
+            name: `Goal ${goals.length + 1}`,
             currentAmount: '',
             goalAmount: '',
             showProgress: false,
@@ -63,11 +71,10 @@ export const Funds = () => {
                 <div key={goal.id}>
                     {goal.showProgress && !goal.isEditMode && (
                         <>
-                            <Typography variant="h6">Goal {goal.id}</Typography>
-                            <LinearProgress
-                                variant="determinate"
-                                value={(goal.currentAmount / goal.goalAmount) * 100 || 0}
-                            />
+                            <Typography variant="h6" onClick={() => handleEditClick(goal.id)}>
+                                {goal.name}
+                            </Typography>
+                            <LinearProgress variant="determinate" value={(goal.currentAmount / goal.goalAmount) * 100 || 0} />
                             <Typography variant="body2">
                                 {((goal.currentAmount / goal.goalAmount) * 100).toFixed(2)}% Complete
                             </Typography>
@@ -80,7 +87,11 @@ export const Funds = () => {
                     {goal.isEditMode && (
                         <>
                             <div>
-                                <Typography variant="h6">Edit Goal {goal.id}</Typography>
+                                <TextField
+                                    type="text"
+                                    value={goal.name}
+                                    onChange={(event) => handleGoalNameChange(event, goal.id)}
+                                />
                                 <Typography variant="subtitle2">Total amount in savings</Typography>
                                 <TextField
                                     type="number"
