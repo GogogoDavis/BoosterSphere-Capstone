@@ -1,10 +1,13 @@
 import './Login.css';
 import { useState, useEffect, useContext } from 'react';
-import { signInWithEmailAndPassword  } from "firebase/auth";
-import {auth} from "../firebase"
+import { getAuth, signInWithEmailAndPassword, setPersistence, browserLocalPersistence } from "firebase/auth";
+import {auth, app} from "../firebase"
 import {Link, useNavigate } from 'react-router-dom' ;
 import { AuthContext } from '../context/AuthContext';
 import { userContext } from '../App';
+import { collection, getDocs } from "firebase/firestore";
+import { db } from '../firebase';
+
 
 
 export const Login = () => {
@@ -16,31 +19,50 @@ export const Login = () => {
 
   const {dispatch} = useContext(AuthContext)
   const {setUserdata,  setThisuser} = useContext(userContext)
+  const {fulluserData, setFullUserData} = useContext(userContext)
 
 
   useEffect(()=>{
     dispatch({type:"LOGOUT"})
+
+    const fetchData = async () =>{
+      let list = []
+      try{
+        const querySnapshot = await getDocs(collection(db, "users"));
+        querySnapshot.forEach((doc) => {
+          list.push({id: doc. id, ...doc.data()});
+        });
+        setFullUserData(list)
+      } catch(err){
+        console.log(err);
+      }
+    };
+    fetchData()
   },[])
+  console.log(fulluserData)
 
-  const handleLogin = (e) =>{
+  
+
+  const handleLogin = async (e) => {
     e.preventDefault();
+  
+    try {
+      const authInstance = getAuth(app);
+      // Set local persistence
+      await setPersistence(authInstance, browserLocalPersistence);
 
-    signInWithEmailAndPassword (auth, email, password)
-    .then((userCredential) => {
-      // Signed up 
+      const userCredential = await signInWithEmailAndPassword(authInstance, email, password);
       const user = userCredential.user;
-      setUserdata(user)
-      setThisuser(user.displayName)
-      dispatch({type:"LOGIN", payload:user})
-    
-      navigate("/Home")
-      console.log(user)
-      // ...
-    })
-    .catch((error) => {
-      setError(true)
-      // ..
-    });
+      setUserdata(user);
+      setThisuser(user.displayName);
+      dispatch({ type: "LOGIN", payload: user });
+      navigate("/Home");
+  
+      console.log(user);
+    } catch (error) {
+      setError(true);
+      console.error("Login failed", error);
+    }
   }
 
   
