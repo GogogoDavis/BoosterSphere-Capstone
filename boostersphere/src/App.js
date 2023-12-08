@@ -9,6 +9,7 @@ import { Details } from './Details/Details';
 import { Landing } from './Landing/Landing';
 import { Register } from './Register/Register';
 import { HomePage } from './Home/HomePage';
+import { Funds } from './Funds/Funds.js';
 
 
 export const userContext = React.createContext();
@@ -50,6 +51,10 @@ function App() {
                 <HomePage />
               </RequireAuth>} />
 
+            <Route path='/Funds' element={
+              <RequireAuth>
+                <Funds />
+              </RequireAuth>} />
 
 
             <Route path='/Register' element={<Register />} />
