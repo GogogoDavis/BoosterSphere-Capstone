@@ -1,9 +1,12 @@
-import './Register.css';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth } from "../firebase"
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import { doc, setDoc, addDoc, collection } from "firebase/firestore"; 
+import { db, storage, auth } from '../firebase';
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import mopey from '../DaMopester.jpg'
+import './Register.css'
 
 
 export const Register = () => {
@@ -17,6 +20,10 @@ export const Register = () => {
     const [userInfo, setUserInfo] = useState();
     const [exists, setExists] = useState(false);
     const [same, setNotSame] = useState();
+    const [file, setFile] = useState();
+    const [photoUrl, setUrl] = useState();
+    const [per, setPerc] = useState(null);
+    
 
 
     const navigate = useNavigate()
@@ -24,66 +31,45 @@ export const Register = () => {
     const { dispatch } = useContext(AuthContext)
 
 
-    // useEffect(() => {
-    //     fetch('http://localhost:8081/users')
-    //         .then(res => res.json())
-    //         .then(data => setUserInfo(data))
-    // }, [])
+    useEffect(() => {
+        const uploadFile = () =>{
+            const name = new Date().getTime() + file.name
+            const storageRef = ref(storage, file.name)
+            const uploadTask = uploadBytesResumable(storageRef, file);
 
+            uploadTask.on('state_changed', 
+              (snapshot) => {
 
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                setPerc(progress)
+                switch (snapshot.state) {
+                  case 'paused':
+                    console.log('Upload is paused');
+                    break;
+                  case 'running':
+                    console.log('Upload is running');
+                    break;
+                    default:
+                    break;
+                }
+              }, 
+              (error) => {
+                alert('upload error')
+              }, 
+              () => {
 
-
-    const handleRegister = (e) => {
-        e.preventDefault();
-        // let existFlag = false;
-
-        // userInfo.forEach(element => {
-        //     if(element.username.toLowerCase().includes(displayName.toLowerCase())){
-        //         existFlag = true;
-        //     }  
-        // });
-
-        if ((displayName == null || password == null || email == null || passwordtwo == null) || password !== passwordtwo || (password.length && passwordtwo.length < 6)) {
-            alert('All field are required and Passwords must match as well as being longer then 6 characters')
-        } else {
-
-            // {
-            //             if(existFlag === true){
-            //                 alert('Username already exists')
-            //             } else {
-            createUserWithEmailAndPassword(auth, email, password, displayName)
-                .then((userCredential) => {
-                    // Signed up 
-                    const user = userCredential.user;
-
-                    updateProfile(user, { displayName: displayName })
-                    console.log(user)
-                    // ...
-                })
-                .catch((error) => {
-                    setError(true)
-                    // ..
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                  setUrl(downloadURL);
                 });
-        // adduser()
-        navigate("/Login")
-      } 
-}
+              }
+            );
+        };
+        file && uploadFile();
+    }, [file]);
 
-// const adduser = () => {
-//     fetch('http://localhost:8081/users/', {
-//         method: 'POST',
-//         body: JSON.stringify({
-//             firstName: firstName,
-//             lastName: lastName,
-//             username: displayName
-//         }),
-//         headers: {
-//             'Content-type': 'application/json; charset=UTF-8',
-//         },
-//     })
-//         .then((response) => response.json())
-//         .then((json) => console.log(json));
-// }
+
+
 
 
 const handleKeyDown = e => {
@@ -92,12 +78,29 @@ const handleKeyDown = e => {
     }
 };
 
+const handleAdd = async (e) => {
+    e.preventDefault();
+    try {
+        const res = await createUserWithEmailAndPassword(auth, email, password);
+        await setDoc(doc(db, "users", res.user.uid), {
+        username: displayName,
+        displayName: firstName + " " + lastName,
+        email: email,
+        password: password,
+        img: !photoUrl ? 'null' : photoUrl
+      });
+
+    } catch (err){
+        console.log(err)
+    }
+    navigate("/Login")
+}
 
 return (
 
     <div className='login'>
         <div> <p className='welcome'>Register</p></div>
-        <form onSubmit={handleRegister}>
+        <form onSubmit={handleAdd}>
             <div className='submitRegister'>
                 <input type='email' placeholder='email' onChange={e => setEmail(e.target.value)} />
                 <input type="password" placeholder='password' onChange={e => setPassword(e.target.value)} />
@@ -105,8 +108,16 @@ return (
                 <input type="text" placeholder='Username' onChange={e => setDisplayName(e.target.value)} onKeyDown={handleKeyDown} />
                 <input type="text" placeholder='First Name' onChange={e => setFirstName(e.target.value)} />
                 <input type="text" placeholder='Last Name' onChange={e => setLastName(e.target.value)} />
-                <button type='submit'>Register</button>
-                <p>Back to <Link to='/Login' className='register'>Login</Link></p>
+                <label htmlFor="file">
+                    <img src={mopey} alt='profile'/>
+                </label>
+                <input 
+                    type="file"
+                    id="file"
+                    onChange={(e) => setFile(e.target.files[0])}
+                    style={{ display: "none"}}
+                />
+                <button disabled={per !== null && per <100} type='submit'>Register</button>
             </div>
         </form>
     </div>
