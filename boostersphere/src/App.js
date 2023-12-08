@@ -9,6 +9,7 @@ import { Details } from './Details/Details';
 import { Landing } from './Landing/Landing';
 import { Register } from './Register/Register';
 import { HomePage } from './Home/HomePage';
+import { AddUsers } from './AddUsers/AddUsers';
 
 
 export const userContext = React.createContext();
@@ -50,6 +51,7 @@ function App() {
 
             <Route path='/Register' element={<Register />} />
             <Route path='/details/:id' element={<Details item={details} />} />
+            <Route path='/Add' element={<AddUsers />} />
 
           </Routes>
         </userContext.Provider>
