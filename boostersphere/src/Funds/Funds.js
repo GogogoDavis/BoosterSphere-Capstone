@@ -3,26 +3,54 @@ import { LinearProgress, Button, TextField, Typography } from '@mui/material';
 import './Funds.css';
 
 export const Funds = () => {
-    const [currentAmount, setCurrentAmount] = useState('');
-    const [goalAmount, setGoalAmount] = useState('');
-    const [showProgress, setShowProgress] = useState(false);
+    const [goals, setGoals] = useState([
+        { id: 1, currentAmount: '', goalAmount: '', showProgress: true, isEditMode: false },
+    ]);
 
-    const handleCurrentAmountChange = (event) => {
-        setCurrentAmount(event.target.value);
+    const handleCurrentAmountChange = (event, goalId) => {
+        const updatedGoals = goals.map((goal) =>
+            goal.id === goalId ? { ...goal, currentAmount: event.target.value } : goal
+        );
+        setGoals(updatedGoals);
     };
 
-    const handleGoalAmountChange = (event) => {
-        setGoalAmount(event.target.value);
+    const handleGoalAmountChange = (event, goalId) => {
+        const updatedGoals = goals.map((goal) =>
+            goal.id === goalId ? { ...goal, goalAmount: event.target.value } : goal
+        );
+        setGoals(updatedGoals);
     };
 
-    const handleAmountSubmit = () => {
-        console.log('Current Amount Submitted:', currentAmount);
-        console.log('Goal Amount Submitted:', goalAmount);
-        setShowProgress(true);
+    const handleAmountSubmit = (goalId) => {
+        const updatedGoals = goals.map((goal) =>
+            goal.id === goalId
+                ? {
+                    ...goal,
+                    showProgress: true,
+                    isEditMode: false,
+                }
+                : goal
+        );
+        setGoals(updatedGoals);
     };
 
-    // Calculate progress percentage
-    const progress = goalAmount !== 0 ? (currentAmount / goalAmount) * 100 : 0;
+    const handleEditClick = (goalId) => {
+        const updatedGoals = goals.map((goal) =>
+            goal.id === goalId ? { ...goal, isEditMode: true } : goal
+        );
+        setGoals(updatedGoals);
+    };
+
+    const handleAddGoal = () => {
+        const newGoal = {
+            id: goals.length + 1,
+            currentAmount: '',
+            goalAmount: '',
+            showProgress: false,
+            isEditMode: true,
+        };
+        setGoals([...goals, newGoal]);
+    };
 
     return (
         <>
@@ -31,42 +59,58 @@ export const Funds = () => {
                 Back
             </p>
 
-            <div>
-                <Typography variant="h6">Total amount in savings</Typography>
-                <TextField
-                    type="number"
-                    value={currentAmount}
-                    onChange={handleCurrentAmountChange}
-                    placeholder="Enter Current Amount"
-                />
-            </div>
+            {goals.map((goal) => (
+                <div key={goal.id}>
+                    {goal.showProgress && !goal.isEditMode && (
+                        <>
+                            <Typography variant="h6">Goal {goal.id}</Typography>
+                            <LinearProgress
+                                variant="determinate"
+                                value={(goal.currentAmount / goal.goalAmount) * 100 || 0}
+                            />
+                            <Typography variant="body2">
+                                {((goal.currentAmount / goal.goalAmount) * 100).toFixed(2)}% Complete
+                            </Typography>
+                            <Button variant="contained" onClick={() => handleEditClick(goal.id)}>
+                                Edit
+                            </Button>
+                        </>
+                    )}
 
-            <div>
-                <Typography variant="h6">Goal</Typography>
-                <TextField
-                    type="number"
-                    value={goalAmount}
-                    onChange={handleGoalAmountChange}
-                    placeholder="Enter Goal Amount"
-                />
-            </div>
+                    {goal.isEditMode && (
+                        <>
+                            <div>
+                                <Typography variant="h6">Edit Goal {goal.id}</Typography>
+                                <Typography variant="subtitle2">Total amount in savings</Typography>
+                                <TextField
+                                    type="number"
+                                    value={goal.currentAmount}
+                                    onChange={(event) => handleCurrentAmountChange(event, goal.id)}
+                                    placeholder="Enter Current Amount"
+                                />
+                            </div>
 
-            <Button variant="contained" onClick={handleAmountSubmit}>
-                Submit
+                            <div>
+                                <Typography variant="subtitle2">Goal</Typography>
+                                <TextField
+                                    type="number"
+                                    value={goal.goalAmount}
+                                    onChange={(event) => handleGoalAmountChange(event, goal.id)}
+                                    placeholder="Enter Goal Amount"
+                                />
+                            </div>
+
+                            <Button variant="contained" onClick={() => handleAmountSubmit(goal.id)}>
+                                Save
+                            </Button>
+                        </>
+                    )}
+                </div>
+            ))}
+
+            <Button variant="contained" onClick={handleAddGoal}>
+                Add Goal
             </Button>
-
-            {showProgress && (
-                <>
-                    <Typography variant="body2">
-                        Entered Current Amount: {currentAmount}
-                    </Typography>
-                    <Typography variant="body2">
-                        Entered Goal Amount: {goalAmount}
-                    </Typography>
-                    <LinearProgress variant="determinate" value={progress} />
-                    <Typography variant="body2">{progress.toFixed(2)}% Complete</Typography>
-                </>
-            )}
         </>
     );
 };
