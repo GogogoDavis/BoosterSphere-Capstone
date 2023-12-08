@@ -1,0 +1,14 @@
+#calendar {
+    width:1vh;
+    height:1vh;
+}
+
+#freshAddBtn {
+    font-family:'Courier New', Courier, monospace;
+    color: lime; 
+    background-color: black;
+}
+
+#freshAddBtn:hover{
+    background-color: red;
+}
