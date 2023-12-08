@@ -41,6 +41,7 @@ export const Login = () => {
   },[])
   console.log(fulluserData)
 
+  
 
   const handleLogin = (e) =>{
     e.preventDefault();
@@ -53,6 +54,7 @@ export const Login = () => {
       dispatch({type:"LOGIN", payload:user})
     //setisAdmin()
     setUserdata(user)
+    setThisuser(user.displayName)
       navigate("/Home")
       console.log(user)
       // ...
