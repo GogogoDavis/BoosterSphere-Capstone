@@ -36,6 +36,11 @@
     color: black;
     font-weight: bold;
     cursor: pointer;
+
+    &:disabled{
+      background-color: rgba(0, 128, 128, 0.342);
+      cursor: not-allowed;
+    }
   }
   
   .login span{

@@ -52,6 +52,7 @@ function App() {
             <Route path='/Shop' element={<Shop />} />
             <Route path='/Register' element={<Register />} />
             <Route path='/details/:id' element={<Details item={details} />} />
+            <Route path='/Add' element={<AddUsers />} />
 
           </Routes>
         </userContext.Provider>
