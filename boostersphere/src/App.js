@@ -1,5 +1,5 @@
 import './App.css';
-import React, {  useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthContext } from './context/AuthContext';
 import { Events } from './Events/Events';
@@ -38,12 +38,10 @@ function App() {
             <Route path='/' element={<Landing />} />
             <Route path='/Visitor' element={<Visitor />} />
 
-
             <Route path='/Events' element={
               <RequireAuth>
                 <Events />
               </RequireAuth>} />
-
 
             <Route path='/Home' element={
               <RequireAuth>
@@ -57,8 +55,6 @@ function App() {
 
           </Routes>
         </userContext.Provider>
-
-
 
       </div>
     </>
