@@ -56,7 +56,6 @@ export const Login = () => {
     setUserdata(user)
     setThisuser(user.displayName)
       navigate("/Home")
-      console.log(user)
       // ...
     })
     .catch((error) => {
