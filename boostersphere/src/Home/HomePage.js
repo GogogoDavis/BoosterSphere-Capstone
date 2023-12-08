@@ -13,19 +13,22 @@ export const HomePage = () => {
   const { thisuser, setThisuser } = useContext(userContext)
   const {fulluserData, setFullUserData} = useContext(userContext)
   
-  useEffect(()=>{    
-    
-  fulluserData.forEach(element =>{
-    if(element.id === userdata.uid){
-      setThisuser(element)
+  useEffect(() => {
+    // Ensure fulluserData is defined before attempting to use forEach
+    console.log('fulluserdata on home page', fulluserData)
+    console.log('userdata on home page', userdata)
+    if (fulluserData) {
+      fulluserData.forEach((element) => {
+        if (element.id === userdata.uid) {
+          setThisuser(element);
+        }
+      });
     }
-  })
+  }, [fulluserData, setThisuser]);
 
-  },[])
+  console.log('this user on home page', thisuser)
 
-  console.log(thisuser)
-
-  return !thisuser ? null : ((
+  return (
     <>
 
       <div className="nav">
@@ -41,5 +44,5 @@ export const HomePage = () => {
         {/* <h3>Email: {!JSON.parse(localStorage.getItem("user")) ? 'none' :  JSON.parse(localStorage.getItem("user")).email}</h3> */}
       </div>
     </>
-  ))
+  )
 }

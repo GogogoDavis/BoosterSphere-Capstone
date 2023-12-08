@@ -12,11 +12,6 @@ app.listen(port, () => console.log(`Alrighty weather-boi, this john do be runnin
 
 /// --------------------- Users --------------------- ///
 
-app.get('/', (req, res) => {
-    knex('initial_table')
-    .select('*')
-    .then(data => res.json(data))
-})
 
 app.post('/users', (req, res) => {
   const {username, firstName, lastName, email, role} = req.body
@@ -74,6 +69,7 @@ app.post('/events', (req, res) => {
     type: type,
     description: description,
     date: date,
+    // date in this format 'yyyy-mm-dd'
     fundRequired: fundRequired,
     volunteerNeeded: volunteerNeeded,
     userId: userId
@@ -91,6 +87,7 @@ app.patch('/events', (req, res) => {
     type: type,
     description: description,
     date: date,
+    // date in this format 'yyyy-mm-dd'
     fundRequired: fundRequired,
     volunteerNeeded: volunteerNeeded,
     userId: userId

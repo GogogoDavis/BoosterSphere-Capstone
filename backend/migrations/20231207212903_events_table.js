@@ -9,6 +9,7 @@ exports.up = function(knex) {
     table.string('type');
     table.string('description');
     table.date('date');
+    // date in this format 'yyyy-mm-dd'
     table.integer('fundRequired');
     table.integer('volunteerNeeded')
     table.integer('userId');
