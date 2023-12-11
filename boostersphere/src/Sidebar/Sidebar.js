@@ -61,28 +61,28 @@ const handleLogout = () =>{
                         <p className='title'>Main</p>
                         <ul>
                             <li className='active'>
-                                <a href='/Login'>
+                                <div className='select'>
                                     <i className='icon'><GrHomeRounded /></i>
                                     <span className='text'>Home</span>
-                                </a>
+                                </div>
                             </li>
                             <li>
-                                <a href='#'>
+                                <div className='select'>
                                     <i className='icon'><RxDashboard /></i>
                                     <span className='text'>Events</span>
-                                </a>
+                                </div>
                             </li>
                             <li>
-                                <a href='#'>
+                                <div className='select'>
                                     <i className='icon'><MdOutlineShoppingBag /></i>
                                     <span className='text'>Store</span>
-                                </a>
+                                </div>
                             </li>
                             <li>
-                                <a href='#'>
+                                <div  className='select'>
                                     <i className='icon'><RiRefund2Fill /></i>
                                     <span className='text'>Funds</span>
-                                </a>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -90,10 +90,10 @@ const handleLogout = () =>{
                         <p className='title'>Settings</p>
                         <ul>
                             <li className='active'>
-                                <a href='#'>
+                                <div className='select'>
                                     <i className='icon'><IoSettingsOutline /></i>
                                     <span className='text'>Settings</span>
-                                </a>
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -102,16 +102,16 @@ const handleLogout = () =>{
                         <p className='title'>Account</p>
                         <ul>
                             <li className='active'>
-                                <a href='#'>
+                                <div className='select'>
                                     <i className='icon'><CgProfile /></i>
                                     <span className='text'>Profile</span>
-                                </a>
+                                </div>
                             </li>
                             <li className='active'>
-                                <a href='#'>
+                                <div className='select'>
                                     <i className='icon' onClick={()=>{handleLogout()}}><CiLogout /></i>
                                     <span className='text' onClick={()=>{handleLogout()}}>Logout</span>
-                                </a>
+                                </div>
                             </li>
                         </ul>
                     </div>
