@@ -1,9 +1,9 @@
+import React from 'react'
 import "./shop.css";
 import { Link } from "react-router-dom";
 import { Logout } from "../Logout/Logout";
 import { userContext } from "../App";
 import { useContext, useState, useEffect } from "react";
-import * as React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -13,7 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { addToCart, removeFromCart } from './CartSlice'
 import { useSelector, useDispatch } from "react-redux";
 
-export const Shop = () => {
+export const Cart = () => {
   const [products, setProducts] = useState([]);
   const cart = useSelector((state) => state.cart.cart)
   const dispatch = useDispatch()
@@ -34,9 +34,10 @@ export const Shop = () => {
     fetchProducts();
   }, []);
 
+
   return (
-    <>
-      <div className="nav">
+  <>
+        <div className="nav">
         <div className="links">
           <Link to="/Home" className="NavBar">
             Home
@@ -52,7 +53,7 @@ export const Shop = () => {
         <img
           style={{ width: 50, height: 50 }}
           className="logo"
-          src="../DaMopester.jpg" alt='add image later'
+          src="" alt='add image later'
         />
         <MenuIcon style={{ color: "white" }} />
         <div className="headerInputContainer">
@@ -99,40 +100,6 @@ export const Shop = () => {
           </span>
         </div>
       </div>
-
-{/*Body */}
-      <div className="shopBody">
-        <div className="bodyItem">
-          {products.map((item, index) => (
-            <div key={index} className="productItem">
-              <img
-                style={{
-                  height: 200,
-                  width: 200,
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                }}
-                src={item.image}
-              />
-              <p className="itemTitle">
-                {item.title}
-              </p>
-              <p>{item.price}</p>
-
-              {cart.some((x) => x.id === item.id) ? (
-                <Button onClick={()=> removeItemFromCart(item)} style={{backgroundColor:'lightpink'}}>Remove From Cart</Button>
-              ) : (
-                <Button onClick={()=> addItemToCart(item)} style={{backgroundColor:'cyan'}}>Add to Cart</Button>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Footer */}
-      <div className="headerBottom">
-        <MenuIcon style={{ color: "white" }} />
-      </div>
-    </>
-  );
-};
+  </>
+  )
+}

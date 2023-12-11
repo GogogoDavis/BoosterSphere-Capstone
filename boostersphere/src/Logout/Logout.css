@@ -19,7 +19,6 @@
   opacity: 0;
   transition: opacity .45s;
   -webkit-transition: opacity .35s;
-  
 }
 
 .button {
@@ -45,5 +44,15 @@ a:hover .logout{
 
 a {
   text-decoration: none;
+}
+
+.navigation {
+  position: absolute;
+  top: -2px;
+  right: 10px;
+}
+
+.navigation .button{ 
+  margin: 0;
 }
 

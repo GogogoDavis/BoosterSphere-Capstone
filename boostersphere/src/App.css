@@ -1,6 +1,6 @@
-.App {
+/* .App {
   text-align: center;
-}
+} */
 
 .App-header {
   background-color: #282c34;
@@ -13,9 +13,9 @@
   color: white;
 }
 
-.nav{
+/* .nav{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: white;
 }
@@ -29,4 +29,4 @@
   width: auto;
   background-size: cover;
   
-}
+} */
