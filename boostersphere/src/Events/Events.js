@@ -10,6 +10,15 @@ import "react-datepicker/dist/react-datepicker.css"
 // import Calendar from 'react-calendar';
 // import './Events.css';
 
+// table.string('eventTitle'); 
+//     table.string('type');
+//     table.string('description');
+//     table.date('date');
+//     // date in this format 'yyyy-mm-dd'
+//     table.integer('fundRequired');
+//     table.integer('volunteerNeeded')
+//     table.integer('userId');
+
 const locales = {
   "en-Us": require("date-fns/locale/en-US")
 
@@ -42,9 +51,21 @@ export const Events = () => {
 
   const [allEvents, setAllEvents] = useState(events) 
 
-  function handleAddEvent() {
-    setAllEvents([...allEvents, newEvent])
+  function HandleAddEvent() {
+      fetch(`http://localhost:8080/events`, {
+      method: 'POST', 
+      headers:  {
+        'Content-Type': 'application/json', 
+      },
+      body: JSON.stringify(newEvent),
+      })
+      .then(res => res.json())
+      .then(data => {console.log('Incredibly cool:', data); 
+      setAllEvents([...allEvents, newEvent])
+    });
     }
+
+    
 
 
   return(
@@ -67,7 +88,7 @@ export const Events = () => {
         selected={newEvent.end} 
         onChange={(end) => setNewEvent({...newEvent, end})}/>
 
-        <button style={{marginTop: "10px"}} onClick={handleAddEvent}>Add Event</button>
+        <button style={{marginTop: "10px"}} onClick={HandleAddEvent}>Add Event</button>
 
       <Calendar 
         localizer={localizer} events={allEvents}
@@ -77,6 +98,7 @@ export const Events = () => {
     </div>
   )
 };
+
   // const [toggleAddEvent, setToggleAddEvent] = useState(false);
   // const [events, setEvents] = useState([]);
   // const [formData, setFormData] = useState({
