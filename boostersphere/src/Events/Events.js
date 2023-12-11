@@ -1,12 +1,13 @@
 import React, { useState, useEffect, Component } from 'react';
-import Calendar from 'react-calendar';
 import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
 import { LocalizationProvider, DateRangeCalendar, DatePicker, renderDateRangeViewCalendar } from '@mui/x-date-pickers-pro';
+// import 'react-calendar/dist/Calendar.css';
 import './Events.css';
 
 export const Events = () => {
   const [toggleAddEvent, setToggleAddEvent] = useState(false);
   const [events, setEvents] = useState([]);
+  const [sDate, setsDate] = useState(new Date());
   const [formData, setFormData] = useState({
     eventTitle: '',
     type: '',
@@ -16,11 +17,70 @@ export const Events = () => {
     volunteerNeeded: 0,
     userId: 1, 
   });
+ ///-----------------------------------------------------calender code-------------------------------------------------/// 
+  const findMonthDays = (y, m) => {
+    return new Date(y, m + 1, 0).getDate();
+ };
 
-  const [calendarDate, setCalendarDate] = useState(new Date());
+ const findFirstDay = (y, m) => {
+    return new Date(y, m, 1).getDay();
+ };
 
+ const changeToPrevMonth = () => {
+    setsDate((pDate) => {
+       const pMonth = pDate.getMonth() - 1;
+       const pYear = pDate.getFullYear();
+       return new Date(pYear, pMonth);
+    });
+ };
+
+ const changeToNextMonth = () => {
+    setsDate((pDate) => {
+       const nMonth = pDate.getMonth() + 1;
+       const nYear = pDate.getFullYear();
+       return new Date(nYear, nMonth);
+    });
+ };
+
+ const handleDateClick = (date) => {
+    setsDate(date);
+ };
+
+ const showCalendar = () => {
+    const currDate = new Date();
+    const y = sDate.getFullYear();
+    const m = sDate.getMonth();
+    const mDays = findMonthDays(y, m);
+    const fDay = findFirstDay(y, m);
+
+    const allDays = [];
+
+    // For empty cells
+    for (let p = 0; p < fDay; p++) {
+       allDays.push(<div key = {`em-${p}`} className = "box empty"></div>);
+    }
+
+    // Show actual days
+    for (let d = 1; d <= mDays; d++) {
+       const date = new Date(y, m, d);
+       const isSelected = sDate && date.toDateString() === sDate.toDateString();
+
+       allDays.push(
+          <div
+             key = {`d-${d}`}
+             className = {`box ${isSelected ? "selected" : ""}`}
+             onClick = {() => handleDateClick(date)}
+             >
+             {d}
+          </div>
+       );
+    }
+
+    return allDays;
+  };
+  ///--------------------------------------------------------POST code------------------------------------------------------------///
   useEffect(() => {
-    fetchEvents();
+    fetchEvents()
   }, []);
 
   const fetchEvents = () => {
@@ -55,6 +115,7 @@ export const Events = () => {
       [name]: value,
     });
   };
+  
 
   const handleDateChange = (newValue) => {
     setFormData({
@@ -76,31 +137,33 @@ export const Events = () => {
         fetchEvents();
       })
       .catch((err) => console.error('Error adding event:', err));
-
-///----------------------------------------------------Begin Calendar Code --------------------------------------------------///
-
-    // class Calendar extends Component {
-    //   constructor(){
-    //     super();
-
-    //     this.weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-    //     this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 
-    //   'October', 'November', 'December']
-
-    //     this.state = {
-    //       currentDay: new Date()
-    //     }
-    //   }
-    // }    
-
   };
 
   return (
     <>
-    <div id='Calendar'>
-      <h1>Calendar</h1>
-      <Calendar onChange= {setCalendarDate} value={calendarDate} />
-    </div>
+    <div>
+      <h3>
+         Creating the <i> calendar component </i> from scratch using React JS
+      </h3>
+      <div className = "main">
+         <div className = "header">
+            <button onClick = {changeToPrevMonth}> Prev Month </button>
+            <h2>
+               {sDate.toLocaleString("default", {
+                  month: "long",
+                  year: "numeric",
+               })}
+            </h2>
+            <button onClick = {changeToNextMonth}> Next Month </button>
+         </div>
+         <div className = "body">{showCalendar()} </div>
+            {sDate && (
+               <div className = "selected-date">
+                  Selected Date: {sDate.toLocaleDateString()}
+               </div>
+            )}
+         </div>
+      </div>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <div className="events-container">
           {!toggleAddEvent ? (
@@ -150,4 +213,3 @@ export const Events = () => {
     </>
   );
 };
-
