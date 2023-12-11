@@ -1,5 +1,7 @@
 .mainpage{
+
   height: 200px;
+
   display: flex;
   justify-content: center;
   background-color: #282c34;
@@ -40,7 +42,7 @@
   margin: 0;
 }
 
-.nav{
+/* .nav{
   background-color: #282c34;
 }
 
@@ -52,7 +54,7 @@
 
 .NavBar{
   color: white;
-}
+} */
 
 .welcome{
   font-weight: bolder;
@@ -63,6 +65,7 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
 
 .css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
   background-color: #282829 !important;

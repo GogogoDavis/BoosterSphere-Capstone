@@ -14,7 +14,14 @@ import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
 import CallRoundedIcon from '@mui/icons-material/CallRounded';
 import { Logout } from '../Logout/Logout';
 import { userContext } from '../App';
+
+import { collection, getDocs } from "firebase/firestore";
+import { db } from '../firebase';
+import { Sidebar } from '../Sidebar/Sidebar';
+
+
 import './HomePage.css'
+
 
 export const HomePage = () => {
   const { userdata, thisuser, setThisuser, fulluserData } = useContext(userContext);
@@ -35,6 +42,7 @@ export const HomePage = () => {
 
   return (
     <>
+
       <div className="nav">
         {/* Add a button to toggle the drawer */}
         <button onClick={() => setIsDrawerOpen(!isDrawerOpen)}><MenuRoundedIcon /></button>
@@ -106,6 +114,8 @@ export const HomePage = () => {
           </div>
         
         </>}
+
+      </div>
       </div>
     </>
   );

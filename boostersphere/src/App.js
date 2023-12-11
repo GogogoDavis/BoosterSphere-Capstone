@@ -17,7 +17,7 @@ import store from './Shop/store';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { db } from './firebase';
 import { collection, getDocs } from "firebase/firestore";
-
+import { Sidebar } from './Sidebar/Sidebar.js';
 
 export const userContext = React.createContext();
 
@@ -29,6 +29,7 @@ function App() {
   const { currentUser, dispatch } = useContext(AuthContext)
 
   const auth = getAuth();
+
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
