@@ -1,6 +1,8 @@
 import "./shop.css";
 import { Link } from "react-router-dom";
 import { Logout } from "../Logout/Logout";
+import { Sidebar } from "../Sidebar/Sidebar"
+import mopey from '../DaMopester.jpg'
 import { userContext } from "../App";
 import { useContext, useState, useEffect } from "react";
 import * as React from "react";
@@ -36,23 +38,12 @@ export const Shop = () => {
 
   return (
     <>
-      <div className="nav">
-        <div className="links">
-          <Link to="/Home" className="NavBar">
-            Home
-          </Link>
-          <Link to="/Events" className="NavBar">
-            Events
-          </Link>
-        </div>
-        <Logout />
-      </div>
 
       <div className="header">
         <img
           style={{ width: 50, height: 50 }}
           className="logo"
-          src="../DaMopester.jpg" alt='add image later'
+          src={mopey} alt='add image later'
         />
         <MenuIcon style={{ color: "white" }} />
         <div className="headerInputContainer">
@@ -69,7 +60,8 @@ export const Shop = () => {
         <div>
           <h4 className="headerText">Custom Orders</h4>
         </div>
-        <div style={{ position: "relative " }}>
+        <div style={{ position: "relative " }} >
+        <Link to='/Cart' className='NavBar'>
           <Tooltip title='Cart'>
             <ShoppingCartIcon
               style={{
@@ -80,10 +72,11 @@ export const Shop = () => {
               }}
             />
           </Tooltip>
+          </Link>
           <span
             style={{
               position: "absolute",
-              left: 20,
+              left: 30,
               right: 14,
               backgroundColor: "white",
               width: 14,
@@ -97,6 +90,7 @@ export const Shop = () => {
           >
             {cart.length}
           </span>
+
         </div>
       </div>
 
