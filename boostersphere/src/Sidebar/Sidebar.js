@@ -61,7 +61,7 @@ const handleLogout = () =>{
                         <p className='title'>Main</p>
                         <ul>
                             <li className='active'>
-                                <a href='#'>
+                                <a href='/Login'>
                                     <i className='icon'><GrHomeRounded /></i>
                                     <span className='text'>Home</span>
                                 </a>
