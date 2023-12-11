@@ -1,14 +1,39 @@
-#calendar {
-    width:1vh;
-    height:1vh;
-}
-
-#freshAddBtn {
-    font-family:'Courier New', Courier, monospace;
-    color: lime; 
-    background-color: black;
-}
-
-#freshAddBtn:hover{
-    background-color: red;
-}
+.main {
+    margin-right:auto;
+    width: 50%;
+    padding: 0.7rem;
+    margin-left: auto;
+    border: 1px solid blue;
+ }
+ .header {
+    display: flex;
+    margin-bottom: 0.7rem;
+    justify-content: space-between;
+    align-items: center;
+ }
+ .header button {
+    font-size: 1.4rem;
+    cursor: pointer;
+ }
+ .body {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+ }
+ .box {
+    height: 2rem;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+ }
+ .box.empty {
+    background-color: #e0e0e0;
+    cursor: default;
+ }
+ .box.selected {
+    background-color: blue;
+    color: white;
+ }
