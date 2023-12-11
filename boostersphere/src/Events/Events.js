@@ -3,6 +3,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
 import { LocalizationProvider, DateRangeCalendar, DatePicker, renderDateRangeViewCalendar } from '@mui/x-date-pickers-pro';
 // import 'react-calendar/dist/Calendar.css';
 import './Events.css';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 export const Events = () => {
   const [toggleAddEvent, setToggleAddEvent] = useState(false);

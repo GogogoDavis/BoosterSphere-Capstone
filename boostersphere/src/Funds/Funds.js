@@ -1,8 +1,23 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { LinearProgress, Button, TextField, Typography } from '@mui/material';
 import './Funds.css';
+import { Sidebar } from '../Sidebar/Sidebar';
+import { userContext } from '../App';
 
 export const Funds = () => {
+    const { userdata, thisuser, setThisuser, fulluserData } = useContext(userContext);
+
+    useEffect(() => {
+        const getThisUserData = async () => {
+          fulluserData.forEach((element) => {
+            if (element.id === userdata.uid) {
+              setThisuser(element);
+            }
+          });
+        };
+        if (fulluserData && userdata) getThisUserData();
+      }, [fulluserData, userdata, setThisuser]);
+    
     const [goals, setGoals] = useState([
         { id: 1, currentAmount: '', goalAmount: '', showProgress: true, isEditMode: false },
     ]);
@@ -54,6 +69,7 @@ export const Funds = () => {
 
     return (
         <>
+            <Sidebar />
             <h1>Funds</h1>
             <p className="back" onClick={() => window.history.back()}>
                 Back
