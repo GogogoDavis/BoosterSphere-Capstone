@@ -2,6 +2,8 @@ import React from 'react'
 import "./shop.css";
 import { Link } from "react-router-dom";
 import { Logout } from "../Logout/Logout";
+import { Sidebar } from "../Sidebar/Sidebar"
+import mopey from '../DaMopester.jpg'
 import { userContext } from "../App";
 import { useContext, useState, useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
@@ -37,23 +39,12 @@ export const Cart = () => {
 
   return (
   <>
-        <div className="nav">
-        <div className="links">
-          <Link to="/Home" className="NavBar">
-            Home
-          </Link>
-          <Link to="/Events" className="NavBar">
-            Events
-          </Link>
-        </div>
-        <Logout />
-      </div>
 
       <div className="header">
         <img
           style={{ width: 50, height: 50 }}
           className="logo"
-          src="" alt='add image later'
+          src={mopey} alt='add image later'
         />
         <MenuIcon style={{ color: "white" }} />
         <div className="headerInputContainer">
@@ -70,7 +61,8 @@ export const Cart = () => {
         <div>
           <h4 className="headerText">Custom Orders</h4>
         </div>
-        <div style={{ position: "relative " }}>
+        <div style={{ position: "relative " }} >
+        <Link to='/Cart' className='NavBar'>
           <Tooltip title='Cart'>
             <ShoppingCartIcon
               style={{
@@ -81,10 +73,11 @@ export const Cart = () => {
               }}
             />
           </Tooltip>
+          </Link>
           <span
             style={{
               position: "absolute",
-              left: 20,
+              left: 30,
               right: 14,
               backgroundColor: "white",
               width: 14,
@@ -99,6 +92,45 @@ export const Cart = () => {
             {cart.length}
           </span>
         </div>
+      </div>
+
+      {/* Body */}
+      <div className="cart">
+        <div className="cartLeft">
+          {cart.map((item, index) => (
+            <div key={index} className="cartContainer">
+
+              <div className='cartImage'>
+              <img style={{height: 100, width: 100}} src={item.image}/>
+              </div>
+
+              <div className='cartDescription'>
+                <p>{item.title}</p>
+                <p style={{fontSize:'12px'}}>{item.description.length >80 ? item.description.substr(0,80) : item.description}</p>
+                <p>${item.price}</p>
+              </div>
+
+              <div className='cartButtonContainer'>
+                <div className='cartButtons'>
+                  <div>-</div>
+                  <div>{item.quantity}</div>
+                  <div>+</div>
+                </div>
+                <div className='cartButton'>Remove Item</div>
+              </div>
+          </div>
+          ))}
+        </div>
+
+        <div className="cartRight">
+
+        </div>
+      </div>
+
+      <div>
+      <Link to='/Shop' className='NavBar'>
+      <Button style={{ marginLeft: '30px',backgroundColor:'cyan'}}>Back to Shop!</Button>
+      </Link>
       </div>
   </>
   )
