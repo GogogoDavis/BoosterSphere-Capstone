@@ -17,7 +17,7 @@ import store from './Shop/store';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { db } from './firebase';
 import { collection, getDocs } from "firebase/firestore";
-
+import { Sidebar } from './Sidebar/Sidebar.js';
 
 export const userContext = React.createContext();
 
@@ -30,12 +30,13 @@ function App() {
 
   const auth = getAuth();
 
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         setUserdata(user);
         setThisuser(user.displayName);
-  
+        console.log('userdata on app 1', user)
         // Fetch user data when the user is logged in
         try {
           const querySnapshot = await getDocs(collection(db, "users"));
@@ -48,6 +49,7 @@ function App() {
           console.log(err);
         }
       } else {
+        console.log('userdata on app 3', fulluserData)
         // User is not logged in
         setUserdata(null);
         setThisuser(null);
@@ -60,7 +62,6 @@ function App() {
     return () => unsubscribe();
   }, [auth, currentUser, dispatch]);
 
-  console.log('userdata on app', fulluserData)
 
 
   const RequireAuth = ({ children }) => {

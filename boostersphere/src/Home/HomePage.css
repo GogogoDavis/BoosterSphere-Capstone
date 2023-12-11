@@ -1,20 +1,60 @@
 .mainpage{
-  height: 100vh;
+
+  height: 200px;
+
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
   background-color: #282c34;
   color: white;
+  margin-top: 50px;
 }
 
-.nav{
+.mainpage div h1{
+  margin: 0;
+}
+
+.mainpage div img {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.mainpage div {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.event-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.event-list li{
+  border: solid rgb(54, 54, 54) 2px;
+  margin: 5px;
+  padding: 10px;
+  background-color: black;
+  text-align: left;
+  width: 200px;
+}
+
+.event-list li h3, .event-list li p{
+  margin: 0;
+}
+
+/* .nav{
   background-color: #282c34;
+}
+
+.nav button {
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }
 
 .NavBar{
   color: white;
-}
+} */
 
 .welcome{
   font-weight: bolder;
@@ -24,4 +64,40 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+
+.css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
+  background-color: #282829 !important;
+}
+
+.css-h4y409-MuiList-root {
+  border-bottom: solid gray 1px;
+  border-width: 80%;
+}
+
+.css-h4y409-MuiList-root a div{
+  margin-left: 10px;
+}
+
+.css-h4y409-MuiList-root a {
+  color: white;
+}
+
+.css-h4y409-MuiList-root a:hover {
+  width: 100%;
+  background-color: rgba(0, 0, 0, .25);
+}
+
+.css-i4bv87-MuiSvgIcon-root {
+  font-size: 35px;
+}
+
+.nav button {
+  background: transparent;
+  border: none;
+  color: white;
+}
+.nav button:hover {
+  cursor: pointer;
 }
