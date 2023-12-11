@@ -12,6 +12,8 @@ import { HomePage } from './Home/HomePage';
 import { Funds } from './Funds/Funds.js';
 import { Shop } from './Shop/Shop';
 import { AddUsers } from './AddUsers/AddUsers.js';
+import { Cart } from './Shop/Cart'
+import store from './Shop/store';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { db } from './firebase';
 import { collection, getDocs } from "firebase/firestore";
@@ -34,7 +36,7 @@ function App() {
       if (user) {
         setUserdata(user);
         setThisuser(user.displayName);
-  
+        console.log('userdata on app 1', user)
         // Fetch user data when the user is logged in
         try {
           const querySnapshot = await getDocs(collection(db, "users"));
@@ -47,6 +49,7 @@ function App() {
           console.log(err);
         }
       } else {
+        console.log('userdata on app 3', fulluserData)
         // User is not logged in
         setUserdata(null);
         setThisuser(null);
@@ -59,7 +62,6 @@ function App() {
     return () => unsubscribe();
   }, [auth, currentUser, dispatch]);
 
-  console.log('userdata on app', fulluserData)
 
 
   const RequireAuth = ({ children }) => {
@@ -95,6 +97,7 @@ function App() {
 
             <Route path='/add' element={<AddUsers />} />
             <Route path='/Shop' element={<Shop />} />
+            <Route path='/Cart' element={<Cart />} />
             <Route path='/Register' element={<Register />} />
             <Route path='/details/:id' element={<Details item={details} />} />
 
