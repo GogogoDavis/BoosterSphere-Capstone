@@ -24,7 +24,7 @@ app.post('/users', (req, res) => {
     role: role
   })
   .then(res.status(201).send())
-  .catch(res.status(500).send())
+  .catch(e => res.status(500).send())
 })
 
 app.patch('/users', (req, res) => {
@@ -39,7 +39,7 @@ app.patch('/users', (req, res) => {
     role: role
   })
   .then(res.status(200).send())
-  .catch(res.status(500).send())
+  .catch(e => res.status(500).send())
 })
 
 app.delete('/users', (req, res) => {
@@ -48,7 +48,7 @@ app.delete('/users', (req, res) => {
   .where('id', userId)
   .del()
   .then(res.status(200).send())
-  .catch(res.status(500).send())
+  .catch(e => res.status(500).send())
 })
 
 
@@ -57,8 +57,8 @@ app.delete('/users', (req, res) => {
 app.get('/events', (req, res) => {
   knex('events')
   .select('*')
-  .then(data => res.status(200).json(data))
-  .catch(res.status(500).send())
+  .then(data => res.send(data))
+  .catch(e => res.status(500).send())
 })
 
 app.post('/events', (req, res) => {
@@ -75,7 +75,7 @@ app.post('/events', (req, res) => {
     userId: userId
   })
   .then(res.status(201).send())
-  .catch(res.status(500).send())
+  .catch(e => res.status(500).send())
 })
 
 app.patch('/events', (req, res) => {
@@ -93,7 +93,7 @@ app.patch('/events', (req, res) => {
     userId: userId
   })
   .then(res.status(200).send())
-  .catch(res.status(500).send())
+  .catch(e => res.status(500).send())
 })
 
 app.delete('/events', (req, res) => {
@@ -102,7 +102,7 @@ app.delete('/events', (req, res) => {
   .where('id', id)
   .del()
   .then(res.status(200).send())
-  .catch(res.status(500).send())
+  .catch(e => res.status(500).send())
 })
 
 /// --------------------- Volunteers --------------------- ///
@@ -111,7 +111,7 @@ app.get('/volunteers', (req, res) => {
   knex('volunteers')
   .select('*')
   .then(res.status(200).send())
-  .catch(res.status(500).send())
+  .catch(e => res.status(500).send())
 })
 
 app.post('/volunteers', (req, res) => {
@@ -125,7 +125,7 @@ app.post('/volunteers', (req, res) => {
     event_id: event_id,
   })
   .then(res.status(201).send())
-  .catch(res.status(500).send())
+  .catch(e => res.status(500).send())
 })
 
 app.patch('/volunteers', (req, res) => {
@@ -140,7 +140,7 @@ app.patch('/volunteers', (req, res) => {
     event_id: event_id,
   })
   .then(res.status(200).send())
-  .catch(res.status(500).send())
+  .catch(e => res.status(500).send())
 })
 
 app.delete('/volunteers', (req, res) => {
@@ -149,7 +149,7 @@ app.delete('/volunteers', (req, res) => {
   .where('id', id)
   .del()
   .then(res.status(200).send())
-  .catch(res.status(500).send())
+  .catch(e => res.status(500).send())
 })
 
 /// --------------------- Funds --------------------- ///
@@ -158,7 +158,7 @@ app.get('/funds', (req, res) => {
   knex('funds')
   .select('*')
   .then(res.status(200).send())
-  .catch(res.status(500).send())
+  .catch(e => res.status(500).send())
 })
 
 app.post('/funds', (req, res) => {
@@ -170,7 +170,7 @@ app.post('/funds', (req, res) => {
     event_id: event_id,
   })
   .then(res.status(201).send())
-  .catch(res.status(500).send())
+  .catch(e => res.status(500).send())
 })
 
 app.patch('/funds', (req, res) => {
@@ -183,7 +183,7 @@ app.patch('/funds', (req, res) => {
     event_id: event_id,
   })
   .then(res.status(200).send())
-  .catch(res.status(500).send())
+  .catch(e => res.status(500).send())
 })
 
 app.delete('/funds', (req, res) => {
@@ -192,7 +192,7 @@ app.delete('/funds', (req, res) => {
   .where('id', id)
   .del()
   .then(res.status(200).send())
-  .catch(res.status(500).send())
+  .catch(e => res.status(500).send())
 })
 
 /// --------------------- Donations --------------------- ///
@@ -201,7 +201,7 @@ app.get('/donations', (req, res) => {
   knex('donations')
   .select('*')
   .then(res.status(200).send())
-  .catch(res.status(500).send())
+  .catch(e => res.status(500).send())
 })
 
 app.post('/donations', (req, res) => {
@@ -212,7 +212,7 @@ app.post('/donations', (req, res) => {
     name: name,
   })
   .then(res.status(201).send())
-  .catch(res.status(500).send())
+  .catch(e => res.status(500).send())
 })
 
 app.patch('/donations', (req, res) => {
@@ -224,7 +224,7 @@ app.patch('/donations', (req, res) => {
     name: name,
   })
   .then(res.status(200).send())
-  .catch(res.status(500).send())
+  .catch(e => res.status(500).send())
 })
 
 app.delete('/donations', (req, res) => {
@@ -233,5 +233,5 @@ app.delete('/donations', (req, res) => {
   .where('id', id)
   .del()
   .then(res.status(200).send())
-  .catch(res.status(500).send())
+  .catch(e => res.status(500).send())
 })
