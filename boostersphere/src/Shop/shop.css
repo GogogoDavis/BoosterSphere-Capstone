@@ -63,3 +63,75 @@
 .itemTitle:hover {
   color: rgb(125, 137, 247);
 }
+
+.cart {
+  display: flex;
+  flex: 1;
+  gap: 10px;
+}
+
+.cartLeft {
+  flex: 0.7;
+  margin: 15px;
+  padding: 10px;
+  background-color: rgb(202, 247, 247);
+  align-content: center;
+  border-radius: 10px;
+}
+
+.cartRight {
+  background-color: rgb(245, 245, 189);
+  flex: 0.3;
+  margin: 15px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.cartContainer {
+  display: flex;
+  margin-bottom: 20px;
+  border: black solid;
+  background-color: aliceblue;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.cartImage {
+  display: flex;
+  align-items: center;
+}
+
+.cartDescription {
+  margin-left: 10px;
+  margin-right: 5px;
+  padding: 10px;
+  flex-grow: 1;
+  border: black solid;
+  background-color: rgb(188, 222, 252);
+  align-content: center;
+  border-radius: 5px;
+}
+
+.cartButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 5px;
+  background-color: aliceblue;
+}
+
+.cartButton {
+background-color: rgb(215, 230, 228);
+  outline: none;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.cartButtonContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: aliceblue;
+  padding: 5px;
+  border-radius: 5px;
+}
