@@ -33,7 +33,7 @@ function App() {
       if (user) {
         setUserdata(user);
         setThisuser(user.displayName);
-  
+        console.log('userdata on app 1', user)
         // Fetch user data when the user is logged in
         try {
           const querySnapshot = await getDocs(collection(db, "users"));
@@ -46,6 +46,7 @@ function App() {
           console.log(err);
         }
       } else {
+        console.log('userdata on app 3', fulluserData)
         // User is not logged in
         setUserdata(null);
         setThisuser(null);
@@ -58,7 +59,6 @@ function App() {
     return () => unsubscribe();
   }, [auth, currentUser, dispatch]);
 
-  console.log('userdata on app', fulluserData)
 
 
   const RequireAuth = ({ children }) => {
