@@ -12,6 +12,8 @@ import { HomePage } from './Home/HomePage';
 import { Funds } from './Funds/Funds.js';
 import { Shop } from './Shop/Shop';
 import { AddUsers } from './AddUsers/AddUsers.js';
+import { Cart } from './Shop/Cart'
+import store from './Shop/store';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { db } from './firebase';
 import { collection, getDocs } from "firebase/firestore";
@@ -94,6 +96,7 @@ function App() {
 
             <Route path='/add' element={<AddUsers />} />
             <Route path='/Shop' element={<Shop />} />
+            <Route path='/Cart' element={<Cart />} />
             <Route path='/Register' element={<Register />} />
             <Route path='/details/:id' element={<Details item={details} />} />
 

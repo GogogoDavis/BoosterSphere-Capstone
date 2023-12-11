@@ -2,11 +2,12 @@ import { useState, useContext, useEffect } from 'react';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
-import { doc, setDoc, addDoc, collection } from "firebase/firestore"; 
+import { doc, setDoc, addDoc, collection, getDocs } from "firebase/firestore"; 
 import { db, storage, auth } from '../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import mopey from '../DaMopester.jpg'
 import './Register.css'
+import upload from './upload.png'
 
 
 export const Register = () => {
@@ -23,7 +24,7 @@ export const Register = () => {
     const [file, setFile] = useState();
     const [photoUrl, setUrl] = useState();
     const [per, setPerc] = useState(null);
-    
+    const [check, setCheck] = useState();
 
 
     const navigate = useNavigate()
@@ -69,9 +70,23 @@ export const Register = () => {
     }, [file]);
 
 
+    useEffect(()=>{    
+        const fetchData = async () =>{
+          let list = []
+          try{
+            const querySnapshot = await getDocs(collection(db, "users"));
+            querySnapshot.forEach((doc) => {
+              list.push({id: doc. id, ...doc.data()});
+            });
+            setCheck(list)
+          } catch(err){
+            console.log(err);
+          }
+        };
+        fetchData()
+      },[])
 
-
-
+       
 const handleKeyDown = e => {
     if (e.key === " ") {
         e.preventDefault();
@@ -80,6 +95,18 @@ const handleKeyDown = e => {
 
 const handleAdd = async (e) => {
     e.preventDefault();
+    let flag = false;
+    let existFlag = false;
+
+    check.forEach(element => {
+        if(element.username.toLowerCase().includes(displayName.toLowerCase())){
+            existFlag = true;
+        }
+    })
+
+    if(existFlag === true){
+        alert('username already exists')
+    } else{
     try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
         await setDoc(doc(db, "users", res.user.uid), {
@@ -91,9 +118,11 @@ const handleAdd = async (e) => {
       });
 
     } catch (err){
-        console.log(err)
+        alert(err)
+        flag = true
     }
-    navigate("/Login")
+    flag ? flag = true : navigate('/Login')
+ }
 }
 
 return (
@@ -108,8 +137,9 @@ return (
                 <input type="text" placeholder='Username' onChange={e => setDisplayName(e.target.value)} onKeyDown={handleKeyDown} />
                 <input type="text" placeholder='First Name' onChange={e => setFirstName(e.target.value)} />
                 <input type="text" placeholder='Last Name' onChange={e => setLastName(e.target.value)} />
-                <label htmlFor="file">
-                    <img src={mopey} alt='profile'/>
+                <label htmlFor="file" className='upload'>
+                   Upload Profile Picture:  
+                   <img src={upload} alt='profile' className='uploadimg'/>
                 </label>
                 <input 
                     type="file"
@@ -118,6 +148,8 @@ return (
                     style={{ display: "none"}}
                 />
                 <button disabled={per !== null && per <100} type='submit'>Register</button>
+                <p>Back to <Link to='/Login' className='register'>Login</Link></p>
+                {photoUrl ? <img src={photoUrl} alt='uploaded photo' className='currentPhoto' /> : <img src="https://firebasestorage.googleapis.com/v0/b/capstone-b1b79.appspot.com/o/noProfile.png?alt=media&token=f9093a55-b818-4fd9-91cb-d75fcdd6035a" alt='empty' className='currentPhoto' />}
             </div>
         </form>
     </div>

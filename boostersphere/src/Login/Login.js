@@ -31,6 +31,7 @@ export const Login = () => {
 
       const userCredential = await signInWithEmailAndPassword(authInstance, email, password);
       const user = userCredential.user;
+
       setUserdata(user);
       setThisuser(user.displayName);
       dispatch({ type: "LOGIN", payload: user });
@@ -40,6 +41,7 @@ export const Login = () => {
       setError(true);
       console.error("Login failed", error);
     }
+
   }
 
   
