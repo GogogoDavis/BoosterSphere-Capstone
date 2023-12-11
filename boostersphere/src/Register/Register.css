@@ -37,3 +37,19 @@
     color: white;
     text-decoration: underline;
   }
+
+  .upload {
+    color: white;
+    cursor: pointer;
+  }
+
+  .uploadimg{
+    background-color: white;
+    width:25px;
+    border-radius: 50px;
+  }
+
+  .currentPhoto{
+    width: 100px;
+    border-radius: 50px;
+  }

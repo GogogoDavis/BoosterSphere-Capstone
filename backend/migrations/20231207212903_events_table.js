@@ -3,7 +3,17 @@
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-  
+  return knex.schema.createTable('events', table => {
+    table.increments();
+    table.string('eventTitle'); 
+    table.string('type');
+    table.string('description');
+    table.date('date');
+    // date in this format 'yyyy-mm-dd'
+    table.integer('fundRequired');
+    table.integer('volunteerNeeded')
+    table.integer('userId');
+  })
 };
 
 /**
@@ -11,5 +21,5 @@ exports.up = function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-  
+  return knex.schema.dropTableIfExists('events')
 };
