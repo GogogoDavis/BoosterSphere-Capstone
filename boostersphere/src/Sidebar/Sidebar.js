@@ -63,6 +63,7 @@ const handleLogout = () =>{
                     <div className='user-details'>
                         <p className='title'>{thisuser.email}</p>
                         <p className='name'>{thisuser.displayName}</p>
+                        <p className='name'>{thisuser.username}</p>
                     </div>
                 </div>
                 <div className='nav'>
