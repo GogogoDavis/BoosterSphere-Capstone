@@ -76,6 +76,7 @@ export const Events = () => {
         style={{height: 500, margin: "50px"}}/>
     </div>
   )
+};
   // const [toggleAddEvent, setToggleAddEvent] = useState(false);
   // const [events, setEvents] = useState([]);
   // const [formData, setFormData] = useState({
@@ -230,4 +231,3 @@ export const Events = () => {
   //     </div>
   //   </>
   // );
-};
