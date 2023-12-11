@@ -2,6 +2,7 @@ import './Sidebar.css'
 import { useState, useContext, useEffect } from 'react';
 import { userContext } from '../App';
 import { AuthContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 
 import { Link } from 'react-router-dom';
@@ -24,6 +25,7 @@ export const Sidebar = () => {
 const { thisuser, setThisuser, fulluserData, userdata } = useContext(userContext)
 const {dispatch} = useContext(AuthContext)
 const [isActive, setActive] = useState(false);
+const navigate = useNavigate()
 
     useEffect(() => {
         const getThisUserData = async () => {
@@ -67,25 +69,25 @@ const handleLogout = () =>{
                     <div className='menu'>
                         <p className='title'>Main</p>
                         <ul>
-                            <li className='active'>
+                            <li className='active' onClick={()=>{navigate('/Home')}}>
                                 <div className='select'>
                                     <i className='icon'><GrHomeRounded /></i>
-                                    <span className='text'>Home</span>
+                                    <span className='text' >Home</span>
                                 </div>
                             </li>
-                            <li>
+                            <li onClick={()=>{navigate('/Events')}}> 
                                 <div className='select'>
                                     <i className='icon'><RxDashboard /></i>
                                     <span className='text'>Events</span>
                                 </div>
                             </li>
-                            <li>
+                            <li onClick={()=>{navigate('/Shop')}}>
                                 <div className='select'>
                                     <i className='icon'><MdOutlineShoppingBag /></i>
                                     <span className='text'>Store</span>
                                 </div>
                             </li>
-                            <li>
+                            <li onClick={()=>{navigate('/Funds')}}>
                                 <div  className='select'>
                                     <i className='icon'><RiRefund2Fill /></i>
                                     <span className='text'>Funds</span>
@@ -96,7 +98,7 @@ const handleLogout = () =>{
                     <div className='menu'>
                         <p className='title'>Settings</p>
                         <ul>
-                            <li className='active'>
+                            <li className='active' onClick={()=>{navigate('/Setting')}}>
                                 <div className='select'>
                                     <i className='icon'><IoSettingsOutline /></i>
                                     <span className='text'>Settings</span>
@@ -108,16 +110,16 @@ const handleLogout = () =>{
                 <div className='menu'>
                         <p className='title'>Account</p>
                         <ul>
-                            <li className='active'>
+                            <li className='active' onClick={()=>{navigate('/Profile')}}>
                                 <div className='select'>
                                     <i className='icon'><CgProfile /></i>
                                     <span className='text'>Profile</span>
                                 </div>
                             </li>
-                            <li className='active'>
+                            <li className='active' onClick={()=>{handleLogout()}}>
                                 <div className='select'>
-                                    <i className='icon' onClick={()=>{handleLogout()}}><CiLogout /></i>
-                                    <span className='text' onClick={()=>{handleLogout()}}>Logout</span>
+                                    <i className='icon' ><CiLogout /></i>
+                                    <span className='text' >Logout</span>
                                 </div>
                             </li>
                         </ul>

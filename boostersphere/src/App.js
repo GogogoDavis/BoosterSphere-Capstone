@@ -18,6 +18,7 @@ import { db } from './firebase';
 import { collection, getDocs } from "firebase/firestore";
 import { Sidebar } from './Sidebar/Sidebar.js';
 import { Profile } from './Profile/Profile.js';
+import { Setting } from './Setting/Setting.js'
 
 export const userContext = React.createContext();
 
@@ -95,7 +96,15 @@ function App() {
               </RequireAuth>} />
 
 
-            <Route path='/Profile' element={<Profile />} />
+            <Route path='/Profile' element={
+            <RequireAuth><Profile /> 
+            </RequireAuth>} />
+
+            <Route path='/Setting' element={
+            <RequireAuth><Setting /> 
+            </RequireAuth>} />
+
+
             <Route path='/Shop' element={<Shop />} />
             <Route path='/Cart' element={<Cart />} />
             <Route path='/Register' element={<Register />} />

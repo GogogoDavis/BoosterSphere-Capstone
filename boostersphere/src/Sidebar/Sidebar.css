@@ -11,10 +11,6 @@ body{
     background-color: #5b6677;
 }
 
-.container{
-    width: 100%;
-}
-
 .sidebar{
     position: relative;
     width: 256px;
@@ -88,6 +84,7 @@ body{
 .menu ul li:active {
     color: #000;
     background-color: #f6f6f6;
+    cursor: pointer;
 }
 
 .menu ul li .icon{
