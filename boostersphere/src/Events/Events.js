@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
+import Calendar from 'react-calendar';
 import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
-import { LocalizationProvider, DateRangeCalendar, DatePicker } from '@mui/x-date-pickers-pro';
+import { LocalizationProvider, DateRangeCalendar, DatePicker, renderDateRangeViewCalendar } from '@mui/x-date-pickers-pro';
 import './Events.css';
 
 export const Events = () => {
@@ -15,6 +16,8 @@ export const Events = () => {
     volunteerNeeded: 0,
     userId: 1, 
   });
+
+  const [calendarDate, setCalendarDate] = useState(new Date());
 
   useEffect(() => {
     fetchEvents();
@@ -73,11 +76,31 @@ export const Events = () => {
         fetchEvents();
       })
       .catch((err) => console.error('Error adding event:', err));
-  };
 
+///----------------------------------------------------Begin Calendar Code --------------------------------------------------///
+
+    // class Calendar extends Component {
+    //   constructor(){
+    //     super();
+
+    //     this.weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    //     this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 
+    //   'October', 'November', 'December']
+
+    //     this.state = {
+    //       currentDay: new Date()
+    //     }
+    //   }
+    // }    
+
+  };
 
   return (
     <>
+    <div id='Calendar'>
+      <h1>Calendar</h1>
+      <Calendar onChange= {setCalendarDate} value={calendarDate} />
+    </div>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <div className="events-container">
           {!toggleAddEvent ? (
@@ -85,10 +108,10 @@ export const Events = () => {
               <button className="add-event-btn" onClick={toggleAdd}>
                 Add Super Cool and Fresh New Event!
               </button>
-              <DateRangeCalendar
+              {/* <DateRangeCalendar
                 value={formData.date}
                 onChange={handleDateChange}
-              />
+              /> */}
               <ul className="events-list">
                 {events.map((event) => (
                   <li key={event.id}>
