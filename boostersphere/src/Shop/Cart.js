@@ -12,7 +12,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import { addToCart, removeFromCart } from './CartSlice'
+import { addToCart, removeFromCart, incrementQuantity, decrementQuantity } from './CartSlice'
 import { useSelector, useDispatch } from "react-redux";
 
 export const Cart = () => {
@@ -25,6 +25,17 @@ export const Cart = () => {
   const removeItemFromCart = (item) => {
     dispatch(removeFromCart(item))
   }
+  const incrementItemQuantity = (item) => {
+    dispatch(incrementQuantity(item))
+  }
+  const decrementItemQuantity = (item) => {
+    dispatch(decrementQuantity(item))
+  }
+  const total = cart.map((item) => item.price * item.quantity).reduce((curr, prev) => curr +prev,0)
+
+  const tax = (total * 0.029).toFixed(2)
+  const orderTotal = total + parseFloat(tax)
+
   console.log(cart);
 
   useEffect(() => {
@@ -46,7 +57,7 @@ export const Cart = () => {
           className="logo"
           src={mopey} alt='add image later'
         />
-        <MenuIcon style={{ color: "white" }} />
+        <div>Delta Swag Shop</div>
         <div className="headerInputContainer">
           <input
             className="headerInput"
@@ -105,31 +116,44 @@ export const Cart = () => {
               </div>
 
               <div className='cartDescription'>
-                <p>{item.title}</p>
+                <p >{item.title}</p>
                 <p style={{fontSize:'12px'}}>{item.description.length >80 ? item.description.substr(0,80) : item.description}</p>
-                <p>${item.price}</p>
+                <p >${item.price}</p>
               </div>
 
               <div className='cartButtonContainer'>
                 <div className='cartButtons'>
-                  <div>-</div>
+                  <div onClick={() => decrementItemQuantity(item)} style={{cursor:'pointer'}}>-</div>
                   <div>{item.quantity}</div>
-                  <div>+</div>
+                  <div onClick={() => incrementItemQuantity(item)} style={{cursor:'pointer'}}>+</div>
                 </div>
-                <div className='cartButton'>Remove Item</div>
+                <button onClick={() => removeItemFromCart(item)} className='cartButton'>Remove Item</button>
+                <h5 style={{marginTop:'3px'}}>{item.price * item.quantity}</h5>
               </div>
           </div>
           ))}
         </div>
-
         <div className="cartRight">
-
+          <div className="checkoutContainer">
+            <div className="checkout">
+              <h5>Subtotal</h5>
+              <h5>${total}</h5>
+            </div>
+            <div className="checkout">
+              <h5>Tax</h5>
+              <h5>${tax}</h5>
+            </div>
+            <div style={{borderTop:'solid'}} className="checkout">
+              <h5>Order Total</h5>
+              <h5>${orderTotal}</h5>
+            </div>
+          </div>
         </div>
       </div>
 
       <div>
       <Link to='/Shop' className='NavBar'>
-      <Button style={{ marginLeft: '30px',backgroundColor:'cyan'}}>Back to Shop!</Button>
+      <Button style={{ marginLeft: '30px',backgroundColor:'rgb(188, 222, 252)'}}>Back to Shop!</Button>
       </Link>
       </div>
   </>

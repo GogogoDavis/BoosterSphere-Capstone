@@ -1,7 +1,7 @@
 import "./shop.css";
 import { Link } from "react-router-dom";
 import { Logout } from "../Logout/Logout";
-import { Sidebar } from "../Sidebar/Sidebar"
+import { Sidebar } from "../Sidebar/Sidebar.js"
 import mopey from '../DaMopester.jpg'
 import { userContext } from "../App";
 import { useContext, useState, useEffect } from "react";
@@ -45,7 +45,7 @@ export const Shop = () => {
           className="logo"
           src={mopey} alt='add image later'
         />
-        <MenuIcon style={{ color: "white" }} />
+                <h4 className='headerText'>Delta 10 Swag Shop</h4>
         <div className="headerInputContainer">
           <input
             className="headerInput"
@@ -111,7 +111,7 @@ export const Shop = () => {
               <p className="itemTitle">
                 {item.title}
               </p>
-              <p>{item.price}</p>
+              <p>${item.price}</p>
 
               {cart.some((x) => x.id === item.id) ? (
                 <Button onClick={()=> removeItemFromCart(item)} style={{backgroundColor:'lightpink'}}>Remove From Cart</Button>
@@ -124,9 +124,9 @@ export const Shop = () => {
       </div>
 
       {/* Footer */}
-      <div className="headerBottom">
+      {/* <div className="headerBottom">
         <MenuIcon style={{ color: "white" }} />
-      </div>
+      </div> */}
     </>
   );
 };
