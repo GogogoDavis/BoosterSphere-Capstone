@@ -5,6 +5,7 @@ import { Logout } from '../Logout/Logout';
 import { userContext } from '../App';
 import { collection, getDocs } from "firebase/firestore";
 import { db } from '../firebase';
+import { Sidebar } from '../Sidebar/Sidebar';
 
 
 export const HomePage = () => {
@@ -30,18 +31,14 @@ export const HomePage = () => {
 
   return (
     <>
-
-      <div className="nav">
-        <div className='links'>
-          <Link to='/Home' className='NavBar'>Home</Link>
-          <Link to='/Events' className='NavBar'>Events</Link>
-        </div>
-        <Logout />
-      </div>
+      <div className='side-barcontainer'>
+        <Sidebar />
       <div className='mainpage'>
         <p className='welcome'>Welcome Back!</p>
         <h2>{!thisuser ? '' : thisuser.displayName}</h2>
+        <Logout />
         {/* <h3>Email: {!JSON.parse(localStorage.getItem("user")) ? 'none' :  JSON.parse(localStorage.getItem("user")).email}</h3> */}
+      </div>
       </div>
     </>
   )
