@@ -13,10 +13,12 @@ export const Logout = () => {
 
   return (
 <>
-<div class="navigation">
+<div className="navigation">
   
+
   <a class="button" href="" onClick={() => {handleLogout()}}>
-    <img src={mopey} alt='profile' onClick={() => {handleLogout()}}/>
+    <img src={mopey} alt='profile' onClick={() => {handleLogout()}} className='logoutImg'/>
+
 
     <div className="logout" onClick={() => {handleLogout()}}>Logout</div>
     </a>
