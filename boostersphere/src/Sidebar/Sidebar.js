@@ -19,16 +19,23 @@ import { CiLogout } from "react-icons/ci";
 import { TiChevronLeftOutline } from "react-icons/ti";
 
 
-
-
-
-
 export const Sidebar = () => {
 
-const { thisuser, setThisuser } = useContext(userContext)
+const { thisuser, setThisuser, fulluserData, userdata } = useContext(userContext)
 const {dispatch} = useContext(AuthContext)
-
 const [isActive, setActive] = useState(false);
+
+    useEffect(() => {
+        const getThisUserData = async () => {
+          fulluserData.forEach((element) => {
+            if (element.id === userdata.uid) {
+              setThisuser(element);
+            }
+          });
+        };
+        if (fulluserData && userdata) getThisUserData();
+      }, [fulluserData, userdata, setThisuser]);
+
 
 const toggleClass = () =>{
     setActive(!isActive);
@@ -117,8 +124,6 @@ const handleLogout = () =>{
                     </div>
             </div>
         </div>
-
-
 
     </>
   ))
