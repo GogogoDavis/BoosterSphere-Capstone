@@ -1,3 +1,7 @@
 .Container{
-    display:inline-flex
+    display:flex
+}
+
+.form{
+    width: 100%;
 }

@@ -1,12 +1,11 @@
 import './Sidebar.css'
 import { useState, useContext, useEffect } from 'react';
 import { userContext } from '../App';
-import { AuthContext } from '../context/AuthContext';
-
-
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Logout } from '../Logout/Logout';
 import mopey from '../DaMopester.jpg'
+import Cookies from 'js-cookie';
 
 
 import {RxDashboard} from "react-icons/rx";
@@ -20,33 +19,20 @@ import { TiChevronLeftOutline } from "react-icons/ti";
 
 
 export const Sidebar = () => {
+  const { userData, setUserData } = useContext(userContext)
+  const [isActive, setActive] = useState(false);
 
-const { thisuser, setThisuser, fulluserData, userdata } = useContext(userContext)
-const {dispatch} = useContext(AuthContext)
-const [isActive, setActive] = useState(false);
+  const toggleClass = () =>{
+      setActive(!isActive);
+  }
 
-    useEffect(() => {
-        const getThisUserData = async () => {
-          fulluserData.forEach((element) => {
-            if (element.id === userdata.uid) {
-              setThisuser(element);
-            }
-          });
-        };
-        if (fulluserData && userdata) getThisUserData();
-      }, [fulluserData, userdata, setThisuser]);
-
-
-const toggleClass = () =>{
-    setActive(!isActive);
-}
-
-const handleLogout = () =>{
-    dispatch({type:"LOGOUT"})
+  const handleLogout = () =>{
+    Cookies.remove('user_data');
+    setUserData(null)
   }
 
 
-  return !thisuser? null : ((
+  return !userData? null : ((
     <>
 
         <div className="container">
@@ -56,11 +42,11 @@ const handleLogout = () =>{
                 </div>
                 <div className="head">
                     <div className='user-img'>
-                        {thisuser.img ? <img src={thisuser.img} alt='' /> : <img src={mopey} alt='' />}
+                        {userData.img ? <img src={userData.img} alt='' /> : <img src={mopey} alt='' />}
                     </div>
                     <div className='user-details'>
-                        <p className='title'>{thisuser.email}</p>
-                        <p className='name'>{thisuser.displayName}</p>
+                        <p className='title'>{userData.email}</p>
+                        <p className='name'>{userData.firstName} {userData.lastName}</p>
                     </div>
                 </div>
                 <div className='nav'>

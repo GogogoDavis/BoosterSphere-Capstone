@@ -1,65 +1,52 @@
 import './Login.css';
-import { useState, useEffect, useContext } from 'react';
-import { getAuth, signInWithEmailAndPassword, setPersistence, browserLocalPersistence } from "firebase/auth";
-import {auth, app} from "../firebase"
+import { useState, useContext } from 'react';
 import {Link, useNavigate } from 'react-router-dom' ;
-import { AuthContext } from '../context/AuthContext';
 import { userContext } from '../App';
-import { collection, getDocs } from "firebase/firestore";
-import { db } from '../firebase';
-
-
+import Cookies from 'js-cookie';
 
 export const Login = () => {
   const [error, setError] = useState(false)
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
   const navigate = useNavigate()
 
-  const {dispatch} = useContext(AuthContext)
-  const {setUserdata,  setThisuser} = useContext(userContext)
+  const {setUserData} = useContext(userContext)
 
 
   const handleLogin = async (e) => {
     e.preventDefault();
-  
     try {
-      const authInstance = getAuth(app);
-      // Set local persistence
-      await setPersistence(authInstance, browserLocalPersistence);
+      const response = await fetch('http://localhost:8080/users/login', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+      const user = await response.json();
+      setUserData(user);
+      Cookies.set('user_data', JSON.stringify({userId: user.userId, username: user.username, lastName: user.lastName, email: user.email}), { expires: 15 });
+      navigate('/Home');
 
-      const userCredential = await signInWithEmailAndPassword(authInstance, email, password);
-      const user = userCredential.user;
-
-      setUserdata(user);
-      setThisuser(user.displayName);
-      dispatch({ type: "LOGIN", payload: user });
-      navigate("/Home");
-  
     } catch (error) {
       setError(true);
-      console.error("Login failed", error);
     }
-
-  }
-
-  
+  };
 
   return (
-<>
+    <>
     <div className='login'>
         <div> <p className='welcome'>Welcome to BoosterSphere</p></div>
-         <form onSubmit={handleLogin}>
+        <form onSubmit={handleLogin}>
           <input type='email' placeholder='email' onChange={e => setEmail(e.target.value)}/>
           <input type="password"  placeholder='password' onChange={e => setPassword(e.target.value)}/>
           <button type='submit'>Login</button>
           {error && <span>Wrong email or password!</span>}
           <p>Not a member? <Link to='/Register' className='register'>Register!</Link></p>
           <p>Or want to just visit? <Link to='/Visitor' className='register'>Explore!</Link></p>
-         </form>
+        </form>
     </div>
-
-</>
+    </>
   )
 }

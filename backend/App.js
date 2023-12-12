@@ -1,30 +1,76 @@
 const express = require('express');
-const knex = require('knex')(require('./knexfile.js')[process.env.NODE_ENV || 'development'])
 const cors = require('cors');
-const app = express();
+const knex = require('knex')(require('./knexfile.js')[process.env.NODE_ENV || 'development']);
+const bcrypt = require('bcrypt');
 
+const app = express();
 const port = 8080; 
 
-app.use(cors())
-app.use(express.json())
+app.use(cors());
+app.use(express.json({ limit: '10mb' }));
+
 
 app.listen(port, () => console.log(`Alrighty weather-boi, this john do be running on port ${port}`))
 
 /// --------------------- Users --------------------- ///
 
+app.post('/users/register', async (req, res) => {
+  const { username, firstName, lastName, email, role, password, profileImage } = req.body;
+  try {
+    let usernameOrEmailIsDuplicate = false;
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-app.post('/users', (req, res) => {
-  const {username, firstName, lastName, email, role} = req.body
-  knex('users')
-  .insert({
-    username: username,
-    firstName:firstName,
-    lastName: lastName,
-    email: email,
-    role: role
-  })
-  .then(res.status(201).send())
-  .catch(e => res.status(500).send())
+    // Check for duplicate username or email
+    const userData = await knex('users').select('*');
+    userData.forEach(existingUser => {
+      if (existingUser.username === username || existingUser.email === email) {
+        usernameOrEmailIsDuplicate = true;
+      }
+    });
+
+    if (!usernameOrEmailIsDuplicate) {
+      await knex('users').insert({
+        username: username,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        role: role,
+        password: hashedPassword,
+        profileImage: profileImage,
+      });
+      res.status(201).send();
+    } else {
+      res.status(400).send('Username or email already exists');
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send();
+  }
+});
+
+
+app.post('/users/login', async (req, res) => {
+  const {email, password} = req.body
+  try {
+    const user = await knex('users').select('*').where('email', email)
+    if (!user[0]) {
+      return res.status(400).send('no user found')
+    }
+    if(await bcrypt.compare(password, user[0].password)) {
+      res.status(200).send({userId: user[0].userId, username: user[0].username, firstName: user[0].firstName, lastName: user[0].lastName, email: user[0].email, profileImage: user[0].profileImage})
+    } else {
+      res.status(400).send('wrong password')
+    }
+  } catch {
+    res.status(500).send()
+  }
+})
+
+app.get('/users/image', async (req, res) => {
+  const {userId} = req.query
+  knex('users').select('profileImage').where('userId', userId)
+    .then(img => res.status(200).send(img))
+    .catch(err => res.status(500).send())
 })
 
 app.patch('/users', (req, res) => {
