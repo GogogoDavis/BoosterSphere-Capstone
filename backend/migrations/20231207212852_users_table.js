@@ -11,7 +11,9 @@ exports.up = function(knex) {
     table.string('lastName');
     table.string('email');
     table.string('role');
-  })
+    table.text('profileImage');
+    table.string('password');
+  });
 };
 
 /**
@@ -19,5 +21,5 @@ exports.up = function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-  return knex.schema.dropTableIfExists('users')
+  return knex.schema.dropTableIfExists('users');
 };
