@@ -55,6 +55,7 @@ body{
     letter-spacing: 3px;
     text-decoration: none;
     text-transform: capitalize;
+    cursor: pointer;
 }
 
 .Landing_navItems li:hocer a,
@@ -86,7 +87,7 @@ body{
     border-radius: 50%;
     left: -12%;
     top: 40%;
-    background: linear-gradient(45deg, #7f00ff, black);
+    background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.548));
     animation: object1 6s linear infinite;
 }
 
@@ -98,7 +99,7 @@ body{
     border-radius: 50%;
     left: 35%;
     top: 12%;
-    background: linear-gradient(45deg, #7f00ff, black);
+    background: linear-gradient(45deg, #3902ff8e, black);
     animation: object2 6s linear infinite;
 }
 
