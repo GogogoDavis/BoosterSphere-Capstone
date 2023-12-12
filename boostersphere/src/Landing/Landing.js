@@ -1,18 +1,14 @@
 import './Landing.css'
-
-
-import { Link } from 'react-router-dom';
-import { Logout } from '../Logout/Logout';
-
+import { useContext } from 'react'
+import { userContext } from '../App'
+import { HomePage } from '../Home/HomePage'
 
 export const Landing = () => {
-
-
-  return (
+  const { thisuser } = useContext(userContext)
+  console.log(thisuser)
+  return (thisuser ?  <HomePage />:
     <>
-
-<h1>Landing Page for visitors</h1>
-
+      <h1>Welcome To Booster Sphere!</h1>
     </>
   )
 }
