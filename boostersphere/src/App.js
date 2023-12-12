@@ -15,6 +15,7 @@ import { Store } from './Shop/store';
 import { Sidebar } from './Sidebar/Sidebar.js';
 import { Profile } from './Profile/Profile.js';
 import Cookies from 'js-cookie';
+import { Setting } from './Setting/Setting.js'
 
 export const userContext = React.createContext();
 
@@ -72,10 +73,24 @@ function App() {
                 <Funds />
               </RequireAuth>} />
 
-            <Route path='/profile' element={<Profile />} />
+
             <Route path='/shop' element={<Shop />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='/register' element={<Register />} />
+
+            <Route path='/Profile' element={
+            <RequireAuth><Profile /> 
+            </RequireAuth>} />
+
+            <Route path='/Setting' element={
+            <RequireAuth><Setting /> 
+            </RequireAuth>} />
+
+
+            <Route path='/Shop' element={<Shop />} />
+            <Route path='/Cart' element={<Cart />} />
+            <Route path='/Register' element={<Register />} />
+
             <Route path='/details/:id' element={<Details item={details} />} />
 
           </Routes>

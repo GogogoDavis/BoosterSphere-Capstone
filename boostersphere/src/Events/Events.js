@@ -10,6 +10,15 @@ import "react-datepicker/dist/react-datepicker.css"
 // import Calendar from 'react-calendar';
 // import './Events.css';
 
+// .('eventTitle'); 
+//     .('type');
+//     .('description');
+//     table.date('date');
+//     // date in this format 'yyyy-mm-dd'
+//     .('fundRequired');
+//     .('volunteerNeeded')
+//     .('userId');
+
 const locales = {
   "en-Us": require("date-fns/locale/en-US")
 
@@ -25,49 +34,90 @@ const localizer = dateFnsLocalizer({
 
 const events = [
   {
-    title: "Dummy Event",
-    start: new Date,
-    end: new Date
-
+    eventTitle: 'Bingus party', 
+    type: 'religious event',
+    description: 'We do be religioning',
+    date: '2003-01-10',
+    // date in this format 'yyyy-mm-dd'
+    fundRequired: 230000,
+    volunteerNeeded: 200,
+    userId: 2
   }
 ]
 
 export const Events = () => {
 
+  const [ toggleForm, setToggleForm ] = useState(false);
   const [newEvent, setNewEvent] = useState({
-     title: "",
-     start: "",
-     end: ""
+     eventTitle: "",
+     type: "",
+     description: "",
+     date: "",
+     fundRequired: 0,
+     volunteerNeeded: 0,
+     userId: 0
+
     });
 
   const [allEvents, setAllEvents] = useState(events) 
 
-  function handleAddEvent() {
-    setAllEvents([...allEvents, newEvent])
+  function HandleAddEvent() {
+      setToggleForm(false);
+      fetch(`http://localhost:8080/events`, {
+      method: 'POST', 
+      headers:  {
+        'Content-Type': 'application/json', 
+      },
+      body: JSON.stringify(newEvent),
+      })
+      .then(res => res.json())
+      .then(data => {console.log('Incredibly cool:', data); 
+      setAllEvents([...allEvents, newEvent]);
+    })
+    .catch((error) => {
+      console.error('Wuh-oh :,(       :', error);
+    })
+    }
+
+    const yesToggler = () => {
+      setToggleForm(true);
     }
 
 
   return(
     <div className='App'>
       <h1>Calendar</h1>
-      <h2>Add New Event</h2>
+      <h2>
+        <button onClick={yesToggler}>Add New Event</button>
+        </h2>
+        {toggleForm ? (
+      <>
       <div>
-        <input type="text" placeholder='Add Title' style={{width:"20%", marginRight: "10px"}}
-          value ={newEvent.title} onChange={(e) => setNewEvent({...newEvent, title: e.target.value })} 
-        />
-      </div>
-        <DatePicker 
-        placeholderText='Start Date' 
-        style={{marginRight: "10px"}}
-        selected={newEvent.start} 
-        onChange={(start) => setNewEvent({...newEvent, start})}/>
-
-        <DatePicker 
-        placeholderText='End Date' 
-        selected={newEvent.end} 
-        onChange={(end) => setNewEvent({...newEvent, end})}/>
-
-        <button style={{marginTop: "10px"}} onClick={handleAddEvent}>Add Event</button>
+          <input type="text" placeholder='Add Event' style={{ width: "20%", marginRight: "10px" }}
+            value={newEvent.eventTitle} onChange={(e) => setNewEvent({ ...newEvent, eventTitle: e.target.value })} />
+        </div><div>
+            <input type="text" placeholder='Event Type' style={{ width: "20%", marginRight: "10px" }}
+              value={newEvent.type} onChange={(e) => setNewEvent({ ...newEvent, type: e.target.value })} />
+          </div><div>
+            <input type="text" placeholder='Event Description' style={{ width: "20%", marginRight: "10px" }}
+              value={newEvent.description} onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })} />
+          </div><DatePicker
+            placeholderText='Date'
+            style={{ marginRight: "10px" }}
+            selected={newEvent.date}
+            onChange={(date) => setNewEvent({ ...newEvent, date })} /><div>
+            <input type="integer" placeholder='Funds Required' style={{ width: "20%", marginRight: "10px" }}
+              value={newEvent.fundRequired} onChange={(e) => setNewEvent({ ...newEvent, fundRequired: e.target.value })} />
+          </div><div>
+            <input type="integer" placeholder='Volunteers Needed' style={{ width: "20%", marginRight: "10px" }}
+              value={newEvent.volunteerNeeded} onChange={(e) => setNewEvent({ ...newEvent, volunteerNeeded: e.target.value })} />
+          </div><div>
+            <input type="integer" placeholder='User ID' style={{ width: "20%", marginRight: "10px" }}
+              value={newEvent.userId} onChange={(e) => setNewEvent({ ...newEvent, userId: e.target.value })} />
+          </div>
+          <button style={{marginTop: "10px"}} onClick={HandleAddEvent}>Submit New Event!</button>
+          </>
+        ): null }
 
       <Calendar 
         localizer={localizer} events={allEvents}
@@ -76,6 +126,8 @@ export const Events = () => {
         style={{height: 500, margin: "50px"}}/>
     </div>
   )
+};
+
   // const [toggleAddEvent, setToggleAddEvent] = useState(false);
   // const [events, setEvents] = useState([]);
   // const [formData, setFormData] = useState({
@@ -230,4 +282,3 @@ export const Events = () => {
   //     </div>
   //   </>
   // );
-};

@@ -91,6 +91,7 @@ body{
 .menu ul li:active {
     color: #000;
     background-color: #f6f6f6;
+    cursor: pointer;
 }
 
 .menu ul li .icon{

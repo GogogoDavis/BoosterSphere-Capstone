@@ -1,6 +1,7 @@
 import './Sidebar.css'
 import { useState, useContext } from 'react';
 import { userContext } from '../App';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Logout } from '../Logout/Logout';
 import mopey from '../DaMopester.jpg'
@@ -16,7 +17,6 @@ import { TiChevronLeftOutline } from "react-icons/ti";
 import Cookies from 'js-cookie';
 
 export const Sidebar = () => {
-
   const { userData, setUserData } = useContext(userContext)
   const [isActive, setActive] = useState(false);
 

@@ -39,7 +39,7 @@
 .bodyItem {
   display: flex;
   flex-wrap: wrap;
-  background-color: rgb(247, 238, 228);
+  background-color: rgb(188, 222, 252);
 }
 
 .productItem {
@@ -54,6 +54,8 @@
 
 .itemTitle {
   font-weight: 800;
+  height: 2em;
+  align-content: center;
 }
 
 .description {
@@ -74,16 +76,8 @@
   flex: 0.7;
   margin: 15px;
   padding: 10px;
-  background-color: rgb(202, 247, 247);
+  background-color: rgb(188, 222, 252);
   align-content: center;
-  border-radius: 10px;
-}
-
-.cartRight {
-  background-color: rgb(245, 245, 189);
-  flex: 0.3;
-  margin: 15px;
-  padding: 10px;
   border-radius: 10px;
 }
 
@@ -116,16 +110,19 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  border-radius: 5px;
   gap: 5px;
-  background-color: aliceblue;
+  background-color: rgb(188, 222, 252);
 }
 
 .cartButton {
-background-color: rgb(215, 230, 228);
+  background-color: rgb(188, 222, 252);
   outline: none;
   border: none;
   padding: 5px;
   border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
 .cartButtonContainer {
@@ -134,4 +131,24 @@ background-color: rgb(215, 230, 228);
   background-color: aliceblue;
   padding: 5px;
   border-radius: 5px;
+}
+
+.cartRight {
+  background-color: rgb(188, 222, 252);
+  flex: 0.3;
+  margin: 15px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.checkoutContainer {
+  margin-top: 15px;
+
+}
+
+.checkout {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24px;
+
 }
