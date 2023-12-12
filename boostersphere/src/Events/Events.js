@@ -95,75 +95,135 @@ export const Events = () => {
     }
 
     const yesToggler = () => {
-      setToggleForm(true);
+      setToggleForm(!toggleForm);
     }
 
 
-  return(
-  <>
-    <div className='parent-container'>
-      <Sidebar />
-    <div className='App'>
-      <h1>Calendar</h1>
-      <h2>
-        <button onClick={yesToggler}>Add New Event</button>
-        </h2>
-        {toggleForm ? (
-      <>
-      <div>
-          <input type="text" placeholder='Add Event' style={{ width: "20%", marginRight: "10px" }}
-            value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
+  return (
+    <>
+      <div className="parent-container">
+        <Sidebar />
+        <div className="App">
+          <div id='calButton'>
+          <h1 style={{color: "salmon"}}>Calendar</h1>
+          <h2>
+            <button onClick={yesToggler}>Add New Event</button>
+          </h2>
+          </div>
+          {toggleForm ? (
+            <div id="postEventFields">
+              <div>
+                <input
+                  type="text"
+                  placeholder="Add Event"
+                  style={{ width: "40%", marginRight: "10px" }}
+                  value={newEvent.title}
+                  onChange={(e) =>
+                    setNewEvent({ ...newEvent, title: e.target.value })
+                  }
+                />
+              </div>
+
+              <div>
+                <input
+                  type="text"
+                  placeholder="Event Type"
+                  style={{ width: "40%", marginRight: "10px" }}
+                  value={newEvent.type}
+                  onChange={(e) =>
+                    setNewEvent({ ...newEvent, type: e.target.value })
+                  }
+                />
+              </div>
+
+              <div>
+                <input
+                  type="text"
+                  placeholder="Event Description"
+                  style={{ width: "40%", marginRight: "10px" }}
+                  value={newEvent.description}
+                  onChange={(e) =>
+                    setNewEvent({ ...newEvent, description: e.target.value })
+                  }
+                />
+              </div>
+
+              <DatePicker
+                placeholderText="Start Date"
+                style={{ marginRight: "10px" }}
+                selected={newEvent.start}
+                onChange={(start) => setNewEvent({ ...newEvent, start })}
+              />
+
+              <DatePicker
+                placeholderText="End Date"
+                style={{ marginRight: "10px" }}
+                selected={newEvent.end}
+                onChange={(end) => setNewEvent({ ...newEvent, end })}
+              />
+
+              <div>
+                <input
+                  type="integer"
+                  placeholder="Funds Required"
+                  style={{ width: "20%", marginRight: "10px" }}
+                  value={newEvent.fundRequired}
+                  onChange={(e) =>
+                    setNewEvent({ ...newEvent, fundRequired: e.target.value })
+                  }
+                />
+              </div>
+
+              <div>
+                <input
+                  type="integer"
+                  placeholder="Volunteers Needed"
+                  style={{ width: "20%", marginRight: "10px" }}
+                  value={newEvent.volunteerNeeded}
+                  onChange={(e) =>
+                    setNewEvent({
+                      ...newEvent,
+                      volunteerNeeded: e.target.value,
+                    })
+                  }
+                />
+              </div>
+
+              <div>
+                <input
+                  type="integer"
+                  placeholder="User ID"
+                  style={{ width: "20%", marginRight: "10px" }}
+                  value={newEvent.userId}
+                  onChange={(e) =>
+                    setNewEvent({ ...newEvent, userId: e.target.value })
+                  }
+                />
+              </div>
+              <button style={{ marginTop: "10px" }} onClick={HandleAddEvent}>
+                Submit New Event!
+              </button>
+              <button
+                style={{ marginLeft: "5px", width: "20%" }}
+                onClick={yesToggler}
+              >
+                Return
+              </button>
+            </div>
+          ) : null}
+
+          <Calendar
+            id="Calendar"
+            localizer={localizer}
+            events={allEvents}
+            startAccessor="start"
+            endAccessor="end"
+            style={{ height: 500, margin: "50px" }}
+          />
         </div>
-        
-        <div>
-            <input type="text" placeholder='Event Type' style={{ width: "20%", marginRight: "10px" }}
-              value={newEvent.type} onChange={(e) => setNewEvent({ ...newEvent, type: e.target.value })} />
-          </div>
-
-          <div>
-            <input type="text" placeholder='Event Description' style={{ width: "20%", marginRight: "10px" }}
-              value={newEvent.description} onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })} />
-          </div>
-          
-          <DatePicker
-            placeholderText='Start Date'
-            style={{ marginRight: "10px" }}
-            selected={newEvent.start}
-            onChange={(start) => setNewEvent({ ...newEvent, start })} />
-
-          <DatePicker
-            placeholderText='End Date'
-            style={{ marginRight: "10px" }}
-            selected={newEvent.end}
-            onChange={(end) => setNewEvent({ ...newEvent, end })} />
-           
-            <div>
-             <input type="integer" placeholder='Funds Required' style={{ width: "20%", marginRight: "10px" }}
-              value={newEvent.fundRequired} onChange={(e) => setNewEvent({ ...newEvent, fundRequired: e.target.value })} />
-               </div>
-          
-          <div>
-            <input type="integer" placeholder='Volunteers Needed' style={{ width: "20%", marginRight: "10px" }}
-              value={newEvent.volunteerNeeded} onChange={(e) => setNewEvent({ ...newEvent, volunteerNeeded: e.target.value })} />
-          </div>
-          
-          <div>
-            <input type="integer" placeholder='User ID' style={{ width: "20%", marginRight: "10px" }}
-              value={newEvent.userId} onChange={(e) => setNewEvent({ ...newEvent, userId: e.target.value })} />
-          </div>
-          <button style={{marginTop: "10px"}} onClick={HandleAddEvent}>Submit New Event!</button>
-          </>
-        ): null }
-
-      <Calendar 
-        localizer={localizer} events={allEvents}
-        startAccessor="start" 
-        endAccessor="end" 
-        style={{height: 500, margin: "50px"}}/>
-    </div>
-    </div>
-    </>  
-  )
+      </div>
+    </>
+  );
 };
 
   // const [toggleAddEvent, setToggleAddEvent] = useState(false);
