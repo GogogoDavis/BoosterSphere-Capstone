@@ -5,10 +5,11 @@
 exports.up = function(knex) {
   return knex.schema.createTable('events', table => {
     table.increments();
-    table.string('eventTitle'); 
+    table.string('title'); 
     table.string('type');
     table.string('description');
-    table.date('date');
+    table.string('start');
+    table.string('end');
     // date in this format 'yyyy-mm-dd'
     table.integer('fundRequired');
     table.integer('volunteerNeeded')

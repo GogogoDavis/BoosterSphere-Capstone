@@ -109,13 +109,14 @@ app.get('/events', (req, res) => {
 })
 
 app.post('/events', (req, res) => {
-  const {eventTitle, type, description, date, fundRequired, volunteerNeeded, userId} = req.body
+  const {title, type, description, start, end, fundRequired, volunteerNeeded, userId} = req.body
   knex('events')
   .insert({
-    eventTitle: eventTitle,
+    title: title,
     type: type,
     description: description,
-    date: date,
+    start: start,
+    end: end, 
     // date in this format 'yyyy-mm-dd'
     fundRequired: fundRequired,
     volunteerNeeded: volunteerNeeded,
@@ -126,11 +127,11 @@ app.post('/events', (req, res) => {
 })
 
 app.patch('/events', (req, res) => {
-  const {id, eventTitle, type, description, date, fundRequired, volunteerNeeded, userId} = req.body
+  const {id, title, type, description, date, fundRequired, volunteerNeeded, userId} = req.body
   knex('events')
   .where('id', id)
   .update({
-    eventTitle: eventTitle,
+    title: title,
     type: type,
     description: description,
     date: date,

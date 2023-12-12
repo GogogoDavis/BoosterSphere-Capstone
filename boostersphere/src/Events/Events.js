@@ -36,11 +36,11 @@ const localizer = dateFnsLocalizer({
 
 const events = [
   {
-    eventTitle: 'Bingus party', 
+    title: 'Bingus party', 
     type: 'religious event',
     description: 'We do be religioning',
-    date: '2003-01-10',
-    // date in this format 'yyyy-mm-dd'
+    start: new Date,
+    end: new Date,
     fundRequired: 230000,
     volunteerNeeded: 200,
     userId: 2
@@ -51,15 +51,22 @@ export const Events = () => {
 
   const [ toggleForm, setToggleForm ] = useState(false);
   const [newEvent, setNewEvent] = useState({
-     eventTitle: "",
+     title: "",
      type: "",
      description: "",
-     date: "",
+     start: "",
+     end: "", 
      fundRequired: 0,
      volunteerNeeded: 0,
      userId: 0
-
     });
+
+  const formatEvent = { 
+    ...newEvent, 
+    start: newEvent.start.toString(),
+    end:   newEvent.end.toString(),
+  }
+
 
   const [allEvents, setAllEvents] = useState(events) 
 
@@ -70,13 +77,14 @@ export const Events = () => {
       headers:  {
         'Content-Type': 'application/json', 
       },
-      body: JSON.stringify(newEvent),
+      body: JSON.stringify(formatEvent)
       })
       .then(res => res.json())
       .then(data => {console.log('Incredibly cool:', data); 
-      setAllEvents([...allEvents, newEvent]);
+      setAllEvents([...allEvents, formatEvent]);
     })
     .catch((error) => {
+      setAllEvents([...allEvents, formatEvent]);
       console.error('Wuh-oh :,(       :', error);
     })
     }
@@ -99,24 +107,42 @@ export const Events = () => {
       <>
       <div>
           <input type="text" placeholder='Add Event' style={{ width: "20%", marginRight: "10px" }}
-            value={newEvent.eventTitle} onChange={(e) => setNewEvent({ ...newEvent, eventTitle: e.target.value })} />
-        </div><div>
+            value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
+        </div>
+        
+        <div>
             <input type="text" placeholder='Event Type' style={{ width: "20%", marginRight: "10px" }}
               value={newEvent.type} onChange={(e) => setNewEvent({ ...newEvent, type: e.target.value })} />
-          </div><div>
+          </div>
+
+          <div>
             <input type="text" placeholder='Event Description' style={{ width: "20%", marginRight: "10px" }}
               value={newEvent.description} onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })} />
-          </div><DatePicker
-            placeholderText='Date'
+          </div>
+          
+          <DatePicker
+            placeholderText='Start Date'
             style={{ marginRight: "10px" }}
-            selected={newEvent.date}
-            onChange={(date) => setNewEvent({ ...newEvent, date })} /><div>
-            <input type="integer" placeholder='Funds Required' style={{ width: "20%", marginRight: "10px" }}
+            selected={newEvent.start}
+            onChange={(start) => setNewEvent({ ...newEvent, start })} />
+
+          <DatePicker
+            placeholderText='End Date'
+            style={{ marginRight: "10px" }}
+            selected={newEvent.end}
+            onChange={(end) => setNewEvent({ ...newEvent, end })} />
+           
+            <div>
+             <input type="integer" placeholder='Funds Required' style={{ width: "20%", marginRight: "10px" }}
               value={newEvent.fundRequired} onChange={(e) => setNewEvent({ ...newEvent, fundRequired: e.target.value })} />
-          </div><div>
+               </div>
+          
+          <div>
             <input type="integer" placeholder='Volunteers Needed' style={{ width: "20%", marginRight: "10px" }}
               value={newEvent.volunteerNeeded} onChange={(e) => setNewEvent({ ...newEvent, volunteerNeeded: e.target.value })} />
-          </div><div>
+          </div>
+          
+          <div>
             <input type="integer" placeholder='User ID' style={{ width: "20%", marginRight: "10px" }}
               value={newEvent.userId} onChange={(e) => setNewEvent({ ...newEvent, userId: e.target.value })} />
           </div>
