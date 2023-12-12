@@ -7,6 +7,8 @@ import getDay from "date-fns/getDay";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker"; 
 import "react-datepicker/dist/react-datepicker.css"
+import { Sidebar } from '../Sidebar/Sidebar';
+import './Events.css'
 // import Calendar from 'react-calendar';
 // import './Events.css';
 
@@ -93,6 +95,9 @@ export const Events = () => {
 
 
   return(
+  <>
+    <div className='parent-container'>
+      <Sidebar />
     <div className='App'>
       <h1>Calendar</h1>
       <h2>
@@ -151,6 +156,8 @@ export const Events = () => {
         endAccessor="end" 
         style={{height: 500, margin: "50px"}}/>
     </div>
+    </div>
+    </>  
   )
 };
 

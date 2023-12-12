@@ -10,6 +10,7 @@ import {
   DialogActions,
 } from '@mui/material';
 import './Funds.css';
+import { Sidebar } from '../Sidebar/Sidebar';
 
 export const Funds = () => {
   const [goals, setGoals] = useState([
@@ -114,6 +115,9 @@ export const Funds = () => {
 
   return (
     <>
+    <div className='parent-container'>
+      <Sidebar />
+      <div className='main'>
       <h1>Funds</h1>
       <p className="back" onClick={() => window.history.back()}>
         Back
@@ -183,7 +187,8 @@ export const Funds = () => {
               </Button>
             </>
           )}
-        </div>
+          </div>
+      
       ))}
 
       <Button variant="contained" onClick={handleAddGoal}>
@@ -209,6 +214,8 @@ export const Funds = () => {
           <Button onClick={handleCloseDialog}>Close</Button>
         </DialogActions>
       </Dialog>
+      </div>
+      </div>
     </>
   );
 };

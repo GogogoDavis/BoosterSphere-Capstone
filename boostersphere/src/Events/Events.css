@@ -1,3 +1,11 @@
+.App{
+   width: 100%;
+}
+
+.parent-container{
+   display: flex;
+}
+
 .main {
     margin-right:auto;
     width: 50%;

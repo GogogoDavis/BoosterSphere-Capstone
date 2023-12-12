@@ -14,6 +14,7 @@ app.listen(port, () => console.log(`Alrighty weather-boi, this john do be runnin
 
 /// --------------------- Users --------------------- ///
 
+
 app.post('/users/register', async (req, res) => {
   const { username, firstName, lastName, email, role, password, profileImage } = req.body;
   try {

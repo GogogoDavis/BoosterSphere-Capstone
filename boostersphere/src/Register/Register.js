@@ -68,7 +68,7 @@ export const Register = () => {
     }).then(res => {
       console.log(res)
       if (res.status === 201) {
-        navigate('/login')
+        navigate('/')
       } else if (res.status === 400) {
         setDuplicateUser(true)
       }
@@ -92,7 +92,7 @@ export const Register = () => {
           </label>
           <input name='profileImage' type="file" id="file" onChange={handleInputChange} style={{ display: "none"}} />
           <button disabled={formFilled} type='submit'>Register</button>
-          <p>Back to <Link to='/Login' className='register'>Login</Link></p>
+          <p>Back to <Link to='/' className='register'>Home</Link></p>
           <img src={formData.profileImage} alt='uploaded photo' className='currentPhoto' />
         </div>
       </form>

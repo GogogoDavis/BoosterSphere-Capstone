@@ -57,7 +57,7 @@ return(
             <button onClick={()=>{handleUsername(); setUsername("")}}>submit</button>
             <input type='text' placeholder='first name' onChange={e => setFirstname(e.target.value)} />
             <input type='text' placeholder='last name' onChange={e => setLastname(e.target.value)} />
-        </div>``
+        </div>
 </div>        
 </>        
     )

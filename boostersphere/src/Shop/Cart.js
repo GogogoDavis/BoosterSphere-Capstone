@@ -50,6 +50,9 @@ export const Cart = () => {
 
   return (
   <>
+    <div className='parent-container'>
+      <Sidebar />
+      <div className='main'>
 
       <div className="header">
         <img
@@ -155,6 +158,9 @@ export const Cart = () => {
       <Link to='/Shop' className='NavBar'>
       <Button style={{ marginLeft: '30px',backgroundColor:'rgb(188, 222, 252)'}}>Back to Shop!</Button>
       </Link>
+      </div>
+
+      </div>
       </div>
   </>
   )
