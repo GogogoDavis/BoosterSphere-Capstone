@@ -1,5 +1,5 @@
 import './Login.css';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import {Link, useNavigate } from 'react-router-dom' ;
 import { userContext } from '../App';
 import Cookies from 'js-cookie';
@@ -12,6 +12,11 @@ export const Login = () => {
 
   const {setUserData} = useContext(userContext)
 
+
+  useEffect(() => {
+    Cookies.remove('user_data');
+    setUserData(null)
+  }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -44,7 +49,7 @@ export const Login = () => {
           <button type='submit'>Login</button>
           {error && <span>Wrong email or password!</span>}
           <p>Not a member? <Link to='/Register' className='register'>Register!</Link></p>
-          <p>Or want to just visit? <Link to='/Visitor' className='register'>Explore!</Link></p>
+          <p>No Login? No worries go back to explore!<Link to='/' className='register'>Home</Link></p>
         </form>
     </div>
     </>

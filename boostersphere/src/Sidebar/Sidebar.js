@@ -21,6 +21,7 @@ import { TiChevronLeftOutline } from "react-icons/ti";
 export const Sidebar = () => {
   const { userData, setUserData } = useContext(userContext)
   const [isActive, setActive] = useState(false);
+  const navigate = useNavigate();
 
   const toggleClass = () =>{
       setActive(!isActive);
@@ -42,36 +43,37 @@ export const Sidebar = () => {
                 </div>
                 <div className="head">
                     <div className='user-img'>
-                        {userData.img ? <img src={userData.img} alt='' /> : <img src={mopey} alt='' />}
+                        {userData.profileImage ? <img src={userData.profileImage} alt='' /> : <img src={mopey} alt='' />}
                     </div>
                     <div className='user-details'>
                         <p className='title'>{userData.email}</p>
                         <p className='name'>{userData.firstName} {userData.lastName}</p>
+                        <p className='name'>{userData.username}</p>
                     </div>
                 </div>
                 <div className='nav'>
                     <div className='menu'>
                         <p className='title'>Main</p>
                         <ul>
-                            <li className='active'>
+                            <li className='active' onClick={()=>{navigate('/Home')}}>
                                 <div className='select'>
                                     <i className='icon'><GrHomeRounded /></i>
                                     <span className='text'>Home</span>
                                 </div>
                             </li>
-                            <li>
+                            <li onClick={()=>{navigate('/Events')}}>
                                 <div className='select'>
                                     <i className='icon'><RxDashboard /></i>
                                     <span className='text'>Events</span>
                                 </div>
                             </li>
-                            <li>
+                            <li onClick={()=>{navigate('/shop')}}>
                                 <div className='select'>
                                     <i className='icon'><MdOutlineShoppingBag /></i>
                                     <span className='text'>Store</span>
                                 </div>
                             </li>
-                            <li>
+                            <li onClick={()=>{navigate('/Funds')}}>
                                 <div  className='select'>
                                     <i className='icon'><RiRefund2Fill /></i>
                                     <span className='text'>Funds</span>
@@ -82,7 +84,7 @@ export const Sidebar = () => {
                     <div className='menu'>
                         <p className='title'>Settings</p>
                         <ul>
-                            <li className='active'>
+                            <li className='active' onClick={()=>{navigate('/Setting')}}>
                                 <div className='select'>
                                     <i className='icon'><IoSettingsOutline /></i>
                                     <span className='text'>Settings</span>
@@ -94,16 +96,16 @@ export const Sidebar = () => {
                 <div className='menu'>
                         <p className='title'>Account</p>
                         <ul>
-                            <li className='active'>
+                            <li className='active' onClick={()=>{navigate('/Profile')}}>
                                 <div className='select'>
                                     <i className='icon'><CgProfile /></i>
                                     <span className='text'>Profile</span>
                                 </div>
                             </li>
-                            <li className='active'>
+                            <li className='active' onClick={()=>{handleLogout()}}>
                                 <div className='select'>
-                                    <i className='icon' onClick={()=>{handleLogout()}}><CiLogout /></i>
-                                    <span className='text' onClick={()=>{handleLogout()}}>Logout</span>
+                                    <i className='icon'><CiLogout /></i>
+                                    <span className='text'>Logout</span>
                                 </div>
                             </li>
                         </ul>
@@ -114,3 +116,4 @@ export const Sidebar = () => {
     </>
   ))
 }
+

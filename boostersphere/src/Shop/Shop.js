@@ -38,6 +38,9 @@ export const Shop = () => {
 
   return (
     <>
+    <div className="parent-container">
+      <Sidebar />
+      <div className="main">
 
       <div className="header">
         <img
@@ -127,6 +130,8 @@ export const Shop = () => {
       {/* <div className="headerBottom">
         <MenuIcon style={{ color: "white" }} />
       </div> */}
+</div>
+</div>
     </>
   );
 };

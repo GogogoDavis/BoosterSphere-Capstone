@@ -9,6 +9,7 @@ export const HomePage = () => {
 
   return (
     <>
+    <div className='Parent-Container'>
       <Sidebar />
       <div className='mainpage'>
         {!userData ? '' : <>
@@ -35,6 +36,7 @@ export const HomePage = () => {
             </ul>
           </div>
         </>}
+      </div>
       </div>
     </>
   );
