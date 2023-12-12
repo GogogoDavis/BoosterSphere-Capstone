@@ -44,7 +44,7 @@ function App() {
 
   const RequireAuth = ({ children }) => {
     if (loading) return null
-    return userData ? children : <Navigate to="/Login" />;
+    return userData ? children : <Navigate to="/" />;
   };
 
   return (
