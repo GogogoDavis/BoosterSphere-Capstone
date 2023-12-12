@@ -121,7 +121,7 @@ app.post('/events', (req, res) => {
     volunteerNeeded: volunteerNeeded,
     userId: userId
   })
-  .then(res.status(201).send())
+  .then(() => {res.status(201).send({message: 'wowzers'})})
   .catch(e => res.status(500).send())
 })
 

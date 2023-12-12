@@ -52,18 +52,18 @@ export const Events = () => {
      title: "",
      type: "",
      description: "",
-     start: "",
-     end: "", 
+     start: new Date,
+     end: new Date, 
      fundRequired: 0,
      volunteerNeeded: 0,
      userId: 0
     });
 
-  const formatEvent = { 
-    ...newEvent, 
-    start: newEvent.start.toString(),
-    end:   newEvent.end.toString(),
-  }
+  // const formatEvent = { 
+  //   ...newEvent, 
+  //   start: newEvent.start.toISOString(),
+  //   end:   newEvent.end.toISOString(),
+  // }
 
 
   const [allEvents, setAllEvents] = useState(events) 
@@ -75,14 +75,19 @@ export const Events = () => {
       headers:  {
         'Content-Type': 'application/json', 
       },
-      body: JSON.stringify(formatEvent)
+      body: JSON.stringify(newEvent)
       })
-      .then(res => res.json())
-      .then(data => {console.log('Incredibly cool:', data); 
-      setAllEvents([...allEvents, formatEvent]);
-    })
+      .then(res => {
+        console.log('Server response:', res);
+        return res.json();
+      })
+      .then(data => {
+        console.log('Incredibly cool:', data);
+        setAllEvents([...allEvents, newEvent]);
+      })
+
     .catch((error) => {
-      setAllEvents([...allEvents, formatEvent]);
+      setAllEvents([...allEvents, newEvent]);
       console.error('Wuh-oh :,(       :', error);
     })
     }

@@ -8,8 +8,8 @@ exports.up = function(knex) {
     table.string('title'); 
     table.string('type');
     table.string('description');
-    table.string('start');
-    table.string('end');
+    table.date('start');
+    table.date('end');
     // date in this format 'yyyy-mm-dd'
     table.integer('fundRequired');
     table.integer('volunteerNeeded')
