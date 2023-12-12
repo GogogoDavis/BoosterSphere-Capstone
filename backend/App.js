@@ -57,7 +57,7 @@ app.post('/users/login', async (req, res) => {
       return res.status(400).send('no user found')
     }
     if(await bcrypt.compare(password, user[0].password)) {
-      res.status(200).send({userId: user[0].userId, username: user[0].username, lastName: user[0].lastName, email: user[0].email, profileImage: user[0].profileImage})
+      res.status(200).send({userId: user[0].userId, username: user[0].username, firstName: user[0].firstName, lastName: user[0].lastName, email: user[0].email, profileImage: user[0].profileImage})
     } else {
       res.status(400).send('wrong password')
     }
