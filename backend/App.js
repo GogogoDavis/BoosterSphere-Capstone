@@ -111,10 +111,11 @@ app.post('/events', (req, res) => {
   const {eventTitle, type, description, date, fundRequired, volunteerNeeded, userId} = req.body
   knex('events')
   .insert({
-    eventTitle: eventTitle,
+    title: eventTitle,
     type: type,
     description: description,
-    date: date,
+    start: date,
+    end: date, 
     // date in this format 'yyyy-mm-dd'
     fundRequired: fundRequired,
     volunteerNeeded: volunteerNeeded,
