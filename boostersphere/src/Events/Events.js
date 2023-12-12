@@ -102,7 +102,7 @@ export const Events = () => {
       <>
       <div>
           <input type="text" placeholder='Add Event' style={{ width: "20%", marginRight: "10px" }}
-            value={newEvent.eventTitle} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
+            value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
         </div>
         
         <div>
