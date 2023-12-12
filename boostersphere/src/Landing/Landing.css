@@ -99,7 +99,7 @@ body{
     border-radius: 50%;
     left: 35%;
     top: 12%;
-    background: linear-gradient(45deg, #3902ff8e, black);
+    background: linear-gradient(45deg, #2300a1cc, rgb(53, 53, 53));
     animation: object2 6s linear infinite;
 }
 
