@@ -94,10 +94,11 @@ export const Events = () => {
     })
     }
 
+    console.log(allEvents);
+
     const yesToggler = () => {
       setToggleForm(!toggleForm);
     }
-
 
   return (
     <>
@@ -150,6 +151,7 @@ export const Events = () => {
 
               <DatePicker
                 placeholderText="Start Date"
+                showTimeSelect
                 style={{ marginRight: "10px" }}
                 selected={newEvent.start}
                 onChange={(start) => setNewEvent({ ...newEvent, start })}
@@ -157,6 +159,7 @@ export const Events = () => {
 
               <DatePicker
                 placeholderText="End Date"
+                showTimeSelect
                 style={{ marginRight: "10px" }}
                 selected={newEvent.end}
                 onChange={(end) => setNewEvent({ ...newEvent, end })}
@@ -216,9 +219,9 @@ export const Events = () => {
             id="Calendar"
             localizer={localizer}
             events={allEvents}
-            startAccessor="start"
-            endAccessor="end"
-            style={{ height: 500, margin: "50px" }}
+            startAccessor='start'
+            endAccessor='end'
+            style={{ height: 600, color:'salmon', marginBottom: '50px', marginRight: '50px', marginLeft: '50px'}}
           />
         </div>
       </div>
