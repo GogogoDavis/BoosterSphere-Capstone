@@ -13,6 +13,10 @@
     align-items: center;
     min-height: 100vh;
     background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.548));
+
+    /* background: url('img.jpg') no-repeat;
+    background-size: cover;
+    background-position: center; */
 }
 
 .NewRegister_wrapper{
