@@ -16,6 +16,8 @@ import { Sidebar } from './Sidebar/Sidebar.js';
 import { Profile } from './Profile/Profile.js';
 import Cookies from 'js-cookie';
 import { Setting } from './Setting/Setting.js'
+import { NewLogin } from './Login/NewLogin.js';
+import { NewRegister } from './Register/NewRegister.js';
 
 export const userContext = React.createContext();
 
@@ -54,7 +56,7 @@ function App() {
 
         <userContext.Provider value={{ details, setDetails, userData, setUserData}}>
           <Routes>
-            <Route path='/Login' element={<Login />} />
+            <Route path='/Login' element={<NewLogin />} />
             <Route path='/' element={<Landing />} />
             <Route path='/Visitor' element={<Visitor />} />
 
@@ -76,7 +78,7 @@ function App() {
 
             <Route path='/shop' element={<Shop />} />
             <Route path='/cart' element={<Cart />} />
-            <Route path='/register' element={<Register />} />
+            <Route path='/register' element={<NewRegister />} />
 
             <Route path='/Profile' element={
             <RequireAuth><Profile /> 
