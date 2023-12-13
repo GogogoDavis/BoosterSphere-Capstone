@@ -50,11 +50,11 @@ export const NewLogin = () => {
             <form onSubmit={handleLogin}>
                 <h1 className='NewLogin_h1'> Login</h1>
                 <div className='NewLogin_input-box'>
-                    <input type='email' placeholder='email' onChange={e => setEmail(e.target.value)} className='NewLogin_input'/>
+                    <input type='email' placeholder='EMAIL' onChange={e => setEmail(e.target.value)} className='NewLogin_input'/>
                     <i className='NewLogin_usericon'><FaUser/></i>
                 </div>
                 <div className='NewLogin_input-box'>
-                  <input type="password"  placeholder='password' onChange={e => setPassword(e.target.value)} className='NewLogin_input'/>
+                  <input type="password"  placeholder='PASSWORD' onChange={e => setPassword(e.target.value)} className='NewLogin_input'/>
                   <i className='NewLogin_usericon'><FaLock/></i>
                 </div>
                 <div className='NewLogin_errorbox'>

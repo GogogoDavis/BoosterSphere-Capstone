@@ -44,8 +44,8 @@ export const Login = () => {
     <div className='login'>
         <div> <p className='welcome'>Welcome to BoosterSphere</p></div>
         <form onSubmit={handleLogin}>
-          <input type='email' placeholder='email' onChange={e => setEmail(e.target.value)}/>
-          <input type="password"  placeholder='password' onChange={e => setPassword(e.target.value)}/>
+          <input type='email' placeholder='EMAIL' onChange={e => setEmail(e.target.value)}/>
+          <input type="password"  placeholder='PASSWORD' onChange={e => setPassword(e.target.value)}/>
           <button type='submit'>Login</button>
           {error && <span>Wrong email or password!</span>}
           <p>Not a member? <Link to='/Register' className='register'>Register!</Link></p>
