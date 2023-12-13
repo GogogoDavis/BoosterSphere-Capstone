@@ -85,33 +85,33 @@ export const NewRegister = () => {
                         <div className='NewRegister_h1'> <h1 className='NewRegister_titleh1'>Register</h1> <span><img src={formData.profileImage} alt='uploaded photo' className='currentPhoto' /></span> </div>
 
                         <div className='NewRegister_input-box'>
-                            <input name="email" type='email' placeholder='email' className='NewRegister_input' onChange={handleInputChange} />
+                            <input name="email" type='email' placeholder='EMAIL' className='NewRegister_input' onChange={handleInputChange} />
 
                         </div>
 
                         <div className='NewRegister_input-box'>
-                            <input name="password" className='NewRegister_input' type="password" placeholder='password' onChange={handleInputChange} />
+                            <input name="password" className='NewRegister_input' type="password" placeholder='PASSWORD' onChange={handleInputChange} />
                         </div>
 
 
                         <div className='NewRegister_input-box'>
-                            <input name="password2" className='NewRegister_input' type="password" placeholder='type password again' onChange={e => { handleInputChange(e); if (e.target.value !== formData.password) { setNotSame('Not Same') } else { setNotSame('Correct!') } }} />
+                            <input name="password2" className='NewRegister_input' type="password" placeholder='TYPE PASSWORD AGAIN' onChange={e => { handleInputChange(e); if (e.target.value !== formData.password) { setNotSame('Not Same') } else { setNotSame('Correct!') } }} />
                             <span className='passerr'>{same}</span>
                         </div>
 
 
 
                         <div className='NewRegister_input-box'>
-                            <input name="username" type="text" placeholder='Username' onChange={handleInputChange} onKeyDown={handleKeyDown} className='NewRegister_input' />
+                            <input name="username" type="text" placeholder='USERNAME' onChange={handleInputChange} onKeyDown={handleKeyDown} className='NewRegister_input' />
                         </div>
 
 
                         <div className='NewRegister_input-box'>
-                            <input name="firstName" type="text" placeholder='First Name' onChange={handleInputChange} className='NewRegister_input' />
+                            <input name="firstName" type="text" placeholder='FIRST NAME' onChange={handleInputChange} className='NewRegister_input' />
                         </div>
 
                         <div className='NewRegister_input-box'>
-                            <input name="lastName" type="text" placeholder='Last Name' onChange={handleInputChange} className='NewRegister_input' />
+                            <input name="lastName" type="text" placeholder='LAST NAME' onChange={handleInputChange} className='NewRegister_input' />
                         </div>
 
                         <div className='NewRegister_image'>
