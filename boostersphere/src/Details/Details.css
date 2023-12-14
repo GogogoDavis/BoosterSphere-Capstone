@@ -1,0 +1,25 @@
+body{
+    display:flex; 
+    justify-content: center; 
+    align-items: center;
+    background: linear-gradient(45deg, rgb(238, 132, 238), slateblue);
+}
+
+.addWrap{
+    margin: 10px;
+    padding: 5px; 
+    border: 5px solid darkmagenta;
+    border-radius: 5px; 
+}
+
+.detailBtn{
+    border: 5px solid;
+    border-radius: 5px;
+    background-color: slateBlue;
+    color: rgb(238, 132, 238); 
+}
+
+.detailBtn:hover {
+    background-color: slategrey;
+    color: skyblue;
+}
