@@ -75,7 +75,8 @@ app.get('/users/image', async (req, res) => {
 })
 
 app.patch('/users', (req, res) => {
-  const {userId, username, firstName, lastName, email, role} = req.body
+  const {userId, username, firstName, lastName, email, role, profileImage} = req.body
+  console.log(req.body)
   knex('users')
   .where('userId', userId)
   .update({
@@ -83,10 +84,28 @@ app.patch('/users', (req, res) => {
     firstName: firstName,
     lastName: lastName,
     email: email,
-    role: role
+    role: role,
+    profileImage: profileImage,
   })
   .then(res.status(200).send())
   .catch(e => res.status(500).send())
+})
+
+app.patch('/users/password', async (req, res) => {
+  const {userId, password} = req.body
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await knex('users').where('userId', userId).update({
+      password: hashedPassword,
+    });
+    res.status(201).send();
+    await knex('users').where('userId', userId).then( data =>
+      console.log(data)
+    )
+  } catch (error) {
+    console.error(error);
+    res.status(500).send();
+  }
 })
 
 app.delete('/users', (req, res) => {

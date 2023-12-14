@@ -31,7 +31,7 @@ export const Login = () => {
       });
       const user = await response.json();
       setUserData(user);
-      Cookies.set('user_data', JSON.stringify({userId: user.userId, username: user.username, lastName: user.lastName, email: user.email}), { expires: 15 });
+      Cookies.set('user_data', JSON.stringify({userId: user.userId, username: user.username,firstName: user.firstName, lastName: user.lastName, email: user.email, role: user.role}), { expires: 15 });
       navigate('/Home');
 
     } catch (error) {
