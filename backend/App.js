@@ -76,7 +76,6 @@ app.get('/users/image', async (req, res) => {
 
 app.patch('/users', (req, res) => {
   const {userId, username, firstName, lastName, email, role, profileImage} = req.body
-  console.log(req.body)
   knex('users')
   .where('userId', userId)
   .update({
@@ -99,9 +98,6 @@ app.patch('/users/password', async (req, res) => {
       password: hashedPassword,
     });
     res.status(201).send();
-    await knex('users').where('userId', userId).then( data =>
-      console.log(data)
-    )
   } catch (error) {
     console.error(error);
     res.status(500).send();
