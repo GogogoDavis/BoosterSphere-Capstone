@@ -9,6 +9,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
 import { Sidebar } from '../Sidebar/Sidebar';
 import './Events.css'
+import { id } from 'date-fns/locale';
 // import Calendar from 'react-calendar';
 // import './Events.css';
 
@@ -98,6 +99,36 @@ export const Events = () => {
 
     const yesToggler = () => {
       setToggleForm(!toggleForm);
+    }
+
+    function handleDeleteEvent(event) {
+      const updatedEvents = allEvents.filter((e) => e !== event);
+
+      //show the events on the calendar that does not have the event that was deleted
+      setAllEvents(updatedEvents);
+      
+      // Fetch to sevrver but it is not getting the request
+      fetch(`http://localhost:8080/events/`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },  body:{id:7}
+      })
+        .then(res => {
+          //If the delete is successful
+          if(res.ok){
+            console.log('Event deleted succesffuly');
+          }
+          console.log('Server response:', res);
+          return res.json();
+        })
+        .then(data => {
+          console.log('Event deleted:', data);
+        })
+        .catch((error) => {
+
+          console.error('Error deleting event:', error);
+        });
     }
 
   return (
@@ -222,6 +253,7 @@ export const Events = () => {
             startAccessor='start'
             endAccessor='end'
             style={{ height: 600, color:'salmon', marginBottom: '50px', marginRight: '50px', marginLeft: '50px'}}
+            onSelectEvent={handleDeleteEvent}
           />
         </div>
       </div>
