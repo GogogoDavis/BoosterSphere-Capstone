@@ -3,7 +3,7 @@ import "./shop.css";
 import { Link } from "react-router-dom";
 import { Logout } from "../Logout/Logout";
 import { Sidebar } from "../Sidebar/Sidebar"
-import mopey from '../DaMopester.jpg'
+import mopey from '../DaMopester-nobackground.png'
 import { userContext } from "../App";
 import { useContext, useState, useEffect } from "react";
 import SearchIcon from "@mui/icons-material/Search";
@@ -54,13 +54,14 @@ export const Cart = () => {
       <Sidebar />
       <div className='main'>
 
+    {/* Header */}
       <div className="header">
         <img
           style={{ width: 50, height: 50 }}
           className="logo"
           src={mopey} alt='add image later'
         />
-        <div>Delta Swag Shop</div>
+        <h4 className='headerText'>DELTA 10 SWAG SHOP</h4>
         <div className="headerInputContainer">
           <input
             className="headerInput"
@@ -70,10 +71,10 @@ export const Cart = () => {
           <SearchIcon style={{ color: "white" }} />
         </div>
         <div>
-          <h4 className="headerText">Donate</h4>
+          <h4 className="headerText">DONATE</h4>
         </div>
         <div>
-          <h4 className="headerText">Custom Orders</h4>
+          <h4 className="headerText">CUSTOM ORDERS</h4>
         </div>
         <div style={{ position: "relative " }} >
         <Link to='/Cart' className='NavBar'>
@@ -115,7 +116,7 @@ export const Cart = () => {
             <div key={index} className="cartContainer">
 
               <div className='cartImage'>
-              <img style={{height: 100, width: 100}} src={item.image}/>
+              <img style={{height: 100, width: 100, borderRadius: '8px'}} src={item.image}/>
               </div>
 
               <div className='cartDescription'>
@@ -156,7 +157,7 @@ export const Cart = () => {
 
       <div>
       <Link to='/Shop' className='NavBar'>
-      <Button style={{ marginLeft: '30px',backgroundColor:'rgb(188, 222, 252)'}}>Back to Shop!</Button>
+      <button className="backToShopButton" style={{ marginLeft: '30px'}}>Back to Shop!</button>
       </Link>
       </div>
 
