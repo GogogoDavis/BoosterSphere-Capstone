@@ -233,7 +233,7 @@ export const Events = () => {
             startAccessor={(event) => { return new Date(event.start) }}
             endAccessor={(event) => { return new Date(event.end) }}
             style={{ height: 600, color:'salmon', marginBottom: '50px', marginRight: '50px', marginLeft: '50px'}}
-            onSelectEvent={handleDeleteEvent}
+            onSelectEvent={handleDetails}
           />
         </div>
       </div>
