@@ -4,7 +4,7 @@ import { userContext } from '../App';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Logout } from '../Logout/Logout';
-import mopey from '../DaMopester.jpg'
+import mopey from '../images/DaMopester.jpg'
 import Cookies from 'js-cookie';
 
 

@@ -217,18 +217,21 @@ app.delete('/volunteers', (req, res) => {
 
 /// --------------------- Funds --------------------- ///
 
+
 app.get('/funds', (req, res) => {
   knex('funds')
   .select('*')
-  .then(res.status(200).send())
+  .then(data => res.send(data))
   .catch(e => res.status(500).send())
 })
 
-app.post('/funds', (req, res) => {
-  const {type, amount, event_id} = req.body
+app.post('/funds', async (req, res) => {
+  const {title, amount, event_id} = req.body
+  const maxIdQuery = await knex('funds').max('id as maxId').first()
   knex('funds')
   .insert({
-    type: type,
+    id: maxIdQuery.maxId + 1,
+    title: title,
     amount: amount,
     event_id: event_id,
   })
@@ -249,13 +252,16 @@ app.patch('/funds', (req, res) => {
   .catch(e => res.status(500).send())
 })
 
-app.delete('/funds', (req, res) => {
-  const {id} = req.body
-  knex('funds')
-  .where('id', id)
+app.delete('/funds/:id', (req, res) => {
+  knex('funds').where('id', req.params.id)
   .del()
-  .then(res.status(200).send())
-  .catch(e => res.status(500).send())
+  .then(()=>{
+    knex('funds')
+    .select('*')
+    .then(data => {
+      res.json(data);
+    })
+  })
 })
 
 /// --------------------- Donations --------------------- ///
