@@ -169,8 +169,7 @@ app.patch('/events', (req, res) => {
 app.delete('/events/:id', (req, res) => {
     knex('events').where('id', req.params.id)
   .del()
-  .then(res.status(200).send())
-  .catch(e => res.status(500).send())
+  .then(() => res.json({message: `it done got gone, it OUTTA HERE`})) 
 })
 
 /// --------------------- Volunteers --------------------- ///

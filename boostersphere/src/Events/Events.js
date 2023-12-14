@@ -97,13 +97,13 @@ export const Events = () => {
     }
 
 
-    function handleDeleteEvent(event) {
-      console.log(event)
-      // Fetch to sevrver but it is not getting the request
-      fetch(`http://localhost:8080/events/${event.id}`, {
-        method: 'DELETE'
-    });
-  }
+  //   function handleDeleteEvent(event) {
+  //     console.log(event)
+  //     // Fetch to sevrver but it is not getting the request
+  //     fetch(`http://localhost:8080/events/${event.id}`, {
+  //       method: 'DELETE'
+  //   });
+  // }
 
 
   const handleDetails = (event) =>{
