@@ -121,7 +121,7 @@ export const Events = () => {
           <div id='calButton'>
           <h1 style={{color: "salmon"}}>Calendar</h1>
           <h2>
-            <button onClick={yesToggler}>Add New Event</button>
+            <button id='togglerBtn' onClick={yesToggler}>Add New Event</button>
           </h2>
           </div>
           {toggleForm ? (
@@ -160,41 +160,39 @@ export const Events = () => {
                     setNewEvent({ ...newEvent, description: e.target.value })
                   }
                 />
-              </div>
-
-              <DatePicker
+                <DatePicker
                 placeholderText="Start Date"
                 showTimeSelect
                 style={{ marginRight: "10px" }}
                 selected={newEvent.start}
                 onChange={(start) => setNewEvent({ ...newEvent, start })}
               />
+              </div>
 
-              <DatePicker
+              <div>
+                <input
+                  type="integer"
+                  placeholder="Funds Required"
+                  style={{ width: "40%", marginRight: "10px" }}
+                  value={newEvent.fundRequired}
+                  onChange={(e) =>
+                    setNewEvent({ ...newEvent, fundRequired: e.target.value })
+                  }
+                />
+                <DatePicker
                 placeholderText="End Date"
                 showTimeSelect
                 style={{ marginRight: "10px" }}
                 selected={newEvent.end}
                 onChange={(end) => {setNewEvent({ ...newEvent, end }); console.log(end)}}
               />
-
-              <div>
-                <input
-                  type="integer"
-                  placeholder="Funds Required"
-                  style={{ width: "20%", marginRight: "10px" }}
-                  value={newEvent.fundRequired}
-                  onChange={(e) =>
-                    setNewEvent({ ...newEvent, fundRequired: e.target.value })
-                  }
-                />
               </div>
 
               <div>
                 <input
                   type="integer"
                   placeholder="Volunteers Needed"
-                  style={{ width: "20%", marginRight: "10px" }}
+                  style={{ width: "40%", marginRight: "10px" }}
                   value={newEvent.volunteerNeeded}
                   onChange={(e) =>
                     setNewEvent({
@@ -209,7 +207,7 @@ export const Events = () => {
                 <input
                   type="integer"
                   placeholder="User ID"
-                  style={{ width: "20%", marginRight: "10px" }}
+                  style={{ width: "40%", marginRight: "10px" }}
                   value={newEvent.userId}
                   onChange={(e) =>
                     setNewEvent({ ...newEvent, userId: e.target.value })

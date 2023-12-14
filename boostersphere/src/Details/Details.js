@@ -20,16 +20,21 @@ export const Details = ({ item }) => {
 
   return (
     <>
-      <h1>Details</h1>
-      <p>{item.id}</p>
-      <p>{item.title}</p>
-      <p>{item.description}</p>
-      <p className="back" onClick={() => window.history.back()}>
-        Back
-      </p>
+  <div id='wrap'>
+    <ul>
+      <h1 style={{display: 'flex', justifyContent: 'center', color: 'salmon'}}>Details</h1>
+      <li className='addWrap'>{item.id}</li>
+      <li className='addWrap'>{item.title}</li>
+      <li className='addWrap'>{item.description}</li>
+      <li className='addWrap'>{item.start}</li>
+      <li className='addWrap'>{item.end}</li>
+      <li className='addWrap'>{item.fundRequired}</li>
+      <li className='addWrap'>{item.volunteerNeeded}</li>
+    </ul>
+  </div>  
       <div>
-        <button onClick={calendarReturn}>Return to Calendar</button>
-        <button onClick={handleDeleteEvent} style={{ marginLeft: "10px" }}>
+        <button className= 'detailBtn' onClick={calendarReturn}>Return to Calendar</button>
+        <button className= 'detailBtn' onClick={handleDeleteEvent} style={{ marginLeft: "10px" }}>
           Event lame, plz remove
         </button>
       </div>
