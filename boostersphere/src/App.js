@@ -2,22 +2,22 @@ import './App.css';
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Events } from './Events/Events';
-import { Login } from './Login/Login';
+
 import { Visitor } from './Visitor/Visitor';
 import { Details } from './Details/Details';
 import { Landing } from './Landing/Landing';
-import { Register } from './Register/Register';
+import { NewRegister } from './Register/NewRegister.js';
 import { HomePage } from './Home/HomePage';
 import { Funds } from './Funds/Funds.js';
 import { Shop } from './Shop/Shop';
 import { Cart } from './Shop/Cart'
 import { Store } from './Shop/store';
-import { Sidebar } from './Sidebar/Sidebar.js';
+
 import { Profile } from './Profile/Profile.js';
 import Cookies from 'js-cookie';
 import { Setting } from './Setting/Setting.js'
 import { NewLogin } from './Login/NewLogin.js';
-import { NewRegister } from './Register/NewRegister.js';
+
 
 export const userContext = React.createContext();
 
@@ -91,7 +91,6 @@ function App() {
 
             <Route path='/Shop' element={<Shop />} />
             <Route path='/Cart' element={<Cart />} />
-            <Route path='/Register' element={<Register />} />
 
             <Route path='/details/:id' element={<Details item={details} />} />
 

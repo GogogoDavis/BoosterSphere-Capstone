@@ -175,7 +175,7 @@ export const Events = () => {
                 showTimeSelect
                 style={{ marginRight: "10px" }}
                 selected={newEvent.end}
-                onChange={(end) => setNewEvent({ ...newEvent, end })}
+                onChange={(end) => {setNewEvent({ ...newEvent, end }); console.log(end)}}
               />
 
               <div>
@@ -232,10 +232,10 @@ export const Events = () => {
             id="Calendar"
             localizer={localizer}
             events={allEvents}
-            startAccessor='start'
-            endAccessor='end'
+            startAccessor={(event) => { return new Date(event.start) }}
+            endAccessor={(event) => { return new Date(event.end) }}
             style={{ height: 600, color:'salmon', marginBottom: '50px', marginRight: '50px', marginLeft: '50px'}}
-            onSelectEvent={handleDetails}
+            onSelectEvent={handleDeleteEvent}
           />
         </div>
       </div>
