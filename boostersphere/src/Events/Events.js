@@ -9,6 +9,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css"
 import { Sidebar } from '../Sidebar/Sidebar';
 import './Events.css'
+import { id } from 'date-fns/locale';
 // import Calendar from 'react-calendar';
 // import './Events.css';
 
@@ -111,7 +112,7 @@ export const Events = () => {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-        },  body: JSON.stringify(newEvent)
+        },  body:{id:7}
       })
         .then(res => {
           //If the delete is successful
