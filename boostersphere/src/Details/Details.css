@@ -2,7 +2,10 @@ body{
     display:flex; 
     justify-content: center; 
     align-items: center;
-    background: linear-gradient(45deg, rgb(238, 132, 238), slateblue);
+    background-image: url(../galaxy.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: slateblue;
 }
 
 .addWrap{
