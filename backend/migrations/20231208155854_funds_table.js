@@ -4,8 +4,8 @@
  */
 exports.up = function(knex) {
   return knex.schema.createTable('funds', table => {
-    table.increments();
-    table.string('type'); 
+    table.increments('id');
+    table.string('title'); 
     table.float('amount');
     table.integer('event_id');
   })

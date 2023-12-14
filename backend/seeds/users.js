@@ -10,3 +10,4 @@ exports.seed = async function(knex) {
     {username:'fake', rankTitle:'spc3', firstName:'bill', lastName:'boberton', email:'fake@email.com', role: 'admin', password: '$2b$10$iiiiy81rY6T6lD11PHcPt.i4HIRwGxBTV14f5x5N8ivE1mpBUXxqS'}
   ]);
 };
+

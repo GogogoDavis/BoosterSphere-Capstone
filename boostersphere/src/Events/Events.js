@@ -55,6 +55,7 @@ export const Events = () => {
   const [ toggleForm, setToggleForm ] = useState(false);
   const [allEvents, setAllEvents] = useState() 
   const { setDetails } = useContext(userContext)
+  const [toggleRefresh, settoggleRefresh] = useState(false)
   const navigate = useNavigate();
   const [newEvent, setNewEvent] = useState({
     title: "",
@@ -71,8 +72,9 @@ export const Events = () => {
     fetch('http://localhost:8080/events')
     .then(res => res.json())
     .then(data => setAllEvents(data))
-  },[allEvents])
+  },[toggleRefresh])
   
+
 
   // const formatEvent = { 
   //   ...newEvent, 
@@ -89,12 +91,15 @@ export const Events = () => {
       },
         body: JSON.stringify(newEvent)
       })
+
+        settoggleRefresh(!toggleRefresh)
     }
 
 
     const yesToggler = () => {
       setToggleForm(!toggleForm);
     }
+
 
 
   //   function handleDeleteEvent(event) {
@@ -216,7 +221,7 @@ export const Events = () => {
                   }
                 />
               </div>
-              <button style={{ marginTop: "10px" }} onClick={HandleAddEvent}>
+              <button style={{ marginTop: "10px" }} onClick={()=>HandleAddEvent()}>
                 Submit New Event!
               </button>
               <button
@@ -235,7 +240,7 @@ export const Events = () => {
             startAccessor={(event) => { return new Date(event.start) }}
             endAccessor={(event) => { return new Date(event.end) }}
             style={{ height: 600, color:'salmon', marginBottom: '50px', marginRight: '50px', marginLeft: '50px'}}
-            onSelectEvent={handleDeleteEvent}
+            onSelectEvent={handleDetails}
           />
         </div>
       </div>
