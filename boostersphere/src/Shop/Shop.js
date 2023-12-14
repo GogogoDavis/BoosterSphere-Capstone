@@ -2,7 +2,7 @@ import "./shop.css";
 import { Link } from "react-router-dom";
 import { Logout } from "../Logout/Logout";
 import { Sidebar } from "../Sidebar/Sidebar.js"
-import mopey from '../DaMopester.jpg'
+import mopey from '../DaMopester-nobackground.png'
 import { userContext } from "../App";
 import { useContext, useState, useEffect } from "react";
 import * as React from "react";
@@ -48,7 +48,7 @@ export const Shop = () => {
           className="logo"
           src={mopey} alt='add image later'
         />
-                <h4 className='headerText'>Delta 10 Swag Shop</h4>
+                <h4 className='headerText'>DELTA 10 SWAG SHOP</h4>
         <div className="headerInputContainer">
           <input
             className="headerInput"
@@ -58,10 +58,10 @@ export const Shop = () => {
           <SearchIcon style={{ color: "white" }} />
         </div>
         <div>
-          <h4 className="headerText">Donate</h4>
+          <h4 className="headerText">DONATE</h4>
         </div>
         <div>
-          <h4 className="headerText">Custom Orders</h4>
+          <h4 className="headerText">CUSTOM ORDERS</h4>
         </div>
         <div style={{ position: "relative " }} >
         <Link to='/Cart' className='NavBar'>
@@ -108,18 +108,19 @@ export const Shop = () => {
                   width: 200,
                   marginLeft: "auto",
                   marginRight: "auto",
+                  borderRadius: '12px',
                 }}
                 src={item.image}
               />
               <p className="itemTitle">
                 {item.title}
               </p>
-              <p>${item.price}</p>
+              <p style={{color: 'white'}}>${item.price}</p>
 
               {cart.some((x) => x.id === item.id) ? (
-                <Button onClick={()=> removeItemFromCart(item)} style={{backgroundColor:'lightpink'}}>Remove From Cart</Button>
+                <button className="addToCartButton" onClick={()=> removeItemFromCart(item)} style={{backgroundColor:'lightgray'}}>Remove From Cart</button>
               ) : (
-                <Button onClick={()=> addItemToCart(item)} style={{backgroundColor:'cyan'}}>Add to Cart</Button>
+                <button className="addToCartButton" onClick={()=> addItemToCart(item)}>Add to Cart</button>
               )}
             </div>
           ))}
