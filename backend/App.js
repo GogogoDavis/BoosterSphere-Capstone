@@ -108,10 +108,13 @@ app.get('/events', (req, res) => {
   .catch(e => res.status(500).send())
 })
 
-app.post('/events', (req, res) => {
+
+app.post('/events', async(req, res) => {
   const {title, type, description, start, end, fundRequired, volunteerNeeded, userId} = req.body
+  const maxIdQuery = await knex('events').max('id as maxId').first()
   knex('events')
   .insert({
+    id: maxIdQuery.maxId + 1,
     title: title,
     type: type,
     description: description,
@@ -144,10 +147,8 @@ app.patch('/events', (req, res) => {
   .catch(e => res.status(500).send())
 })
 
-app.delete('/events', (req, res) => {
-  const {id} = req.body
-  knex('events')
-  .where('id', id)
+app.delete('/events/:id', (req, res) => {
+    knex('events').where('id', req.params.id)
   .del()
   .then(res.status(200).send())
   .catch(e => res.status(500).send())
