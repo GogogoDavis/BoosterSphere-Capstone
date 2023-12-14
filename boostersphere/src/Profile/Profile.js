@@ -66,66 +66,90 @@ export const Profile = () =>{
   <div className='profile-parent-container'>
     <Sidebar />
     <div className="profile-page-container">
-      <header className="profile-header">
-        <h1>User Details</h1>
-        {!isEditing ? <button className="profile-edit-button" onClick={() => setIsEditing(true)}><EditIcon /></button> 
-        :<span className="form-names-span">
-          <button className="Landing_button cancel" disabled={formFilled} onClick={() => { setFormData({...userData}); setIsEditing(false) }}>Cancel</button>
-          <button className="Landing_button save" disabled={formFilled} onClick={() => {updateProfile(); setIsEditing(false) }}>Save</button>
-        </span>}
-      </header>
-      <div className="profile-container">
-        <div className="profile-img-container">
-          <div className="img-container">
-            <img src={formData.profileImage} alt='uploaded photo' className='currentPhoto' />
+      <div className="top-half">
+        <header className="profile-header">
+          <h1>User Details</h1>
+          {!isEditing ? <button className="profile-edit-button" onClick={() => setIsEditing(true)}><EditIcon /></button> 
+          :<span className="form-names-span">
+            <button className="cancel" disabled={formFilled} onClick={() => { setFormData({...userData}); setIsEditing(false) }}>Cancel</button>
+            <button className="save" disabled={formFilled} onClick={() => {updateProfile(); setIsEditing(false) }}>Save</button>
+          </span>}
+        </header>
+        <div className="profile-container">
+          <div className="profile-img-container">
+            <div className="img-container">
+              <img src={formData.profileImage} alt='uploaded photo' className='currentPhoto' />
+            </div>
+            {!isEditing ? <></> : <>
+              <label htmlFor="file" className='upload'> <img src={upload} alt='profile' className='uploadimg'/> </label>
+              <input name='profileImage' type="file" id="file" onChange={handleNewImage} style={{ display: "none"}} /> 
+            </>}
           </div>
-          {!isEditing ? <></> : <>
-            <label htmlFor="file" className='upload'> <img src={upload} alt='profile' className='uploadimg'/> </label>
-            <input name='profileImage' type="file" id="file" onChange={handleNewImage} style={{ display: "none"}} /> 
-          </>}
-        </div>
-        <div className="header-names">
-          <span>{formData.firstName} {formData.lastName}</span>
-          <h2>@{formData.username}</h2>
+          <div className="header-names">
+            <span>{formData.firstName} {formData.lastName}</span>
+            <h2>@{formData.username}</h2>
+          </div>
         </div>
       </div>
-      <div className="user-details">
+      <div className="profile-user-details">
+          {!isEditing ? <>
         <ul className="details-identifier">
-            <li>User ID:</li>
-            <li>First Name:</li>
-            <li>Last Name:</li>
+          <p>
+            <li>User ID</li>
+            <li className="profile-user-data">{formData.userId}</li>
+          </p>
+          <p>
+            <li>First Name</li>
+            <li className="profile-user-data">{formData.firstName}</li>
+          </p>
+          <p>
+            <li>Last Name</li>
+            <li className="profile-user-data">{formData.lastName}</li>
+          </p>
         </ul>
-        {!isEditing ? 
-        <ul className="form-details">
-          <li>{formData.userId}</li>
-          <li>{formData.firstName}</li>
-          <li>{formData.lastName}</li>
-        </ul>
-        :
-        <ul className="form-details">
-          <li>{formData.userId}</li>
-          <li><input name="firstName" type="text" value={formData.firstName} onChange={handleInputChange} /></li>
-          <li><input name="lastName" type="text" value={formData.lastName} onChange={handleInputChange} /></li>
-        </ul>
-        }
         <ul className="details-identifier">
-            <li>Role:</li>
-            <li>Email:</li>
-            <li>Username:</li>
+            <p>
+              <li>Role</li>
+              <li className="profile-user-data">{formData.role ? formData.role : 'User'}</li>
+            </p>
+            <p>
+              <li>Email</li>
+              <li className="profile-user-data">{formData.email}</li>
+            </p>
+            <p>
+              <li>Username</li>
+              <li className="profile-user-data">{formData.username}</li>
+            </p>
+        </ul></> 
+        : <>
+        <ul className="details-identifier">
+          <p>
+            <li>User ID</li>
+            <li className="profile-user-data">{formData.userId}</li>
+          </p>
+          <p>
+            <li>First Name</li>
+            <li><input className="profile-user-data" name="firstName" type="text" value={formData.firstName} onChange={handleInputChange} /></li>
+          </p>
+          <p>
+            <li>Last Name</li>
+            <li><input  className="profile-user-data" name="lastName" type="text" value={formData.lastName} onChange={handleInputChange} /></li>
+          </p>
         </ul>
-        {!isEditing ?
-        <ul className="form-details">
-            <li>{formData.role ? formData.role : 'User'}</li>
-            <li>{formData.email}</li>
-            <li>{formData.username}</li>
-        </ul>
-        :
-        <ul className="form-details">
-          <li>{formData.role ? formData.role : 'User'}</li>
-          <li><input name="email" type='email' value={formData.email} onChange={handleInputChange} /></li>
-          <li><input name="username" type="text" value={formData.username} onChange={handleInputChange} onKeyDown={handleKeyDown} /></li>
-        </ul>
-        }
+        <ul className="details-identifier">
+            <p>
+              <li>Role</li>
+              <li className="profile-user-data">{formData.role ? formData.role : 'User'}</li>
+            </p>
+            <p>
+              <li>Email</li>
+              <li><input className="profile-user-data" name="email" type='email' value={formData.email} onChange={handleInputChange} /></li>
+            </p>
+            <p>
+              <li>Username</li>
+              <li><input className="profile-user-data" name="username" type="text" value={formData.username} onChange={handleInputChange} onKeyDown={handleKeyDown} /></li>
+            </p>
+        </ul></>}
       </div>
     </div>
   </div>)
