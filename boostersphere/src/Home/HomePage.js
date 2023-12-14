@@ -27,7 +27,7 @@ export const HomePage = () => {
             <ul className='event-list'>
               {fakeEventData.map(event => {
                 return (
-                  <li>
+                  <li key={event.title}>
                     <h3>{event.title}</h3>
                     <p>{event.location}</p>
                   </li>
