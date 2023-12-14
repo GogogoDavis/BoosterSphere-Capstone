@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {Calendar, dateFnsLocalizer} from "react-big-calendar";
 import format from "date-fns/format";
 import parse from "date-fns/parse";
@@ -10,6 +10,8 @@ import "react-datepicker/dist/react-datepicker.css"
 import { Sidebar } from '../Sidebar/Sidebar';
 import './Events.css'
 import { id } from 'date-fns/locale';
+import { userContext } from '../App';
+import { useNavigate } from 'react-router-dom';
 // import Calendar from 'react-calendar';
 // import './Events.css';
 
@@ -35,41 +37,48 @@ const localizer = dateFnsLocalizer({
   locales
 });
 
-const events = [
-  {
-    title: 'Bingus party', 
-    type: 'religious event',
-    description: 'We do be religioning',
-    start: new Date,
-    end: new Date,
-    fundRequired: 230000,
-    volunteerNeeded: 200,
-    userId: 2
-  }
-]
+// const events = [
+//   {
+//     title: 'Bingus party', 
+//     type: 'religious event',
+//     description: 'We do be religioning',
+//     start: new Date,
+//     end: new Date,
+//     fundRequired: 230000,
+//     volunteerNeeded: 200,
+//     userId: 2
+//   }
+// ]
 
 export const Events = () => {
 
   const [ toggleForm, setToggleForm ] = useState(false);
+  const [allEvents, setAllEvents] = useState() 
+  const { setDetails } = useContext(userContext)
+  const navigate = useNavigate();
   const [newEvent, setNewEvent] = useState({
-     title: "",
-     type: "",
-     description: "",
-     start: new Date,
-     end: new Date, 
-     fundRequired: 0,
-     volunteerNeeded: 0,
-     userId: 0
-    });
+    title: "",
+    type: "",
+    description: "",
+    start: new Date,
+    end: new Date, 
+    fundRequired: 0,
+    volunteerNeeded: 0,
+    userId: 0
+   });
+
+  useEffect(()=>{
+    fetch('http://localhost:8080/events')
+    .then(res => res.json())
+    .then(data => setAllEvents(data))
+  },[allEvents])
+  
 
   // const formatEvent = { 
   //   ...newEvent, 
   //   start: newEvent.start.toISOString(),
   //   end:   newEvent.end.toISOString(),
   // }
-
-
-  const [allEvents, setAllEvents] = useState(events) 
 
   function HandleAddEvent() {
       setToggleForm(false);
@@ -78,60 +87,33 @@ export const Events = () => {
       headers:  {
         'Content-Type': 'application/json', 
       },
-      body: JSON.stringify(newEvent)
+        body: JSON.stringify(newEvent)
       })
-      .then(res => {
-        console.log('Server response:', res);
-        return res.json();
-      })
-      .then(data => {
-        console.log('Incredibly cool:', data);
-        setAllEvents([...allEvents, newEvent]);
-      })
-
-    .catch((error) => {
-      setAllEvents([...allEvents, newEvent]);
-      console.error('Wuh-oh :,(       :', error);
-    })
     }
 
-    console.log(allEvents);
 
     const yesToggler = () => {
       setToggleForm(!toggleForm);
     }
 
+
     function handleDeleteEvent(event) {
-      const updatedEvents = allEvents.filter((e) => e !== event);
-
-      //show the events on the calendar that does not have the event that was deleted
-      setAllEvents(updatedEvents);
-      
+      console.log(event)
       // Fetch to sevrver but it is not getting the request
-      fetch(`http://localhost:8080/events/`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },  body:{id:7}
-      })
-        .then(res => {
-          //If the delete is successful
-          if(res.ok){
-            console.log('Event deleted succesffuly');
-          }
-          console.log('Server response:', res);
-          return res.json();
-        })
-        .then(data => {
-          console.log('Event deleted:', data);
-        })
-        .catch((error) => {
+      fetch(`http://localhost:8080/events/${event.id}`, {
+        method: 'DELETE'
+    });
+  }
 
-          console.error('Error deleting event:', error);
-        });
-    }
 
-  return (
+  const handleDetails = (event) =>{
+      setDetails(event)
+      navigate(`/details/${event.id}`)
+  }
+
+   
+
+  return !allEvents ? null : ((
     <>
       <div className="parent-container">
         <Sidebar />
@@ -253,12 +235,12 @@ export const Events = () => {
             startAccessor='start'
             endAccessor='end'
             style={{ height: 600, color:'salmon', marginBottom: '50px', marginRight: '50px', marginLeft: '50px'}}
-            onSelectEvent={handleDeleteEvent}
+            onSelectEvent={handleDetails}
           />
         </div>
       </div>
     </>
-  );
+  ));
 };
 
   // const [toggleAddEvent, setToggleAddEvent] = useState(false);
