@@ -36,7 +36,7 @@ export const Details = ({ item }) => {
   console.log(item);
 
   return (
-    <>
+    <container>
   <div id='wrap'>
     <ul>
       <h1 style={{display: 'flex', justifyContent: 'center', color: 'salmon'}}>Details</h1>
@@ -49,7 +49,7 @@ export const Details = ({ item }) => {
       <li className='addWrap'>{item.volunteerNeeded}</li>
     </ul>
   </div>  
-      <div>
+      <div id='btns'>
         <button className= 'detailBtn' onClick={calendarReturn}>Return to Calendar</button>
         <button className= 'detailBtn' onClick={handleDeleteEvent} style={{ marginLeft: "10px" }}>
           Event lame, plz remove
@@ -58,6 +58,6 @@ export const Details = ({ item }) => {
           Update Event
         </button>
       </div>
-    </>
+    </container>
   );
 };
