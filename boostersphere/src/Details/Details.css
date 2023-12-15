@@ -18,6 +18,11 @@
     background: slateblue
 }
 
+.addWrap:hover{
+    background-color: red; 
+    color: black;
+}
+
 ::placeholder{
     color: salmon;
 }
