@@ -37,6 +37,9 @@ export const Details = ({ item }) => {
       .then(() => {
         console.log("Event updated successfully");
       })
+      .then(() => {
+        navigate(`/events`)
+      })
       .catch((error) => {
         console.error("Error updating event", error);
       });
@@ -59,13 +62,10 @@ export const Details = ({ item }) => {
               justifyContent: "center",
               color: "salmon",
             }}
-          >
-            Details
-          </h1>
-
-          <label style={{ width: "20%" }} className="addWrap">
+          >Details</h1>
+          <h2 className="addWrap">
             id: {item.id}
-          </label>
+          </h2>
           <input
             className="addWrap"
             type="text"
@@ -95,7 +95,7 @@ export const Details = ({ item }) => {
               setEditDetails({ ...editDetails, description: e.target.value })
             }
           />
-
+<div>
           <DatePicker
             className="addWrap"
             placeholderText={item.start}
@@ -104,7 +104,8 @@ export const Details = ({ item }) => {
             selected={editDetails.start}
             onChange={(start) => setEditDetails({ ...editDetails, start })}
           />
-
+</div>
+<div>
           <DatePicker
             className="addWrap"
             placeholderText={item.end}
@@ -113,12 +114,12 @@ export const Details = ({ item }) => {
             selected={editDetails.end}
             onChange={(end) => setEditDetails({ ...editDetails, end })}
           />
-
+</div>
           <input
             className="addWrap"
             type="integer"
             placeholder={item.fundRequired}
-            defaultValue={item.fundRequired}
+            // defaultValue={item.fundRequired}
             // value={editDetails.fundRequired}
             onChange={(e) =>
               setEditDetails({ ...editDetails, fundRequired: e.target.value })
@@ -128,8 +129,8 @@ export const Details = ({ item }) => {
           <input
             className="addWrap"
             type="integer"
-            // placeholder={item.volunteerNeeded}
-            defaultValue={item.volunteerNeeded}
+            placeholder={item.volunteerNeeded}
+            // defaultValue={item.volunteerNeeded}
             // value={editDetails.volunteerNeeded}
             onChange={(e) =>
               setEditDetails({
@@ -142,8 +143,8 @@ export const Details = ({ item }) => {
           <input
             className="addWrap"
             type="integer"
-            // placeholder={item.userId}
-            defaultValue={item.userId}
+            placeholder={item.userId}
+            // defaultValue={item.userId}
             // value={editDetails.userId}
             onChange={(e) =>
               setEditDetails({ ...editDetails, userId: e.target.value })
@@ -151,21 +152,15 @@ export const Details = ({ item }) => {
           />
         </ul>
         <div className='buttonLayout'>
-        <div>
           <button className="detailBtn" onClick={calendarReturn}>
             Return to Calendar
           </button>
-        </div>
-        <div>
           <button className="detailBtn" onClick={handleDeleteEvent}>
             Event lame, plz remove
           </button>
-        </div>
-        <div>
           <button className="detailBtn" onClick={handleUpdateEvent}>
             Update Event
           </button>
-        </div>
         </div>
       </div>
     </container>
