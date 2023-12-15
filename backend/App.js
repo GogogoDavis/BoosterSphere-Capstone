@@ -144,16 +144,17 @@ app.post('/events', async(req, res) => {
   .catch(e => res.status(500).send())
 })
 
-app.patch('/events', (req, res) => {
-  const {id, title, type, description, date, fundRequired, volunteerNeeded, userId} = req.body
+app.patch('/events/:id', (req, res) => {
+  const {id, title, type, description, start, end, fundRequired, volunteerNeeded, userId} = req.body
   knex('events')
   .where('id', id)
   .update({
+    id: id,
     title: title,
     type: type,
     description: description,
-    date: date,
-    // date in this format 'yyyy-mm-dd'
+    start: start,
+    end: end,
     fundRequired: fundRequired,
     volunteerNeeded: volunteerNeeded,
     userId: userId
