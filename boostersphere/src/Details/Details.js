@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import "./Details.css";
 import { useNavigate, useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
@@ -26,11 +25,10 @@ export const Details = ({ item }) => {
     }).then(navigate(`/events`));
   }
 
-    // Function to update the event details
   const handleUpdateEvent = () => {
- 
+  
     fetch(`http://localhost:8080/events/${id}`, {
-      method: "PATCH", // Using the PATCH method to update
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
@@ -39,26 +37,10 @@ export const Details = ({ item }) => {
       .then(() => {
         console.log("Event updated successfully");
       })
-
-      // Fetch the updated event data after a successful update
-      fetch(`http://localhost:8080/events/${id}`)
-        .then((response) => response.json())
-        .then((updatedEvenData) => {
-
-          // Update the state with the newly fetched data
-          setEditedItem(updatedEvenData);
-        })
       .catch((error) => {
         console.error("Error updating event", error);
       });
   };
-
-  // Function to handle changes in the input fields
-  const handleInputChange = (e) => {
-    const {name, value} = e.target; // Extracting name and value from the input field
-    setEditedItem({...editedItem, [name]: value}); // Updating the corresponding field in editedItem
-  
-  }
 
   const calendarReturn = () => {
     navigate(`/events`);
@@ -97,7 +79,7 @@ export const Details = ({ item }) => {
           <input
             className="addWrap"
             type="text"
-            defaultValue={item.type}
+            placeholder={item.type}
             value={editDetails.type}
             onChange={(e) =>
               setEditDetails({ ...editDetails, type: e.target.value })
@@ -116,7 +98,7 @@ export const Details = ({ item }) => {
 
           <DatePicker
             className="addWrap"
-            defaultValue={item.start}
+            placeholderText={item.start}
             showTimeSelect
             style={{ marginRight: "10px" }}
             selected={editDetails.start}
@@ -125,7 +107,7 @@ export const Details = ({ item }) => {
 
           <DatePicker
             className="addWrap"
-            defaultValue={item.end}
+            placeholderText={item.end}
             showTimeSelect
             style={{ marginRight: "10px" }}
             selected={editDetails.end}
@@ -135,7 +117,7 @@ export const Details = ({ item }) => {
           <input
             className="addWrap"
             type="integer"
-            // placeholder={item.fundRequired}
+            placeholder={item.fundRequired}
             defaultValue={item.fundRequired}
             // value={editDetails.fundRequired}
             onChange={(e) =>
