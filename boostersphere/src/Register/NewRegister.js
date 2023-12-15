@@ -52,16 +52,13 @@ export const NewRegister = () => {
         e.preventDefault();
         const { username, firstName, lastName, email, role, password, password2 } = formData
         if (password.length > 5 && password2.length > 5 && username, firstName, lastName, email) {
-            console.log('test')
             registerAccount()
         } else {
-            console.log('test2')
             setFormFilled(false)
         }
     }
 
     const registerAccount = () => {
-        console.log('test')
         fetch('http://localhost:8080/users/register', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
