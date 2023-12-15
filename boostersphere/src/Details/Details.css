@@ -1,6 +1,5 @@
 #wrap {
     display:flex; 
-    flex-direction: column;
     height: 100vh;
     justify-content: center; 
     align-items: center;
@@ -9,6 +8,28 @@
 }
 
 .addWrap{
+    display: flex; 
+    flex-direction: row;
+    margin: 10px;
+    color: salmon;
+    padding: 5px; 
+    border: 5px solid darkmagenta;
+    border-radius: 5px; 
+    background: slateblue
+}
+
+::placeholder{
+    color: salmon;
+}
+
+.buttonLayout{
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-around;  
+}
+
+#idLine{
+    width: 20%;
     margin: 10px;
     color: salmon;
     padding: 5px; 
