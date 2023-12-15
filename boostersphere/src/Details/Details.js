@@ -101,11 +101,12 @@ export const Details = ({ item }) => {
         <button className= 'detailBtn' onClick={calendarReturn}>Return to Calendar</button>
         <button className= 'detailBtn' onClick={handleDeleteEvent} style={{ marginLeft: "10px" }}>
           Event lame, plz remove
-        </button>
-        <button className='detailBtn' onClick={handleUpdateEvent} style={{ marginLeft: '10px' }}>
-          Update Event
-        </button>
+        </button> 
       </div>
+        <div style={{margin: '10px'}}> <button className='detailBtn' onClick={handleUpdateEvent} style={{ marginLeft: '10px' }}>
+          Update Event
+        </button> </div>
+    
     </container>
   );
 };
