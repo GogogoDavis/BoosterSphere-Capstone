@@ -25,11 +25,12 @@
 .buttonLayout{
     display: flex; 
     flex-direction: column;
-    justify-content: space-around;  
+    margin: 20px; 
+    padding: 10px;
 }
 
 #idLine{
-    width: 20%;
+    width: 40%;
     margin: 10px;
     color: salmon;
     padding: 5px; 
@@ -39,6 +40,8 @@
 }
 
 .detailBtn{
+    margin:20px; 
+    padding: 20px;
     border: 5px solid;
     border-radius: 5px;
     background-color: slateBlue;
