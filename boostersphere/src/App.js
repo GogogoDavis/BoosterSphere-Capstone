@@ -17,6 +17,7 @@ import { Profile } from './Profile/Profile.js';
 import Cookies from 'js-cookie';
 import { Setting } from './Setting/Setting.js'
 import { NewLogin } from './Login/NewLogin.js';
+import { FundEdit } from './Funds/FundEdit.js';
 
 
 export const userContext = React.createContext();
