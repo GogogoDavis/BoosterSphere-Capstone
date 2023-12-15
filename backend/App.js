@@ -18,18 +18,18 @@ app.listen(port, () => console.log(`Alrighty weather-boi, this john do be runnin
 app.post('/users/register', async (req, res) => {
   const { username, firstName, lastName, email, role, password, profileImage } = req.body;
   try {
-    let usernameOrEmailIsDuplicate = false;
+    let emailIsDuplicate = false;
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Check for duplicate username or email
     const userData = await knex('users').select('*');
     userData.forEach(existingUser => {
-      if (existingUser.username === username || existingUser.email === email) {
-        usernameOrEmailIsDuplicate = true;
+      if (existingUser.email === email) {
+        emailIsDuplicate = true;
       }
     });
 
-    if (!usernameOrEmailIsDuplicate) {
+    if (!emailIsDuplicate) {
       await knex('users').insert({
         username: username,
         firstName: firstName,
@@ -144,16 +144,17 @@ app.post('/events', async(req, res) => {
   .catch(e => res.status(500).send())
 })
 
-app.patch('/events', (req, res) => {
-  const {id, title, type, description, date, fundRequired, volunteerNeeded, userId} = req.body
+app.patch('/events/:id', (req, res) => {
+  const {id, title, type, description, start, end, fundRequired, volunteerNeeded, userId} = req.body
   knex('events')
   .where('id', id)
   .update({
+    id: id,
     title: title,
     type: type,
     description: description,
-    date: date,
-    // date in this format 'yyyy-mm-dd'
+    start: start,
+    end: end,
     fundRequired: fundRequired,
     volunteerNeeded: volunteerNeeded,
     userId: userId
@@ -173,7 +174,7 @@ app.delete('/events/:id', (req, res) => {
 app.get('/volunteers', (req, res) => {
   knex('volunteers')
   .select('*')
-  .then(res.status(200).send())
+  .then(data => res.status(200).send(data))
   .catch(e => res.status(500).send())
 })
 
@@ -270,7 +271,7 @@ app.delete('/funds/:id', (req, res) => {
 app.get('/donations', (req, res) => {
   knex('donations')
   .select('*')
-  .then(res.status(200).send())
+  .then(data => res.status(200).send(data))
   .catch(e => res.status(500).send())
 })
 

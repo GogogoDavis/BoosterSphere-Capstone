@@ -1,22 +1,54 @@
-#wrap{
+#wrap {
+
     display:flex; 
+    height: 100vh;
     justify-content: center; 
     align-items: center;
-    background-image: url(../galaxy.png);
-    background-repeat: no-repeat;
     background-size: cover;
     background-color: slateblue;
-    min-height: 80vh;
-}
+} */
+
 
 .addWrap{
+    display: flex; 
+    flex-direction: row;
     margin: 10px;
+    color: salmon;
     padding: 5px; 
     border: 5px solid darkmagenta;
     border-radius: 5px; 
+    background: slateblue
+}
+
+.addWrap:hover{
+    background-color: red; 
+    color: black;
+}
+
+::placeholder{
+    color: black;
+}
+
+.buttonLayout{
+    display: flex; 
+    flex-direction: column;
+    margin: 20px; 
+    padding: 10px;
+}
+
+#idLine{
+    width: 40%;
+    margin: 10px;
+    color: salmon;
+    padding: 5px; 
+    border: 5px solid darkmagenta;
+    border-radius: 5px; 
+    background: slateblue
 }
 
 .detailBtn{
+    margin:20px; 
+    padding: 20px;
     border: 5px solid;
     border-radius: 5px;
     background-color: slateBlue;

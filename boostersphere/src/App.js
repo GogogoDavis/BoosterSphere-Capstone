@@ -18,6 +18,7 @@ import Cookies from 'js-cookie';
 import { Setting } from './Setting/Setting.js'
 import { NewLogin } from './Login/NewLogin.js';
 import { FundEdit } from './Funds/FundEdit.js';
+import { Volunteers } from './volunteers/Volunteers.js';
 
 
 export const userContext = React.createContext();
@@ -89,6 +90,7 @@ function App() {
             <RequireAuth><Setting /> 
             </RequireAuth>} />
 
+            <Route path='/volunteers' element={<Volunteers />} />
 
             <Route path='/Shop' element={<Shop />} />
             <Route path='/Cart' element={<Cart />} />
