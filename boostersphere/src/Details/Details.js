@@ -79,7 +79,7 @@ export const Details = ({ item }) => {
           <input
             className="addWrap"
             type="text"
-            placeholder={item.type}
+            defaultValue={item.type}
             value={editDetails.type}
             onChange={(e) =>
               setEditDetails({ ...editDetails, type: e.target.value })
@@ -98,7 +98,7 @@ export const Details = ({ item }) => {
 
           <DatePicker
             className="addWrap"
-            placeholderText={item.start}
+            defaultValue={item.start}
             showTimeSelect
             style={{ marginRight: "10px" }}
             selected={editDetails.start}
@@ -107,7 +107,7 @@ export const Details = ({ item }) => {
 
           <DatePicker
             className="addWrap"
-            placeholderText={item.end}
+            defaultValue={item.end}
             showTimeSelect
             style={{ marginRight: "10px" }}
             selected={editDetails.end}
