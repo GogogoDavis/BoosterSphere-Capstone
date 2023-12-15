@@ -1,4 +1,4 @@
-body{
+/* body{
     display:flex; 
     justify-content: center; 
     align-items: center;
@@ -6,7 +6,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     background-color: slateblue;
-}
+} */
 
 .addWrap{
     margin: 10px;
