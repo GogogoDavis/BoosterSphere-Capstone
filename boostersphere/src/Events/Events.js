@@ -72,7 +72,7 @@ export const Events = () => {
     fetch('http://localhost:8080/events')
     .then(res => res.json())
     .then(data => setAllEvents(data))
-  },[toggleRefresh])
+  },[allEvents])
   
 
 

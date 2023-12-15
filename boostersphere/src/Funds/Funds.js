@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+
+import React, { useContext, useEffect, useState } from 'react';
+import { userContext } from '../App';
 import {
   LinearProgress,
   Button,
@@ -9,22 +11,30 @@ import {
   DialogContent,
   DialogActions,
 } from '@mui/material';
+
 import './Funds.css';
 import { Sidebar } from '../Sidebar/Sidebar';
 
 export const Funds = () => {
+
+  const { userdata, thisuser, setThisuser, fulluserData } = useContext(userContext);
+
+  useEffect(() => {
+    const getThisUserData = async () => {
+      fulluserData.forEach((element) => {
+        if (element.id === userdata.uid) {
+          setThisuser(element);
+        }
+      });
+    };
+    if (fulluserData && userdata) getThisUserData();
+  }, [fulluserData, userdata, setThisuser]);
+
+
   const [goals, setGoals] = useState([
-    {
-      id: 1,
-      name: 'Goal 1',
-      currentAmount: '',
-      goalAmount: '',
-      transactions: [],
-      showProgress: true,
-      isEditMode: false,
-      newTransaction: { amount: '', note: '' },
-    },
+    { id: 1, currentAmount: '', goalAmount: '', showProgress: true, isEditMode: false },
   ]);
+
 
   const [selectedGoal, setSelectedGoal] = useState(null);
 
@@ -34,6 +44,7 @@ export const Funds = () => {
     );
     setGoals(updatedGoals);
   };
+
 
   const handleGoalAmountChange = (event, goalId) => {
     const updatedGoals = goals.map((goal) =>
@@ -65,13 +76,6 @@ export const Funds = () => {
     setGoals(updatedGoals);
   };
 
-  const handleGoalNameChange = (event, goalId) => {
-    const updatedGoals = goals.map((goal) =>
-      goal.id === goalId ? { ...goal, name: event.target.value } : goal
-    );
-    setGoals(updatedGoals);
-  };
-
   const handleTransactionHistoryClick = (goalId) => {
     const goal = goals.find((goal) => goal.id === goalId);
     if (goal) {
@@ -98,7 +102,6 @@ export const Funds = () => {
   const handleAddGoal = () => {
     const newGoal = {
       id: goals.length + 1,
-      name: `Goal ${goals.length + 1}`,
       currentAmount: '',
       goalAmount: '',
       transactions: [],
@@ -115,6 +118,7 @@ export const Funds = () => {
 
   return (
     <>
+
     <div className='parent-container'>
       <Sidebar />
       <div className='main'>
@@ -127,16 +131,7 @@ export const Funds = () => {
         <div key={goal.id}>
           {goal.showProgress && !goal.isEditMode && (
             <>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <TextField
-                  type="text"
-                  value={goal.name}
-                  onChange={(event) => handleGoalNameChange(event, goal.id)}
-                />
-                <Button variant="contained" onClick={() => handleTransactionHistoryClick(goal.id)}>
-                  Transaction History
-                </Button>
-              </div>
+              <Typography variant="h6">Goal {goal.id}</Typography>
               <LinearProgress
                 variant="determinate"
                 value={(goal.currentAmount / goal.goalAmount) * 100 || 0}
@@ -153,32 +148,23 @@ export const Funds = () => {
           {goal.isEditMode && (
             <>
               <div>
+                <Typography variant="h6">Edit Goal {goal.id}</Typography>
+                <Typography variant="subtitle2">Total amount in savings</Typography>
+                <TextField
+                  type="number"
+                  value={goal.currentAmount}
+                  onChange={(event) => handleCurrentAmountChange(event, goal.id)}
+                  placeholder="Enter Current Amount"
+                />
+              </div>
+
+              <div>
                 <Typography variant="subtitle2">Goal</Typography>
                 <TextField
                   type="number"
                   value={goal.goalAmount}
                   onChange={(event) => handleGoalAmountChange(event, goal.id)}
                   placeholder="Enter Goal Amount"
-                />
-              </div>
-
-              <div>
-                <Typography variant="subtitle2">New Transaction Amount</Typography>
-                <TextField
-                  type="number"
-                  value={goal.newTransaction.amount}
-                  onChange={(event) => handleNewTransactionAmountChange(event, goal.id)}
-                  placeholder="Enter Amount"
-                />
-              </div>
-
-              <div>
-                <Typography variant="subtitle2">New Transaction Note</Typography>
-                <TextField
-                  type="text"
-                  value={goal.newTransaction.note}
-                  onChange={(event) => handleNewTransactionNoteChange(event, goal.id)}
-                  placeholder="Enter Note"
                 />
               </div>
 
