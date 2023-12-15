@@ -1,6 +1,8 @@
 import "./shop.css";
 import { Link } from "react-router-dom";
 import { Logout } from "../Logout/Logout";
+import { Sidebar } from "../Sidebar/Sidebar.js"
+import mopey from '../DaMopester-nobackground.png'
 import { userContext } from "../App";
 import { useContext, useState, useEffect } from "react";
 import * as React from "react";
@@ -36,25 +38,17 @@ export const Shop = () => {
 
   return (
     <>
-      <div className="nav">
-        <div className="links">
-          <Link to="/Home" className="NavBar">
-            Home
-          </Link>
-          <Link to="/Events" className="NavBar">
-            Events
-          </Link>
-        </div>
-        <Logout />
-      </div>
+    <div className="parent-container">
+      <Sidebar />
+      <div className="main">
 
       <div className="header">
         <img
           style={{ width: 50, height: 50 }}
           className="logo"
-          src="../DaMopester.jpg" alt='add image later'
+          src={mopey} alt='add image later'
         />
-        <MenuIcon style={{ color: "white" }} />
+                <h4 className='headerText'>DELTA 10 SWAG SHOP</h4>
         <div className="headerInputContainer">
           <input
             className="headerInput"
@@ -64,12 +58,13 @@ export const Shop = () => {
           <SearchIcon style={{ color: "white" }} />
         </div>
         <div>
-          <h4 className="headerText">Donate</h4>
+          <h4 className="headerText">DONATE</h4>
         </div>
         <div>
-          <h4 className="headerText">Custom Orders</h4>
+          <h4 className="headerText">CUSTOM ORDERS</h4>
         </div>
-        <div style={{ position: "relative " }}>
+        <div style={{ position: "relative " }} >
+        <Link to='/Cart' className='NavBar'>
           <Tooltip title='Cart'>
             <ShoppingCartIcon
               style={{
@@ -80,10 +75,11 @@ export const Shop = () => {
               }}
             />
           </Tooltip>
+          </Link>
           <span
             style={{
               position: "absolute",
-              left: 20,
+              left: 30,
               right: 14,
               backgroundColor: "white",
               width: 14,
@@ -97,6 +93,7 @@ export const Shop = () => {
           >
             {cart.length}
           </span>
+
         </div>
       </div>
 
@@ -111,18 +108,19 @@ export const Shop = () => {
                   width: 200,
                   marginLeft: "auto",
                   marginRight: "auto",
+                  borderRadius: '12px',
                 }}
                 src={item.image}
               />
               <p className="itemTitle">
                 {item.title}
               </p>
-              <p>{item.price}</p>
+              <p style={{color: 'white'}}>${item.price}</p>
 
               {cart.some((x) => x.id === item.id) ? (
-                <Button onClick={()=> removeItemFromCart(item)} style={{backgroundColor:'lightpink'}}>Remove From Cart</Button>
+                <button className="addToCartButton" onClick={()=> removeItemFromCart(item)} style={{backgroundColor:'lightgray'}}>Remove From Cart</button>
               ) : (
-                <Button onClick={()=> addItemToCart(item)} style={{backgroundColor:'cyan'}}>Add to Cart</Button>
+                <button className="addToCartButton" onClick={()=> addItemToCart(item)}>Add to Cart</button>
               )}
             </div>
           ))}
@@ -130,9 +128,11 @@ export const Shop = () => {
       </div>
 
       {/* Footer */}
-      <div className="headerBottom">
+      {/* <div className="headerBottom">
         <MenuIcon style={{ color: "white" }} />
-      </div>
+      </div> */}
+</div>
+</div>
     </>
   );
 };

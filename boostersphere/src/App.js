@@ -1,81 +1,63 @@
 import './App.css';
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { AuthContext } from './context/AuthContext';
 import { Events } from './Events/Events';
-import { Login } from './Login/Login';
+
 import { Visitor } from './Visitor/Visitor';
 import { Details } from './Details/Details';
 import { Landing } from './Landing/Landing';
-import { Register } from './Register/Register';
+import { NewRegister } from './Register/NewRegister.js';
 import { HomePage } from './Home/HomePage';
 import { Funds } from './Funds/Funds.js';
 import { Shop } from './Shop/Shop';
-import { AddUsers } from './AddUsers/AddUsers.js';
 import { Cart } from './Shop/Cart'
-import store from './Shop/store';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { db } from './firebase';
-import { collection, getDocs } from "firebase/firestore";
-import { Sidebar } from './Sidebar/Sidebar.js';
+import { Store } from './Shop/store';
+
+import { Profile } from './Profile/Profile.js';
+import Cookies from 'js-cookie';
+import { Setting } from './Setting/Setting.js'
+import { NewLogin } from './Login/NewLogin.js';
+import { FundEdit } from './Funds/FundEdit.js';
+
 
 export const userContext = React.createContext();
 
 function App() {
   const [details, setDetails] = useState();
-  const [userdata, setUserdata] = useState();
-  const [thisuser, setThisuser] = useState();
-  const [fulluserData, setFullUserData] = useState();
-  const { currentUser, dispatch } = useContext(AuthContext)
+  const [userData, setUserData] = useState();
+  const [loading, setLoading] = useState(true);
 
-  const auth = getAuth();
-
+  const fetchUserData = async () => {
+    const storedUserString = Cookies.get('user_data');
+    const storedUserObject = storedUserString ? JSON.parse(storedUserString) : null;
+    if (storedUserObject) 
+      fetch(`http://localhost:8080/users/image?userId=${storedUserObject.userId}`)
+        .then(res => res.json())
+        .then(imgData => {
+          storedUserObject.profileImage = imgData[0].profileImage
+          setUserData(storedUserObject)
+          setLoading(false);
+        })
+    else setLoading(false);
+  };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        setUserdata(user);
-        setThisuser(user.displayName);
-        console.log('userdata on app 1', user)
-        // Fetch user data when the user is logged in
-        try {
-          const querySnapshot = await getDocs(collection(db, "users"));
-          let list = [];
-          querySnapshot.forEach((doc) => {
-            list.push({ id: doc.id, ...doc.data() });
-          });
-          setFullUserData(list);
-        } catch (err) {
-          console.log(err);
-        }
-      } else {
-        console.log('userdata on app 3', fulluserData)
-        // User is not logged in
-        setUserdata(null);
-        setThisuser(null);
-        // Dispatch logout only if the user is logged in
-        if (currentUser) {
-          dispatch({ type: "LOGOUT" });
-        }
-      }
-    });
-    return () => unsubscribe();
-  }, [auth, currentUser, dispatch]);
-
-
+    fetchUserData()
+  }, []);
 
   const RequireAuth = ({ children }) => {
-    return currentUser ? children : <Navigate to="/Login" />
-  }
+    if (loading) return null
+    return userData ? children : <Navigate to="/" />;
+  };
 
   return (
     <>
 
       <div className="App">
 
-        <userContext.Provider value={{ details, setDetails, userdata, setUserdata, thisuser, setThisuser, fulluserData, setFullUserData}}>
+        <userContext.Provider value={{ details, setDetails, userData, setUserData}}>
           <Routes>
-            <Route path='/Login' element={<Login />} />
+            <Route path='/Login' element={<NewLogin />} />
             <Route path='/' element={<Landing />} />
             <Route path='/Visitor' element={<Visitor />} />
 
@@ -95,10 +77,22 @@ function App() {
               </RequireAuth>} />
 
 
-            <Route path='/add' element={<AddUsers />} />
+            <Route path='/shop' element={<Shop />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/register' element={<NewRegister />} />
+
+            <Route path='/Profile' element={
+            <RequireAuth><Profile /> 
+            </RequireAuth>} />
+
+            <Route path='/Setting' element={
+            <RequireAuth><Setting /> 
+            </RequireAuth>} />
+
+
             <Route path='/Shop' element={<Shop />} />
             <Route path='/Cart' element={<Cart />} />
-            <Route path='/Register' element={<Register />} />
+
             <Route path='/details/:id' element={<Details item={details} />} />
 
           </Routes>

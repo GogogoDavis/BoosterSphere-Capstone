@@ -1,12 +1,11 @@
 import './Sidebar.css'
 import { useState, useContext, useEffect } from 'react';
 import { userContext } from '../App';
-import { AuthContext } from '../context/AuthContext';
-
-
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Logout } from '../Logout/Logout';
-import mopey from '../DaMopester.jpg'
+import mopey from '../images/DaMopester.jpg'
+import Cookies from 'js-cookie';
 
 
 import {RxDashboard} from "react-icons/rx";
@@ -19,27 +18,22 @@ import { CiLogout } from "react-icons/ci";
 import { TiChevronLeftOutline } from "react-icons/ti";
 
 
-
-
-
-
 export const Sidebar = () => {
+  const { userData, setUserData } = useContext(userContext)
+  const [isActive, setActive] = useState(false);
+  const navigate = useNavigate();
 
-const { thisuser, setThisuser } = useContext(userContext)
-const {dispatch} = useContext(AuthContext)
+  const toggleClass = () =>{
+      setActive(!isActive);
+  }
 
-const [isActive, setActive] = useState(false);
-
-const toggleClass = () =>{
-    setActive(!isActive);
-}
-
-const handleLogout = () =>{
-    dispatch({type:"LOGOUT"})
+  const handleLogout = () =>{
+    Cookies.remove('user_data');
+    setUserData(null)
   }
 
 
-  return !thisuser? null : ((
+  return !userData? null : ((
     <>
 
         <div className="container">
@@ -49,36 +43,37 @@ const handleLogout = () =>{
                 </div>
                 <div className="head">
                     <div className='user-img'>
-                        {thisuser.img ? <img src={thisuser.img} alt='' /> : <img src={mopey} alt='' />}
+                        {userData.profileImage ? <img src={userData.profileImage} alt='' /> : <img src={mopey} alt='' />}
                     </div>
                     <div className='user-details'>
-                        <p className='title'>{thisuser.email}</p>
-                        <p className='name'>{thisuser.displayName}</p>
+                        <p className='title'>{userData.email}</p>
+                        <p className='name'>{userData.firstName} {userData.lastName}</p>
+                        <p className='name'>{userData.username}</p>
                     </div>
                 </div>
                 <div className='nav'>
                     <div className='menu'>
                         <p className='title'>Main</p>
                         <ul>
-                            <li className='active'>
+                            <li className='active' onClick={()=>{navigate('/Home')}}>
                                 <div className='select'>
                                     <i className='icon'><GrHomeRounded /></i>
                                     <span className='text'>Home</span>
                                 </div>
                             </li>
-                            <li>
+                            <li onClick={()=>{navigate('/Events')}}>
                                 <div className='select'>
                                     <i className='icon'><RxDashboard /></i>
                                     <span className='text'>Events</span>
                                 </div>
                             </li>
-                            <li>
+                            <li onClick={()=>{navigate('/shop')}}>
                                 <div className='select'>
                                     <i className='icon'><MdOutlineShoppingBag /></i>
                                     <span className='text'>Store</span>
                                 </div>
                             </li>
-                            <li>
+                            <li onClick={()=>{navigate('/Funds')}}>
                                 <div  className='select'>
                                     <i className='icon'><RiRefund2Fill /></i>
                                     <span className='text'>Funds</span>
@@ -89,7 +84,7 @@ const handleLogout = () =>{
                     <div className='menu'>
                         <p className='title'>Settings</p>
                         <ul>
-                            <li className='active'>
+                            <li className='active' onClick={()=>{navigate('/Setting')}}>
                                 <div className='select'>
                                     <i className='icon'><IoSettingsOutline /></i>
                                     <span className='text'>Settings</span>
@@ -101,16 +96,16 @@ const handleLogout = () =>{
                 <div className='menu'>
                         <p className='title'>Account</p>
                         <ul>
-                            <li className='active'>
+                            <li className='active' onClick={()=>{navigate('/Profile')}}>
                                 <div className='select'>
                                     <i className='icon'><CgProfile /></i>
                                     <span className='text'>Profile</span>
                                 </div>
                             </li>
-                            <li className='active'>
+                            <li className='active' onClick={()=>{handleLogout()}}>
                                 <div className='select'>
-                                    <i className='icon' onClick={()=>{handleLogout()}}><CiLogout /></i>
-                                    <span className='text' onClick={()=>{handleLogout()}}>Logout</span>
+                                    <i className='icon'><CiLogout /></i>
+                                    <span className='text'>Logout</span>
                                 </div>
                             </li>
                         </ul>
@@ -118,8 +113,7 @@ const handleLogout = () =>{
             </div>
         </div>
 
-
-
     </>
   ))
 }
+

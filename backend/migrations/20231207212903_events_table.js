@@ -4,11 +4,12 @@
  */
 exports.up = function(knex) {
   return knex.schema.createTable('events', table => {
-    table.increments();
-    table.string('eventTitle'); 
+    table.increments('id');
+    table.string('title'); 
     table.string('type');
     table.string('description');
-    table.date('date');
+    table.dateTime('start', 80);
+    table.dateTime('end', 80);
     // date in this format 'yyyy-mm-dd'
     table.integer('fundRequired');
     table.integer('volunteerNeeded')

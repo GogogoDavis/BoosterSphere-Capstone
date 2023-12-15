@@ -1,3 +1,17 @@
+.App{
+   width: 100%;
+}
+
+.parent-container{
+   display: flex;
+   justify-content: center;
+   background-color: #3d535f;
+}
+
+#calButton{ 
+   margin-left:45%;
+}
+
 .main {
     margin-right:auto;
     width: 50%;
@@ -20,20 +34,28 @@
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
  }
- .box {
-    height: 2rem;
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+ 
+ #postEventFields {
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   background-color: #3d535f;
+   padding: 20px;
+   border: 5px solid #7f00ff;
+   border-radius: 10px;
+   z-index: 999;
  }
- .box.empty {
-    background-color: #e0e0e0;
-    cursor: default;
- }
- .box.selected {
-    background-color: blue;
-    color: white;
- }
+
+ #togglerBtn{
+   border: 5px solid;
+   border-radius: 5px;
+   background-color: slateBlue;
+   color: rgb(238, 132, 238); 
+   margin-bottom: 5px;
+}
+
+#togglerBtn:hover {
+   background-color: slategrey;
+   color: skyblue;
+}

@@ -1,0 +1,14 @@
+
+.Funds_ParentContainer{
+    display: flex;
+
+}
+
+.Funds_main{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+}

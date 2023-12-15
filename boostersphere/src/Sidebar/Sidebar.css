@@ -12,8 +12,10 @@ body{
 }
 
 .container{
-    width: 100%;
-    min-width: 100vh;
+    /* position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1500; */
 }
 
 .sidebar{
@@ -89,6 +91,7 @@ body{
 .menu ul li:active {
     color: #000;
     background-color: #f6f6f6;
+    cursor: pointer;
 }
 
 .menu ul li .icon{
@@ -163,7 +166,6 @@ body{
     background-color: #000;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s;
 }
 
 .sidebar.active .menu > ul > li > .select .text::after{
@@ -183,5 +185,6 @@ body{
     left: 50px;
     opacity: 1;
     visibility: visible;
+    transition: all 0.3s;
 }
 

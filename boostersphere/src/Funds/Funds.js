@@ -1,3 +1,4 @@
+
 import React, { useContext, useEffect, useState } from 'react';
 import {
   LinearProgress,
@@ -12,9 +13,9 @@ import {
 
 import './Funds.css';
 import { Sidebar } from '../Sidebar/Sidebar';
-import { userContext } from '../App';
 
 export const Funds = () => {
+
   const { userdata, thisuser, setThisuser, fulluserData } = useContext(userContext);
 
   useEffect(() => {
@@ -28,9 +29,13 @@ export const Funds = () => {
     if (fulluserData && userdata) getThisUserData();
   }, [fulluserData, userdata, setThisuser]);
 
+
   const [goals, setGoals] = useState([
     { id: 1, currentAmount: '', goalAmount: '', showProgress: true, isEditMode: false },
   ]);
+
+
+  const [selectedGoal, setSelectedGoal] = useState(null);
 
   const handleCurrentAmountChange = (event, goalId) => {
     const updatedGoals = goals.map((goal) =>
@@ -113,7 +118,10 @@ export const Funds = () => {
 
   return (
     <>
+
+    <div className='parent-container'>
       <Sidebar />
+      <div className='main'>
       <h1>Funds</h1>
       <p className="back" onClick={() => window.history.back()}>
         Back
@@ -165,7 +173,8 @@ export const Funds = () => {
               </Button>
             </>
           )}
-        </div>
+          </div>
+      
       ))}
 
       <Button variant="contained" onClick={handleAddGoal}>
@@ -191,6 +200,9 @@ export const Funds = () => {
           <Button onClick={handleCloseDialog}>Close</Button>
         </DialogActions>
       </Dialog>
+      </div>
+      </div>
     </>
   );
 };
+

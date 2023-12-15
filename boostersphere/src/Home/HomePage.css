@@ -1,6 +1,7 @@
 .mainpage{
 
   height: 200px;
+  width: 100%;
 
   display: flex;
   justify-content: center;
@@ -100,4 +101,8 @@
 }
 .nav button:hover {
   cursor: pointer;
+}
+
+.Parent-Container{
+  display: flex;
 }
