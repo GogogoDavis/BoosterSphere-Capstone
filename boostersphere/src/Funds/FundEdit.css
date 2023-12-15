@@ -12,3 +12,62 @@
     align-items: center;
 
 }
+
+
+.Funds_card{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 30%;
+    margin: 20px
+}
+
+.Funds_card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.Funds_Card_Container{
+    padding: 2px 16px;
+}
+
+
+
+.Funds_progresscontainer{
+    width: 200px;
+}
+
+.Funds_ProgressBar{
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    background-color: #e6e6e6;
+    margin-bottom: 10px;
+}
+
+.Funds_progress-bar-fill{
+    height: 100%;
+    border-radius: 10px;
+    background-color: #2ecc71;
+    transition: width 0.5s ease-out;
+}
+
+.Funds_Progress-label{
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #444444;
+}
+
+.Funds_progress-button{
+    background-color: blue;
+    border-radius: 6px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    cursor: pointer;
+    font-size: 18px;
+    height: 40px;
+    outline: 0;
+    text-align: center;
+    margin-right: 10px;
+    margin-top: 15px;
+}

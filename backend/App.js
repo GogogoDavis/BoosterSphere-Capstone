@@ -226,16 +226,17 @@ app.get('/funds', (req, res) => {
 })
 
 app.post('/funds', async (req, res) => {
-  const {title, amount, event_id} = req.body
-  const maxIdQuery = await knex('funds').max('id as maxId').first()
+  const {title, details, amount, currRaised} = req.body
+  // const maxIdQuery = await knex('funds').max('id as maxId').first()
   knex('funds')
   .insert({
-    id: maxIdQuery.maxId + 1,
+    // id: maxIdQuery.maxId + 1,
     title: title,
+    details: details,
     amount: amount,
-    event_id: event_id,
+    currRaised: currRaised,
   })
-  .then(res.status(201).send())
+  .then(res.status(201).send(console.log(req.body)))
   .catch(e => res.status(500).send())
 })
 

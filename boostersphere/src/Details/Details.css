@@ -1,4 +1,4 @@
-body{
+#wrap{
     display:flex; 
     justify-content: center; 
     align-items: center;
@@ -6,6 +6,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     background-color: slateblue;
+    min-height: 80vh;
 }
 
 .addWrap{

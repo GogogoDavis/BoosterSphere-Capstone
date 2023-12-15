@@ -73,7 +73,7 @@ function App() {
 
             <Route path='/Funds' element={
               <RequireAuth>
-                <Funds />
+                <FundEdit />
               </RequireAuth>} />
 
 
