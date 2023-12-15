@@ -47,17 +47,15 @@ export const Details = ({ item }) => {
       <li className='addWrap'>{item.end}</li>
       <li className='addWrap'>{item.fundRequired}</li>
       <li className='addWrap'>{item.volunteerNeeded}</li>
-    </ul>
-  </div>  
-      <div id='btns'>
-        <button className= 'detailBtn' onClick={calendarReturn}>Return to Calendar</button>
-        <button className= 'detailBtn' onClick={handleDeleteEvent} style={{ marginLeft: "10px" }}>
+    </ul> 
+        <div style={{margin: '10px'}}> <button className= 'detailBtn' onClick={calendarReturn}>Return to Calendar</button> </div>
+        <div style= {{margin: '10px'}}> <button className= 'detailBtn' onClick={handleDeleteEvent} style={{ marginLeft: "10px" }}> 
           Event lame, plz remove
-        </button>
-        <button className='detailBtn' onClick={handleUpdateEvent} style={{ marginLeft: '10px' }}>
+        </button> </div>
+        <div style={{margin: '10px'}}> <button className='detailBtn' onClick={handleUpdateEvent} style={{ marginLeft: '10px' }}>
           Update Event
-        </button>
-      </div>
+        </button> </div>
+        </div>
     </container>
   );
 };
