@@ -5,9 +5,10 @@
 exports.up = function(knex) {
   return knex.schema.createTable('funds', table => {
     table.increments('id');
-    table.string('title'); 
+    table.string('title');
+    table.string('details') 
     table.float('amount');
-    table.integer('event_id');
+    table.float('currRaised');
   })
 };
 

@@ -1,5 +1,5 @@
-
 #wrap {
+
     display:flex; 
     height: 100vh;
     justify-content: center; 
@@ -7,6 +7,7 @@
     background-size: cover;
     background-color: slateblue;
 } */
+
 
 .addWrap{
     display: flex; 
