@@ -149,7 +149,7 @@ export const Funds = () => {
   };
 
   const getProgressBarColor = (completionPercentage) => {
-    if (completionPercentage === 100) {
+    if (completionPercentage >= 100) {
       return 'green';
     } else if (completionPercentage >= 50) {
       return 'yellow';
