@@ -10,49 +10,23 @@ import './Setting.css'
 
 
 export const Setting = () =>{
-    const [database, setDatabase] = useState();
-
-    
-    useEffect(()=>{    
-        const fetchData = async () =>{
-          let list = []
-          try{
-            const querySnapshot = await getDocs(collection(db, "users"));
-            querySnapshot.forEach((doc) => {
-              list.push({id: doc. id, ...doc.data()});
-            });
-            setDatabase(list)
-          } catch(err){
-            console.log(err);
-          }
-        };
-        fetchData()
-      },[])
+    const [list, setList] = useState();
 
 
-const handleDelete = async(id) => {
-try{
-//delete users   
-    await deleteDoc(doc(db, "users", id));
-    setDatabase(database.filter((item) => item.id !== id));
+    useEffect(()=>{
+      fetch('http://localhost:8080/funds')
+      .then(res => res.json())
+      .then(data => setList(data))
+    },[])
 
 
-//delete email
 
-} catch(err){
-    console.log(err)
-}
-};
-
-
-return !database ? null : ((
+return !list ? null : ((
 <>
 <div className="Container">
         <Sidebar />
         <div className="Userdata">
-            <ul>
-                {database.map((user) => <li><p>{user.email}{user.displayName}</p><button onClick={()=>{handleDelete(user.id)}}>Delete</button></li>)}
-            </ul>
+              hello
         </div>
 </div>        
 </>        
