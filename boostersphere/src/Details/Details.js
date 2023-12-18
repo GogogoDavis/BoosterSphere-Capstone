@@ -2,6 +2,7 @@ import "./Details.css";
 import { useNavigate, useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import React, {useState} from 'react';
+import mopey from '../DaMopester-nobackground.png'
 
 export const Details = ({ item }) => {
   const { id } = useParams();
@@ -53,21 +54,34 @@ export const Details = ({ item }) => {
   console.log(editDetails);
 
   return (
-    <container>
+    <container id='detailscontainer'>
+       <div className='mopeyImg'>
+            <img src={mopey} alt=''></img>
+              </div>
       <div id="wrap">
         <ul>
           <h1
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              color: "salmon",
-            }}
+            id="detailstitle"
+            // style={{
+            //   // display: "flex",
+            //   // justifyContent: "center",
+            //   // color: "salmon",
+            // }}
           >Details</h1>
-          <h2 className="addWrap">
-            id: {item.id}
-          </h2>
+          
+          <label className="event_label">Event ID: </label>
           <input
-            className="addWrap"
+          className="detail_value"
+          value= {item.id}
+          readOnly
+          />
+          
+        
+          
+
+          <label  className="event_label">Event Title: </label>
+          <input
+            className="detail_value"
             type="text"
             placeholder={item.title}
             value={editDetails.title}
@@ -76,8 +90,9 @@ export const Details = ({ item }) => {
             }
           />
 
+          <label className="event_label">Party Type: </label>
           <input
-            className="addWrap"
+            className="detail_value"
             type="text"
             placeholder={item.type}
             value={editDetails.type}
@@ -86,8 +101,9 @@ export const Details = ({ item }) => {
             }
           />
 
+          <label className="event_label">Event Details: </label>
           <input
-            className="addWrap"
+            className="detail_value"
             type="text"
             placeholder={item.description}
             value={editDetails.description}
@@ -95,9 +111,10 @@ export const Details = ({ item }) => {
               setEditDetails({ ...editDetails, description: e.target.value })
             }
           />
-<div>
+<div>     
+          <label className="event_label">Start Date: </label>
           <DatePicker
-            className="addWrap"
+            className="detail_value"
             placeholderText={item.start}
             showTimeSelect
             style={{ marginRight: "10px" }}
@@ -106,8 +123,9 @@ export const Details = ({ item }) => {
           />
 </div>
 <div>
+          <label className="event_label">End Date: </label>
           <DatePicker
-            className="addWrap"
+            className="detail_value"
             placeholderText={item.end}
             showTimeSelect
             style={{ marginRight: "10px" }}
@@ -115,8 +133,10 @@ export const Details = ({ item }) => {
             onChange={(end) => setEditDetails({ ...editDetails, end })}
           />
 </div>
+
+          <label className="event_label">Amount of Funds Required: </label>
           <input
-            className="addWrap"
+            className="detail_value"
             type="integer"
             placeholder={item.fundRequired}
             // defaultValue={item.fundRequired}
@@ -126,8 +146,9 @@ export const Details = ({ item }) => {
             }
           />
 
+          <label className="event_label">Number of Volunteers Needed:</label>
           <input
-            className="addWrap"
+            className="detail_value"
             type="integer"
             placeholder={item.volunteerNeeded}
             // defaultValue={item.volunteerNeeded}
@@ -140,8 +161,9 @@ export const Details = ({ item }) => {
             }
           />
 
+          <label className="event_label">User ID: </label>
           <input
-            className="addWrap"
+            className="detail_value"
             type="integer"
             placeholder={item.userId}
             // defaultValue={item.userId}
@@ -156,13 +178,16 @@ export const Details = ({ item }) => {
             Return to Calendar
           </button>
           <button className="detailBtn" onClick={handleDeleteEvent}>
-            Event lame, plz remove
+            Remove Event
           </button>
           <button className="detailBtn" onClick={handleUpdateEvent}>
             Update Event
           </button>
         </div>
       </div>
+      <div className='detail_wrapper'>
+      </div>
     </container>
+    
   );
 };
