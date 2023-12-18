@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from 'react';
+
+
+import React, { useContext, useEffect, useState } from 'react';
+import { userContext } from '../App';
 import {
   LinearProgress,
   Button,
@@ -57,6 +60,7 @@ export const Funds = () => {
     );
     setGoals(updatedGoals);
   };
+
 
   const handleGoalAmountChange = (event, goalId) => {
     const updatedGoals = goals.map((goal) =>

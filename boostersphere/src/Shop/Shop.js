@@ -48,7 +48,7 @@ export const Shop = () => {
           className="logo"
           src={mopey} alt='add image later'
         />
-                <h4 className='headerText'>DELTA 10 SWAG SHOP</h4>
+                <h4 className='headerText'>DELTA SWAG SHOP</h4>
         <div className="headerInputContainer">
           <input
             className="headerInput"

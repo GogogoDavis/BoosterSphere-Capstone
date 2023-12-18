@@ -1,13 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins' , sans-serif;
+}
+
+
 .mainpage{
 
-  height: 200px;
+  height: 100vh;
   width: 100%;
 
   display: flex;
   justify-content: center;
-  background-color: #282c34;
+  /* background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.548)); */
+  background-color: #f3f5f8;
   color: white;
-  margin-top: 50px;
+  margin: 0;
+  padding: 10px
 }
 
 .mainpage div h1{
@@ -15,9 +26,10 @@
 }
 
 .mainpage div img {
-  width: 100%;
-  height: 100%;
+  width: 215px;
+  height: 285px;
   border-radius: 5px;
+  margin-top: 10px;
 }
 
 .mainpage div {
@@ -25,83 +37,113 @@
   margin-right: 20px;
 }
 
+.event-container {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.548));
+  padding: 10px;
+  height:fit-content;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: solid #f2f2f2;
+  align-items: center;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.952);
+}
+
 .event-list {
-  list-style-type: none;
-  padding: 0;
+  display: flex;
+  flex-direction: row;
+  list-style-type:none;
+  height: 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .event-list li{
-  border: solid rgb(54, 54, 54) 2px;
-  margin: 5px;
-  padding: 10px;
-  background-color: black;
-  text-align: left;
+  border: solid #f2f2f2;
+  border-radius: 5px;
+  background-color: #f2f2f26b;
+  text-align: center;
   width: 200px;
+  padding-left: 3px;
 }
 
-.event-list li h3, .event-list li p{
-  margin: 0;
+
+.progress-bar-container {
+  width: 85%;
+  height: 10px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  margin-top: 5px;
+  overflow: hidden;
 }
 
-/* .nav{
-  background-color: #282c34;
+.progress-bar {
+  height: 100%;
+  background-color: #4caf50;
+  transition: width 0.3s ease-in-out;
 }
 
-.nav button {
-  position: absolute;
-  top: 10px;
-  left: 10px;
+.dashboardTitle {
+  height: 1em;
 }
 
-.NavBar{
-  color: white;
-} */
-
-.welcome{
-  font-weight: bolder;
+.leftSideVisPage {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  color: #3d535f;
+  font-weight: 400;
 }
 
-.name{
+.home_reg_links {
+  margin-top: 130px;
+  padding: 10px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
 }
 
-
-.css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
-  background-color: #282829 !important;
+.homePageTitle {
+display: flex;
+font-size: 40px;
+font-weight: 800;
+color: #3d535f;
+letter-spacing: 3px;
+cursor: pointer;
+text-transform: uppercase;
 }
 
-.css-h4y409-MuiList-root {
-  border-bottom: solid gray 1px;
-  border-width: 80%;
-}
-
-.css-h4y409-MuiList-root a div{
-  margin-left: 10px;
-}
-
-.css-h4y409-MuiList-root a {
-  color: white;
-}
-
-.css-h4y409-MuiList-root a:hover {
+.homePageButtons {
   width: 100%;
-  background-color: rgba(0, 0, 0, .25);
-}
-
-.css-i4bv87-MuiSvgIcon-root {
-  font-size: 35px;
-}
-
-.nav button {
-  background: transparent;
+  height: 45px;
+  background: #fff;
   border: none;
-  color: white;
-}
-.nav button:hover {
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.712);
   cursor: pointer;
+  font-size: 16px;
+  color: #3d535f;
+  font-weight: 600;
+  padding: 10px;
 }
+
+.mopeyImg {
+
+  animation: moveUpDown 2s infinite alternate ease-in-out;
+}
+
+@keyframes moveUpDown {
+  0% {
+      transform: translateY(0);
+  }
+  100% {
+      transform: translateY(-20px);
+  }
+}
+
 
 .Parent-Container{
   display: flex;

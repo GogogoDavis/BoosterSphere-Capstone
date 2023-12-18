@@ -84,6 +84,8 @@ export const Events = () => {
 
   function HandleAddEvent() {
       setToggleForm(false);
+
+
       fetch(`http://localhost:8080/events`, {
       method: 'POST', 
       headers:  {
@@ -92,7 +94,21 @@ export const Events = () => {
         body: JSON.stringify(newEvent)
       })
 
-        settoggleRefresh(!toggleRefresh)
+      if(newEvent.fundRequired > 0){
+  fetch('http://localhost:8080/funds', {
+      method: 'POST',
+      body: JSON.stringify({
+        title: newEvent.title,
+        details: newEvent.description,
+        amount: newEvent.fundRequired,
+      }),
+      headers:  {
+        'Content-Type': 'application/json',
+      },
+    })
+  }
+
+      setTimeout(()=>{settoggleRefresh(!toggleRefresh)},100)
     }
 
 
@@ -132,6 +148,7 @@ export const Events = () => {
           {toggleForm ? (
             <div id="postEventFields">
               <div>
+              <label>Event Title: </label>
                 <input
                   type="text"
                   placeholder="Add Event"
@@ -144,6 +161,7 @@ export const Events = () => {
               </div>
 
               <div>
+              <label>Event Type: </label>
                 <input
                   type="text"
                   placeholder="Event Type"
@@ -156,6 +174,7 @@ export const Events = () => {
               </div>
 
               <div>
+                <label>Description: </label>
                 <input
                   type="text"
                   placeholder="Event Description"
@@ -165,6 +184,10 @@ export const Events = () => {
                     setNewEvent({ ...newEvent, description: e.target.value })
                   }
                 />
+                
+              </div>
+
+              <label>Start Date: </label>
                 <DatePicker
                 placeholderText="Start Date"
                 showTimeSelect
@@ -172,9 +195,18 @@ export const Events = () => {
                 selected={newEvent.start}
                 onChange={(start) => setNewEvent({ ...newEvent, start })}
               />
-              </div>
+
+              <br></br><label>End Date: </label>
+              <DatePicker
+                placeholderText="End Date"
+                showTimeSelect
+                style={{ marginRight: "10px" }}
+                selected={newEvent.end}
+                onChange={(end) => {setNewEvent({ ...newEvent, end }); console.log(end)}}
+              />
 
               <div>
+              <label>Funds Required: </label>
                 <input
                   type="integer"
                   placeholder="Funds Required"
@@ -184,16 +216,11 @@ export const Events = () => {
                     setNewEvent({ ...newEvent, fundRequired: e.target.value })
                   }
                 />
-                <DatePicker
-                placeholderText="End Date"
-                showTimeSelect
-                style={{ marginRight: "10px" }}
-                selected={newEvent.end}
-                onChange={(end) => {setNewEvent({ ...newEvent, end }); console.log(end)}}
-              />
+                
               </div>
 
               <div>
+              <label>Volunteers Needed: </label>
                 <input
                   type="integer"
                   placeholder="Volunteers Needed"
@@ -209,6 +236,8 @@ export const Events = () => {
               </div>
 
               <div>
+              <label>User ID: </label>
+
                 <input
                   type="integer"
                   placeholder="User ID"
@@ -237,7 +266,7 @@ export const Events = () => {
             events={allEvents}
             startAccessor={(event) => { return new Date(event.start) }}
             endAccessor={(event) => { return new Date(event.end) }}
-            style={{ height: 600, color:'salmon', marginBottom: '50px', marginRight: '50px', marginLeft: '50px'}}
+            style={{ height: 600, color:'white', marginBottom: '50px', marginRight: '50px', marginLeft: '50px'}}
             onSelectEvent={handleDetails}
           />
         </div>
