@@ -19,6 +19,7 @@ import { Setting } from './Setting/Setting.js'
 import { NewLogin } from './Login/NewLogin.js';
 import { FundEdit } from './Funds/FundEdit.js';
 import { Volunteers } from './volunteers/Volunteers.js';
+import { VisitorVolunteers } from './volunteers/Visitor_Volunteers.js';
 
 
 export const userContext = React.createContext();
@@ -91,6 +92,7 @@ function App() {
             </RequireAuth>} />
 
             <Route path='/volunteers' element={<Volunteers />} />
+            <Route path='/VisitorVolunteers' element={<VisitorVolunteers />} />
 
             <Route path='/Shop' element={<Shop />} />
             <Route path='/Cart' element={<Cart />} />
