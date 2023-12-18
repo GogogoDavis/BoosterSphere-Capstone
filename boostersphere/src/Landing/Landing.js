@@ -45,7 +45,7 @@ export const Landing = () => {
         <div className = "Landing_logo">BoosterSphere<b className='Landing_bold'>.</b></div>
         <ul className='Landing_navItems'>
             <li><Link to='/Home'><p>HOME</p></Link></li>
-            <li><Link to ='/VisitorVolunteers'><p>Volunteer</p></Link></li>
+            <li><Link to ='/VisitorVolunteers'><p>VOLUNTEER</p></Link></li>
             <li><p>STORE</p></li>
         </ul>
 
@@ -53,8 +53,8 @@ export const Landing = () => {
 
       <div className='Landing_wrapper'>
         <div className='cols cols0'>
-            <span className='topline'>Hello</span>
-            <h1 className='Landing_h1'>Yo <span id="multiText"></span></h1>
+            <span className='topline'>Welcome</span>
+            <h1 className='Landing_h1'>Del10 <span id="multiText"></span></h1>
             <p className='Landing_p'>Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome</p>
             <div className='btns'>
               <button className='Landing_button' onClick={()=>{ navigate('/Login')}}>Login</button>
