@@ -18,18 +18,18 @@ app.listen(port, () => console.log(`Alrighty weather-boi, this john do be runnin
 app.post('/users/register', async (req, res) => {
   const { username, firstName, lastName, email, role, password, profileImage } = req.body;
   try {
-    let usernameOrEmailIsDuplicate = false;
+    let emailIsDuplicate = false;
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Check for duplicate username or email
     const userData = await knex('users').select('*');
     userData.forEach(existingUser => {
-      if (existingUser.username === username || existingUser.email === email) {
-        usernameOrEmailIsDuplicate = true;
+      if (existingUser.email === email) {
+        emailIsDuplicate = true;
       }
     });
 
-    if (!usernameOrEmailIsDuplicate) {
+    if (!emailIsDuplicate) {
       await knex('users').insert({
         username: username,
         firstName: firstName,
@@ -174,7 +174,7 @@ app.delete('/events/:id', (req, res) => {
 app.get('/volunteers', (req, res) => {
   knex('volunteers')
   .select('*')
-  .then(res.status(200).send())
+  .then(data => res.status(200).send(data))
   .catch(e => res.status(500).send())
 })
 
@@ -227,16 +227,17 @@ app.get('/funds', (req, res) => {
 })
 
 app.post('/funds', async (req, res) => {
-  const {title, amount, event_id} = req.body
-  const maxIdQuery = await knex('funds').max('id as maxId').first()
+  const {title, details, amount, currRaised} = req.body
+  // const maxIdQuery = await knex('funds').max('id as maxId').first()
   knex('funds')
   .insert({
-    id: maxIdQuery.maxId + 1,
+    // id: maxIdQuery.maxId + 1,
     title: title,
+    details: details,
     amount: amount,
-    event_id: event_id,
+    currRaised: currRaised,
   })
-  .then(res.status(201).send())
+  .then(res.status(201).send(console.log(req.body)))
   .catch(e => res.status(500).send())
 })
 
@@ -270,7 +271,7 @@ app.delete('/funds/:id', (req, res) => {
 app.get('/donations', (req, res) => {
   knex('donations')
   .select('*')
-  .then(res.status(200).send())
+  .then(data => res.status(200).send(data))
   .catch(e => res.status(500).send())
 })
 
@@ -302,6 +303,29 @@ app.delete('/donations', (req, res) => {
   knex('donations')
   .where('id', id)
   .del()
+  .then(res.status(200).send())
+  .catch(e => res.status(500).send())
+})
+
+
+/// --------------------- Landing Page typing message --------------------- ///
+
+
+app.get('/list', (req, res) => {
+  knex('list')
+  .select('*')
+  .then(data => res.status(200).send(data))
+  .catch(e => res.status(500).send())
+})
+
+app.patch('/list/:id', (req, res) => {
+  const {id, event} = req.body
+  knex('events')
+  .where('id', id)
+  .update({
+    id: id,
+    event: event,
+  })
   .then(res.status(200).send())
   .catch(e => res.status(500).send())
 })

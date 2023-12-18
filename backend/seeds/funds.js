@@ -6,7 +6,7 @@ exports.seed = async function(knex) {
   // Deletes ALL existing entries
   await knex('funds').del()
   await knex('funds').insert([
-    {id: 1, title:'idk fire', amount: 223.50, event_id: 1},
-    {id: 2, title:'idk fire', amount: 223.50, event_id: 1}
+    { title:'idk fire', details:'firey goodness', amount: 223.50, currRaised: 2},
+    { title:'idk water', details:'another watery goodness', amount: 223.50, currRaised: 3}
   ]);
 };

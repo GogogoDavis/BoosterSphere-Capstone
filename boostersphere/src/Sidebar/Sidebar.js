@@ -16,6 +16,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { CiLogout } from "react-icons/ci";
 import { TiChevronLeftOutline } from "react-icons/ti";
+import { MdPeopleOutline } from 'react-icons/md';
 
 
 export const Sidebar = () => {
@@ -77,6 +78,12 @@ export const Sidebar = () => {
                                 <div  className='select'>
                                     <i className='icon'><RiRefund2Fill /></i>
                                     <span className='text'>Funds</span>
+                                </div>
+                            </li>
+                            <li onClick={()=>{navigate('/volunteers')}}>
+                                <div  className='select'>
+                                    <i className='icon'><MdPeopleOutline /></i>
+                                    <span className='text'>Volunteer</span>
                                 </div>
                             </li>
                         </ul>

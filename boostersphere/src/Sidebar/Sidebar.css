@@ -7,9 +7,9 @@
     font-family: "Inter", sans-serif
 }
 
-body{
+/* body{
     background-color: #5b6677;
-}
+} */
 
 .container{
     /* position: absolute;
@@ -25,10 +25,12 @@ body{
     display: flex;
     flex-direction: column;
     gap: 20px;
-    background-color: #fff;
+    background-color: transparent;
     padding: 24px;
     border-radius: 30px;
-    transition: all 0.3s
+    transition: all 0.3s;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
 }
 
 .sidebar .head{
