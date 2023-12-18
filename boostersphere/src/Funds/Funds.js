@@ -1,5 +1,4 @@
-
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   LinearProgress,
   Button,
@@ -10,30 +9,23 @@ import {
   DialogContent,
   DialogActions,
 } from '@mui/material';
-
 import './Funds.css';
 import { Sidebar } from '../Sidebar/Sidebar';
 
 export const Funds = () => {
-
-  const { userdata, thisuser, setThisuser, fulluserData } = useContext(userContext);
-
-  useEffect(() => {
-    const getThisUserData = async () => {
-      fulluserData.forEach((element) => {
-        if (element.id === userdata.uid) {
-          setThisuser(element);
-        }
-      });
-    };
-    if (fulluserData && userdata) getThisUserData();
-  }, [fulluserData, userdata, setThisuser]);
-
-
   const [goals, setGoals] = useState([
-    { id: 1, currentAmount: '', goalAmount: '', showProgress: true, isEditMode: false },
+    {
+      id: 1,
+      name: 'Goal 1',
+      currentAmount: '',
+      goalAmount: '',
+      transactions: [],
+      showProgress: true,
+      isEditMode: false,
+      newTransaction: { amount: '', note: '' },
+    },
+    // Add more initial goals as needed
   ]);
-
 
   const [selectedGoal, setSelectedGoal] = useState(null);
 
@@ -43,8 +35,6 @@ export const Funds = () => {
     );
     setGoals(updatedGoals);
   };
-
-  const [selectedGoal, setSelectedGoal] = useState(null);
 
   const handleGoalAmountChange = (event, goalId) => {
     const updatedGoals = goals.map((goal) =>
@@ -116,91 +106,129 @@ export const Funds = () => {
     setSelectedGoal(null);
   };
 
+  const getProgressBarColor = (completionPercentage) => {
+    if (completionPercentage === 100) {
+      return 'green'; 
+    } else if (completionPercentage >= 50) {
+      return 'yellow'; 
+    } else {
+      return 'red'; 
+    }
+  };
+
+  const totalFunds = goals.reduce((acc, goal) => acc + parseFloat(goal.currentAmount || 0), 0);
+
   return (
     <>
+      <div className='parent-container'>
+        <Sidebar />
+        <div className='main'>
+          <h1>Funds</h1>
+          <p className="back" onClick={() => window.history.back()}>
+            Back
+          </p>
 
-    <div className='parent-container'>
-      <Sidebar />
-      <div className='main'>
-      <h1>Funds</h1>
-      <p className="back" onClick={() => window.history.back()}>
-        Back
-      </p>
+          <Typography variant="h6" style={{ marginBottom: '16px' }}>
+            Total Funds: {totalFunds}
+          </Typography>
 
-      {goals.map((goal) => (
-        <div key={goal.id}>
-          {goal.showProgress && !goal.isEditMode && (
-            <>
-              <Typography variant="h6">Goal {goal.id}</Typography>
-              <LinearProgress
-                variant="determinate"
-                value={(goal.currentAmount / goal.goalAmount) * 100 || 0}
-              />
-              <Typography variant="body2">
-                {((goal.currentAmount / goal.goalAmount) * 100).toFixed(2)}% Complete
-              </Typography>
-              <Button variant="contained" onClick={() => handleEditClick(goal.id)}>
-                Edit
-              </Button>
-            </>
-          )}
+          {goals.map((goal) => (
+            <div key={goal.id}>
+              {goal.showProgress && !goal.isEditMode && (
+                <>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <TextField
+                      type="text"
+                      value={goal.name}
+                      onChange={(event) => handleGoalNameChange(event, goal.id)}
+                    />
+                    <Button variant="contained" onClick={() => handleTransactionHistoryClick(goal.id)}>
+                      Transaction History
+                    </Button>
+                  </div>
+                  <LinearProgress
+                    variant="determinate"
+                    value={(goal.currentAmount / goal.goalAmount) * 100 || 0}
+                    sx={{ backgroundColor: getProgressBarColor((goal.currentAmount / goal.goalAmount) * 100) }}
+                  />
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '8px' }}>
+                    <Typography variant="body2">
+                      {goal.currentAmount} / {goal.goalAmount}
+                    </Typography>
+                    <Typography variant="body2">
+                      {((goal.currentAmount / goal.goalAmount) * 100).toFixed(2)}% Complete
+                    </Typography>
+                  </div>
+                  <Button variant="contained" onClick={() => handleEditClick(goal.id)}>
+                    Edit
+                  </Button>
+                </>
+              )}
 
-          {goal.isEditMode && (
-            <>
-              <div>
-                <Typography variant="h6">Edit Goal {goal.id}</Typography>
-                <Typography variant="subtitle2">Total amount in savings</Typography>
-                <TextField
-                  type="number"
-                  value={goal.currentAmount}
-                  onChange={(event) => handleCurrentAmountChange(event, goal.id)}
-                  placeholder="Enter Current Amount"
-                />
-              </div>
+              {goal.isEditMode && (
+                <>
+                  <div>
+                    <Typography variant="subtitle2">Goal</Typography>
+                    <TextField
+                      type="number"
+                      value={goal.goalAmount}
+                      onChange={(event) => handleGoalAmountChange(event, goal.id)}
+                      placeholder="Enter Goal Amount"
+                    />
+                  </div>
 
-              <div>
-                <Typography variant="subtitle2">Goal</Typography>
-                <TextField
-                  type="number"
-                  value={goal.goalAmount}
-                  onChange={(event) => handleGoalAmountChange(event, goal.id)}
-                  placeholder="Enter Goal Amount"
-                />
-              </div>
+                  <div>
+                    <Typography variant="subtitle2">New Transaction Amount</Typography>
+                    <TextField
+                      type="number"
+                      value={goal.newTransaction.amount}
+                      onChange={(event) => handleNewTransactionAmountChange(event, goal.id)}
+                      placeholder="Enter Amount"
+                    />
+                  </div>
 
-              <Button variant="contained" onClick={() => handleAmountSubmit(goal.id)}>
-                Save
-              </Button>
-            </>
-          )}
-          </div>
-      
-      ))}
+                  <div>
+                    <Typography variant="subtitle2">New Transaction Note</Typography>
+                    <TextField
+                      type="text"
+                      value={goal.newTransaction.note}
+                      onChange={(event) => handleNewTransactionNoteChange(event, goal.id)}
+                      placeholder="Enter Note"
+                    />
+                  </div>
 
-      <Button variant="contained" onClick={handleAddGoal}>
-        Add Goal
-      </Button>
+                  <Button variant="contained" onClick={() => handleAmountSubmit(goal.id)}>
+                    Save
+                  </Button>
+                </>
+              )}
+            </div>
+          ))}
 
-      <Dialog open={selectedGoal !== null} onClose={handleCloseDialog}>
-        <DialogTitle>{selectedGoal ? `Transactions for ${selectedGoal.name}` : ''}</DialogTitle>
-        <DialogContent>
-          {selectedGoal && selectedGoal.transactions.length > 0 ? (
-            <ul>
-              {selectedGoal.transactions.map((transaction, index) => (
-                <li key={index}>
-                  Amount: {transaction.amount}, Note: {transaction.note}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <Typography>No transactions available.</Typography>
-          )}
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseDialog}>Close</Button>
-        </DialogActions>
-      </Dialog>
-      </div>
+          <Button variant="contained" onClick={handleAddGoal}>
+            Add Goal
+          </Button>
+
+          <Dialog open={selectedGoal !== null} onClose={handleCloseDialog}>
+            <DialogTitle>{selectedGoal ? `Transactions for ${selectedGoal.name}` : ''}</DialogTitle>
+            <DialogContent>
+              {selectedGoal && selectedGoal.transactions.length > 0 ? (
+                <ul>
+                  {selectedGoal.transactions.map((transaction, index) => (
+                    <li key={index}>
+                      Amount: {transaction.amount}, Note: {transaction.note}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <Typography>No transactions available.</Typography>
+              )}
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleCloseDialog}>Close</Button>
+            </DialogActions>
+          </Dialog>
+        </div>
       </div>
     </>
   );
