@@ -140,7 +140,7 @@ export const Events = () => {
         <Sidebar />
         <div className="eventPortion">
           <div id='cal'>
-          <h1 style={{color: "#3d535f"}}>Calendar</h1>
+          <h1 style={{color: "white"}}>Calendar</h1>
           <div>
           </div>
           </div>
@@ -264,7 +264,7 @@ export const Events = () => {
             events={allEvents}
             startAccessor={(event) => { return new Date(event.start) }}
             endAccessor={(event) => { return new Date(event.end) }}
-            style={{ height: 800, color: '#3d535f', marginBottom: '50px', marginRight: '50px', marginLeft: '50px'}}
+            style={{ height: 800, color: 'white', marginBottom: '50px', marginRight: '50px', marginLeft: '50px'}}
             onSelectEvent={handleDetails}
           />
           <div id='centerBtn'>
