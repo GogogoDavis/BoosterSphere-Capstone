@@ -120,7 +120,7 @@ export const HomePage = () => {
                 <img src={mopey} alt=''></img>
               </div>
               <div>
-                <p>Contact fake@email.com to learn more about
+                <p style={{color:'white'}}>Contact fake@email.com to learn more about
                   how to help with Events, Dontate, or Fundraisers!
                 </p>
               </div>

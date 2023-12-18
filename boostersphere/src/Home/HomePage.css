@@ -18,7 +18,7 @@
   background-color: #f3f5f8;
   color: white;
   margin: 0;
-  padding: 10px
+  padding: 10px;
 }
 
 .mainpage div h1{
@@ -40,7 +40,7 @@
 .event-container {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.548));
+  background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.2));
   padding: 10px;
   height:fit-content;
   margin-top: 10px;
@@ -96,6 +96,7 @@
   align-items: center;
   color: #3d535f;
   font-weight: 400;
+  z-index: 1;
 }
 
 .home_reg_links {

@@ -126,6 +126,8 @@ export const Shop = () => {
           ))}
         </div>
       </div>
+      <div className='Landing_wrapper'>
+      </div>
 
       {/* Footer */}
       {/* <div className="headerBottom">
