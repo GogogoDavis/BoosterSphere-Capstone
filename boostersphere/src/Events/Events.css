@@ -51,13 +51,22 @@
  }
 
  #togglerBtn {
-   height: 50px; 
-   width: 160px;
+   outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 25px;
+    font-weight: 400;
+    color: #fff;
+    background-color: #3d535f;
+    padding: 8px 14px;
+    margin: 10px;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    box-shadow: 0 15px 10px rgba(0,0,0,0.4);
  }
 
 #togglerBtn:hover {
-   background-color: slategrey;
-   color: skyblue;
+   background-color: #7f00ff;
 }
 
 .eventfield {
