@@ -25,9 +25,9 @@
     color: black;
 }
 
-::placeholder{
+/* ::placeholder{
     color: black;
-}
+} */
 
 .buttonLayout{
     display: flex; 

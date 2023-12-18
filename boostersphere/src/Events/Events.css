@@ -6,8 +6,9 @@
 .parent-container{
    display: flex;
    justify-content: center;
-   background-color: black;
+   background-color: purple;
 }
+
 
 #calButton{ 
    margin-left:45%;
@@ -46,6 +47,7 @@
    border: 5px solid #7f00ff;
    border-radius: 10px;
    z-index: 999;
+ 
  }
 
  #togglerBtn{
@@ -61,11 +63,48 @@
    color: skyblue;
 }
 
-label {
+.eventfield {
+   margin-bottom: 20px;
+ }
+ 
+ .eventlabel {
+   display: block;
+   margin-bottom: 5px;
+   font-weight: bold;
+   color: #ff69b4; /* Pink color for labels */
+ }
+ 
+ .inputfield {
+   width: 60%;
+   padding: 8px;
+   border: 1px solid #ddd;
+   border-radius: 5px;
+   font-size: 16px;
+   outline: none;
+   transition: border-color 0.3s ease-in-out;
+ }
+ 
+ .inputfield::placeholder {
+   color: black; /* Light grey for placeholder text */
+ }
+ 
+ .inputfield:focus {
+   border-color: #ff69b4; /* Pink border color on focus */
+ }
+ 
+ .eventbutton {
+   padding: 10px 60px;
+   background-color: #ff69b4;
    color: white;
-
-}
-
-::placeholder{
-   color: black;
-}
+   border: none;
+   border-radius: 5px;
+   font-size: 16px;
+   cursor: pointer;
+   transition: background-color 0.3s ease-in-out;
+ }
+ 
+ .eventbutton:hover {
+   background-color: black; /* Lighter pink on hover */
+ }
+ 
+ 
