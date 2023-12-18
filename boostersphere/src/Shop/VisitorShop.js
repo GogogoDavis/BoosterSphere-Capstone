@@ -1,5 +1,5 @@
-import "./shop.css";
-import { Link } from "react-router-dom";
+import "./visitorShop.css";
+import { Link, useNavigate } from "react-router-dom";
 import { Logout } from "../Logout/Logout";
 import { Sidebar } from "../Sidebar/Sidebar.js"
 import mopey from '../DaMopester-nobackground.png'
@@ -15,8 +15,9 @@ import Tooltip from '@mui/material/Tooltip';
 import { addToCart, removeFromCart } from './CartSlice'
 import { useSelector, useDispatch } from "react-redux";
 
-export const Shop = () => {
+export const VisitorShop = () => {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
   const cart = useSelector((state) => state.cart.cart)
   const dispatch = useDispatch()
   const addItemToCart = (item) => {
@@ -38,6 +39,15 @@ export const Shop = () => {
 
   return (
     <>
+
+
+<div className='Landing_nav'>
+        <div className = "Landing_logo">BoosterSphere<b className='Landing_bold'>.</b></div>
+        <ul className='Landing_navItems'>
+            <li onClick={()=>{ navigate('/')}}><p>Front Page</p></li>
+        </ul>        
+      </div>
+
     <div className="parent-container">
       <Sidebar />
       <div className="main">
@@ -125,8 +135,7 @@ export const Shop = () => {
             </div>
           ))}
         </div>
-      </div>
-      <div className='Landing_wrapper'>
+        {/* <h2><Link to= '/'>Return Home</Link></h2> */}
       </div>
 
       {/* Footer */}

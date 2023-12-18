@@ -12,6 +12,7 @@ export const HomePage = () => {
   const [dashboardEvents, setDashboardEvents] = useState([]);
   const [dashboardDonations, setDashboardDonations] = useState([]);
   const [dashboardFunds, setDashboardFunds] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('http://localhost:8080/dashboard/events')
@@ -38,7 +39,7 @@ export const HomePage = () => {
     return (raised / target) * 100;
   };
 
-  return (
+  return (userData ?
     <>
     <div className='Parent-Container'>
       <Sidebar />
@@ -63,13 +64,9 @@ export const HomePage = () => {
             </p>
 
             <div className='home_reg_links'>
-              <Link to='/volunteers'>
-                <button type='submit' className='homePageButtons'>Click to Volunteer</button>
-              </Link>
-              <Link to='/Register'>
-                <button type='submit' className='homePageButtons'>Register for an Account</button>
-              </Link>
-                </div>
+              <button className='homePageButtons' onClick={()=>{ navigate('/volunteers')}}>Click to Volunteer</button>
+              <button className='homePageButtons' onClick={()=>{ navigate('/Register')}}>Register for an Account</button>
+            </div>
           </div>
 
           <div className='event-container'>
@@ -120,10 +117,10 @@ export const HomePage = () => {
               </ul>
               <br></br>
               <div className='mopeyImg'>
-                <img src={mopey} alt='booster club'></img>
+                <img src={mopey} alt=''></img>
               </div>
               <div>
-                <p>Contact fake@email.com to learn more about
+                <p style={{color:'white'}}>Contact fake@email.com to learn more about
                   how to help with Events, Dontate, or Fundraisers!
                 </p>
               </div>
@@ -132,23 +129,9 @@ export const HomePage = () => {
       </div>
 
       <div className='Landing_wrapper'>
-        <div className='cols cols0'>
-            <span className='topline'>Hello</span>
-            <h1 className='Landing_h1'>Yo <span id="multiText"></span></h1>
-            <p className='Landing_p'>Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome</p>
-
-        </div>
-          <div class="cols cols1">
-            <div className='imgbox'>
-              <img src={galaxy} id='splash' alt=''></img>
-              <img src={mopey} alt='' ></img>
-            </div>
-            <div>
-            <img src={mopey} alt='' className='tiny' ></img>
-            </div>
-          </div>
-          </div>
+      </div>
     </>
+    : <></>
   );
 };
 

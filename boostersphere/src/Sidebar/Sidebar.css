@@ -31,6 +31,7 @@
     transition: all 0.3s;
     backdrop-filter: blur(20px);
     box-shadow: 0 0 10px rgba(0,0,0,.2);
+    z-index: 1500;
 }
 
 .sidebar .head{
@@ -56,7 +57,7 @@
 .menu .title{
     font-size: 10px;
     font-weight: 500;
-    color: #757575;
+    color: black;
     text-transform: uppercase;
     margin-bottom: 10px;
 }
@@ -81,7 +82,7 @@
     gap: 10px;
     font-size: 14px;
     font-weight: 500;
-    color: #757575;
+    color: black;
     text-decoration: none;
     padding: 12px 8px;
     border-radius: 8px;
@@ -118,7 +119,7 @@
     justify-content: center;
     background-color: #fff;
     cursor: pointer;
-    color: #757575;
+    color: black;
     border: 2px solid #f6f6f6;
 }
 

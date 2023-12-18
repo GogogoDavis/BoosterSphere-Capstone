@@ -12,6 +12,7 @@ import './Events.css'
 import { id } from 'date-fns/locale';
 import { userContext } from '../App';
 import { useNavigate } from 'react-router-dom';
+import mopey from '../DaMopester-nobackground.png'
 // import Calendar from 'react-calendar';
 // import './Events.css';
 
@@ -136,14 +137,13 @@ export const Events = () => {
 
   return !allEvents ? null : ((
     <>
-      <div className="parent-container">
+      <div className="EventParentContainer">
         <Sidebar />
-        <div className="App">
-          <div id='calButton'>
+        <div className="eventPortion">
+          <div id='cal'>
           <h1 style={{color: "white"}}>Calendar</h1>
-          <h2>
-            <button id='togglerBtn' onClick={yesToggler}>Add New Event</button>
-          </h2>
+          <div>
+          </div>
           </div>
           {toggleForm ? (
             <div id="postEventFields">
@@ -172,7 +172,6 @@ export const Events = () => {
                   }
                 />
               </div>
-
               <div>
                 <label>Description: </label>
                 <input
@@ -266,9 +265,15 @@ export const Events = () => {
             events={allEvents}
             startAccessor={(event) => { return new Date(event.start) }}
             endAccessor={(event) => { return new Date(event.end) }}
-            style={{ height: 600, color:'white', marginBottom: '50px', marginRight: '50px', marginLeft: '50px'}}
+            style={{ height: 800, color: 'white', marginBottom: '50px', marginRight: '50px', marginLeft: '50px'}}
             onSelectEvent={handleDetails}
           />
+          <div>
+          <img src={mopey} alt= '' className='baby'></img> 
+          </div>
+          <div id='centerBtn'>
+            <button id='togglerBtn' onClick={yesToggler}>Add New Event</button>  
+            </div>     
         </div>
       </div>
     </>
