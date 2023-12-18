@@ -4,7 +4,7 @@ const knex = require('knex')(require('./knexfile.js')[process.env.NODE_ENV || 'd
 const bcrypt = require('bcrypt');
 
 const app = express();
-const port = 8080; 
+const port = 8080;
 
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
@@ -134,7 +134,7 @@ app.post('/events', async(req, res) => {
     type: type,
     description: description,
     start: start,
-    end: end, 
+    end: end,
     // date in this format 'yyyy-mm-dd'
     fundRequired: fundRequired,
     volunteerNeeded: volunteerNeeded,
@@ -166,7 +166,7 @@ app.patch('/events/:id', (req, res) => {
 app.delete('/events/:id', (req, res) => {
     knex('events').where('id', req.params.id)
   .del()
-  .then(() => res.json({message: `it done got gone, it OUTTA HERE`})) 
+  .then(() => res.json({message: `it done got gone, it OUTTA HERE`}))
 })
 
 /// --------------------- Volunteers --------------------- ///
@@ -342,3 +342,30 @@ app.patch('/list/:id', (req, res) => {
   .then(res.status(200).send())
   .catch(e => res.status(500).send())
 })
+
+
+/// --------------------- Home Page / Dashboard --------------------- ///
+
+
+app.get('/dashboard/events', (req, res) => {
+  knex('events')
+    .select('title', 'start', 'end', 'fundRequired', 'volunteerNeeded')
+    .orderBy('start', 'asc')
+    .then(data => res.status(200).send(data))
+    .catch(e => res.status(500).send());
+});
+
+
+app.get('/dashboard/donations', (req, res) => {
+  knex('donations')
+    .select('name', 'amount')
+    .then(data => res.status(200).send(data))
+    .catch(e => res.status(500).send());
+});
+
+app.get('/dashboard/funds', (req, res) => {
+  knex('funds')
+    .select('title', 'amount', 'currRaised')
+    .then(data => res.status(200).send(data))
+    .catch(e => res.status(500).send());
+});
