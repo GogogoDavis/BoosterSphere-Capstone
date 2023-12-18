@@ -31,7 +31,7 @@ function App() {
   const fetchUserData = async () => {
     const storedUserString = Cookies.get('user_data');
     const storedUserObject = storedUserString ? JSON.parse(storedUserString) : null;
-    if (storedUserObject) 
+    if (storedUserObject)
       fetch(`http://localhost:8080/users/image?userId=${storedUserObject.userId}`)
         .then(res => res.json())
         .then(imgData => {
@@ -67,10 +67,7 @@ function App() {
                 <Events />
               </RequireAuth>} />
 
-            <Route path='/Home' element={
-              <RequireAuth>
-                <HomePage />
-              </RequireAuth>} />
+            <Route path='/Home' element={<HomePage />}/>
 
             <Route path='/Funds' element={
               <RequireAuth>
@@ -83,11 +80,11 @@ function App() {
             <Route path='/register' element={<NewRegister />} />
 
             <Route path='/Profile' element={
-            <RequireAuth><Profile /> 
+            <RequireAuth><Profile />
             </RequireAuth>} />
 
             <Route path='/Setting' element={
-            <RequireAuth><Setting /> 
+            <RequireAuth><Setting />
             </RequireAuth>} />
 
             <Route path='/volunteers' element={<Volunteers />} />
