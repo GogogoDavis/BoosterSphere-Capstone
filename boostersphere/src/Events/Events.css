@@ -1,17 +1,12 @@
+
 .eventPortion{
    width: 100%;
-   background-color: #f3f5f8;
+   background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.548));
 }
 
-.parent-container{
-   display: flex;
-   justify-content: center;
-   background-color: purple;
-}
-
-
-#calButton{ 
-   margin-left:45%;
+#cal {
+   display:flex; 
+   justify-content:center;
 }
 
 .main {
@@ -50,13 +45,15 @@
  
  }
 
- #togglerBtn{
-   border: 5px solid;
-   border-radius: 5px;
-   background-color: slateBlue;
-   color: rgb(238, 132, 238); 
-   margin-bottom: 5px;
-}
+ #centerBtn {
+   display:flex; 
+   justify-content: center;
+ }
+
+ #togglerBtn {
+   height: 50px; 
+   width: 160px;
+ }
 
 #togglerBtn:hover {
    background-color: slategrey;
