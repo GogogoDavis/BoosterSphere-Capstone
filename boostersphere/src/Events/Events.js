@@ -138,9 +138,9 @@ export const Events = () => {
     <>
       <div className="parent-container">
         <Sidebar />
-        <div className="App">
+        <div className="eventPortion">
           <div id='calButton'>
-          <h1 style={{color: "white"}}>Calendar</h1>
+          <h1 style={{color: "#3d535f"}}>Calendar</h1>
           <h2>
             <button id='togglerBtn' onClick={yesToggler}>Add New Event</button>
           </h2>
@@ -266,9 +266,10 @@ export const Events = () => {
             events={allEvents}
             startAccessor={(event) => { return new Date(event.start) }}
             endAccessor={(event) => { return new Date(event.end) }}
-            style={{ height: 600, color:'white', marginBottom: '50px', marginRight: '50px', marginLeft: '50px'}}
+            style={{ height: 800, color: '#3d535f', marginBottom: '50px', marginRight: '50px', marginLeft: '50px'}}
             onSelectEvent={handleDetails}
           />
+          
         </div>
       </div>
     </>
