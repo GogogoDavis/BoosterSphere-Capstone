@@ -4,6 +4,17 @@ import { Sidebar } from '../Sidebar/Sidebar';
 import { RiFundsBoxFill } from 'react-icons/ri';
 import { inputAdornmentClasses, responsiveFontSizes } from '@mui/material';
 
+import {
+  LinearProgress,
+  Button,
+  TextField,
+  Typography,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from '@mui/material';
+
 export const FundEdit = () => {
 const [funds, setFunds] = useState();
 const [toggleRefresh, settoggleRefresh] = useState(false)
@@ -13,8 +24,12 @@ const [inputTitle, setinputTitle] = useState('')
 const [inputDetails, setInputDetails] = useState('')
 const [inputAmount, setinputAmount] = useState(0.00)
 const [currRaised, setcurrRaised] = useState(0.00)
+const [moneytoAdd, setmoneytoAdd] = useState(0.00);
 
 const [progress, setProgress] = useState (0);
+
+
+
 
   useEffect(()=>{
     fetch('http://localhost:8080/funds')
@@ -74,6 +89,40 @@ const [progress, setProgress] = useState (0);
   }
 
 
+
+  const getProgressBarColor = (completionPercentage) => {
+    if (completionPercentage === 100) {
+      return 'green'; 
+    } else if (completionPercentage >= 50) {
+      return 'yellow'; 
+    } else {
+      return 'red'; 
+    }
+  };
+
+
+
+
+  
+  const addMoneytoFund = (id, addamount) => {
+    let sum = moneytoAdd +  addamount 
+
+    fetch(`http://localhost:8080/funds/`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+          id: id,
+          currRaised: sum,
+      }),
+    })
+
+      setmoneytoAdd(0.00)
+
+  };
+
+
   return !funds ? null : ((
     <>
      <div className='Funds_ParentContainer'>
@@ -101,6 +150,24 @@ const [progress, setProgress] = useState (0);
                  <p>Currently raised: {elem.currRaised}</p> <p>Amount Needed: {elem.amount}</p>
 
                   <button onClick={()=>{handleDelete(elem.id)}}>Delete</button>
+                  <input type='number' placeholder='amount raised' onChange={(e)=> {setmoneytoAdd(e.target.value)}} value={moneytoAdd}/>
+                  <button onClick={()=>{addMoneytoFund(elem.id, elem.currRaised)}}>Add Fund</button>
+
+
+            <LinearProgress
+                    variant="determinate"
+                    value={(elem.currRaised / elem.amount) * 100 || 0}
+                    sx={{ backgroundColor: getProgressBarColor((elem.currRaised / elem.amount) * 100) }}
+                  />
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '8px' }}>
+                    <Typography variant="body2">
+                      {elem.currRaised} / {elem.amount}
+                    </Typography>
+                    <Typography variant="body2">
+                      {((elem.currRaised / elem.amount) * 100).toFixed(2)}% Complete
+                    </Typography>
+                  </div>
+
               
                 </div>
                 </div>
@@ -119,6 +186,7 @@ const [progress, setProgress] = useState (0);
                 <button className='Funds_progress-button' onClick={handleButtonClick}>Progress</button>
                 <button className='Funds_progress-button' onClick={handleButtonReset}>Reset</button>
             </div>
+
 
 
       </div>

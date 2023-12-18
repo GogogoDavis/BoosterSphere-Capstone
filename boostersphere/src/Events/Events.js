@@ -72,7 +72,7 @@ export const Events = () => {
     fetch('http://localhost:8080/events')
     .then(res => res.json())
     .then(data => setAllEvents(data))
-  },[allEvents])
+  },[toggleRefresh])
   
 
 
@@ -84,6 +84,8 @@ export const Events = () => {
 
   function HandleAddEvent() {
       setToggleForm(false);
+
+
       fetch(`http://localhost:8080/events`, {
       method: 'POST', 
       headers:  {
@@ -92,7 +94,21 @@ export const Events = () => {
         body: JSON.stringify(newEvent)
       })
 
-        settoggleRefresh(!toggleRefresh)
+      if(newEvent.fundRequired > 0){
+  fetch('http://localhost:8080/funds', {
+      method: 'POST',
+      body: JSON.stringify({
+        title: newEvent.title,
+        details: newEvent.description,
+        amount: newEvent.fundRequired,
+      }),
+      headers:  {
+        'Content-Type': 'application/json',
+      },
+    })
+  }
+
+      setTimeout(()=>{settoggleRefresh(!toggleRefresh)},100)
     }
 
 

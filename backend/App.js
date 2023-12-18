@@ -306,3 +306,26 @@ app.delete('/donations', (req, res) => {
   .then(res.status(200).send())
   .catch(e => res.status(500).send())
 })
+
+
+/// --------------------- Landing Page typing message --------------------- ///
+
+
+app.get('/list', (req, res) => {
+  knex('list')
+  .select('*')
+  .then(data => res.status(200).send(data))
+  .catch(e => res.status(500).send())
+})
+
+app.patch('/list/:id', (req, res) => {
+  const {id, event} = req.body
+  knex('events')
+  .where('id', id)
+  .update({
+    id: id,
+    event: event,
+  })
+  .then(res.status(200).send())
+  .catch(e => res.status(500).send())
+})

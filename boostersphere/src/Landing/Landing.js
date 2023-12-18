@@ -20,6 +20,8 @@ export const Landing = () => {
   }, []);
 
   
+
+  
   useEffect(() => {
     let typingEffect = new Typed("#multiText", {
       strings : ["Events", "Funds", "Mopey!"],
@@ -29,6 +31,8 @@ export const Landing = () => {
       backDelay : 1500
     })
   }, []);
+
+
 
 
 
