@@ -87,6 +87,7 @@
     top: 35%;
     background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.2));
     animation: object1 20s linear infinite;
+    z-index: 0;
 }
 
 .Landing_wrapper::after{
@@ -99,6 +100,7 @@
     top: 12%;
     background: linear-gradient(45deg, #2300a1cc, rgb(53, 53, 53, 0.2));
     animation: object2 23s linear infinite;
+    z-index: 0;
 }
 
 @keyframes object1{
