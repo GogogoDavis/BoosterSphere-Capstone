@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins' , sans-serif;
+}
+
+
 .mainpage{
 
   height: 100vh;
@@ -5,7 +14,8 @@
 
   display: flex;
   justify-content: center;
-  background-color: #7f00ff;
+  /* background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.548)); */
+  background-color: #f3f5f8;
   color: white;
   margin: 0;
   padding: 10px
@@ -16,8 +26,8 @@
 }
 
 .mainpage div img {
-  width: 300px;
-  height: 300px;
+  width: 215px;
+  height: 285px;
   border-radius: 5px;
   margin-top: 10px;
 }
@@ -30,13 +40,14 @@
 .event-container {
   display: flex;
   flex-direction: column;
-  background-color: #ab57ff;
+  background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.548));
   padding: 10px;
   height:fit-content;
   margin-top: 10px;
   border-radius: 10px;
   border: solid #f2f2f2;
   align-items: center;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.952);
 }
 
 .event-list {
@@ -83,15 +94,26 @@
   width: 100%;
   flex-direction: column;
   align-items: center;
+  color: #3d535f;
+  font-weight: 400;
 }
 
 .home_reg_links {
-  margin-top: 230px;
+  margin-top: 130px;
   padding: 10px;
   display: flex;
   flex-direction: row;
 }
 
+.homePageTitle {
+display: flex;
+font-size: 40px;
+font-weight: 800;
+color: #3d535f;
+letter-spacing: 3px;
+cursor: pointer;
+text-transform: uppercase;
+}
 
 .homePageButtons {
   width: 100%;
@@ -100,73 +122,28 @@
   border: none;
   outline: none;
   border-radius: 40px;
-  box-shadow: 0 0 10px rgba(0,0,0, .1);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.712);
   cursor: pointer;
   font-size: 16px;
-  color: #333;
+  color: #3d535f;
   font-weight: 600;
   padding: 10px;
 }
 
-/* .nav{
-  background-color: #282c34;
+.mopeyImg {
+
+  animation: moveUpDown 2s infinite alternate ease-in-out;
 }
 
-.nav button {
-  position: absolute;
-  top: 10px;
-  left: 10px;
+@keyframes moveUpDown {
+  0% {
+      transform: translateY(0);
+  }
+  100% {
+      transform: translateY(-20px);
+  }
 }
 
-.NavBar{
-  color: white;
-} */
-
-.welcome{
-  font-weight: bolder;
-}
-
-.name{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-
-.css-4t3x6l-MuiPaper-root-MuiDrawer-paper {
-  background-color: #282829 !important;
-}
-
-.css-h4y409-MuiList-root {
-  border-bottom: solid gray 1px;
-  border-width: 80%;
-}
-
-.css-h4y409-MuiList-root a div{
-  margin-left: 10px;
-}
-
-.css-h4y409-MuiList-root a {
-  color: white;
-}
-
-.css-h4y409-MuiList-root a:hover {
-  width: 100%;
-  background-color: rgba(0, 0, 0, .25);
-}
-
-.css-i4bv87-MuiSvgIcon-root {
-  font-size: 35px;
-}
-
-.nav button {
-  background: transparent;
-  border: none;
-  color: white;
-}
-.nav button:hover {
-  cursor: pointer;
-}
 
 .Parent-Container{
   display: flex;

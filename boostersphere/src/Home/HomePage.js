@@ -5,6 +5,7 @@ import { Sidebar } from '../Sidebar/Sidebar';
 import './HomePage.css'
 import mopey from '../DaMopester-nobackground.png'
 import sd10 from '../Space_Delta_10_emblem.png'
+import galaxy from '../galaxy.png'
 
 export const HomePage = () => {
   const { userData } = useContext(userContext);
@@ -42,22 +43,21 @@ export const HomePage = () => {
     <div className='Parent-Container'>
       <Sidebar />
       <div className='mainpage'>
-        {!userData ? '' : <>
           <div className='leftSideVisPage'>
-            <h1>Delta 10 Booster Club</h1>
+            <h1 className='homePageTitle'>Delta 10 Booster Club</h1>
             <div>
                 <img src={sd10} alt='booster club'></img>
               </div>
-            <h2>Who We Are:</h2>
+            <h2 className='homePageTitle'>Who We Are:</h2>
             <p>Delta 10 is the home of Doctrine, Tactics, Lessons Learned and Wargaming for
               the United States Space Force!
             </p>
-            <h2>Our Values:</h2>
+            <h2 className='homePageTitle'>Our Values:</h2>
             <p>Delta 10 values Connection between Guardians, Families and Leaders.
               We created this Booster Club to better connect our teammates
               to one another!
             </p>
-            <h2>How Can You Help:</h2>
+            <h2 className='homePageTitle'>How Can You Help:</h2>
             <p>Help Make this Organization better by Donating, Volunteering, or Hosting
               an event to build connections!
             </p>
@@ -119,8 +119,8 @@ export const HomePage = () => {
                 ))}
               </ul>
               <br></br>
-              <div>
-                <img src={mopey} alt='booster club'></img>
+              <div className='mopeyImg'>
+                <img src={mopey} alt=''></img>
               </div>
               <div>
                 <p>Contact fake@email.com to learn more about
@@ -128,9 +128,10 @@ export const HomePage = () => {
                 </p>
               </div>
           </div>
-
-        </>}
       </div>
+      </div>
+
+      <div className='Landing_wrapper'>
       </div>
     </>
   );

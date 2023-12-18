@@ -19,13 +19,13 @@ export const Landing = () => {
     setUserData(null)
   }, []);
 
-  
 
-  
+
+
   useEffect(() => {
     let typingEffect = new Typed("#multiText", {
       strings : ["Events", "Funds", "Mopey!"],
-      loop : true, 
+      loop : true,
       typeSpeed : 100,
       backSpeed : 80,
       backDelay : 1500
@@ -44,11 +44,11 @@ export const Landing = () => {
       <div className='Landing_nav'>
         <div className = "Landing_logo">BoosterSphere<b className='Landing_bold'>.</b></div>
         <ul className='Landing_navItems'>
-            <li><p>HOME</p></li>
-            <li><p>EVENTS</p></li>
+            <li><Link to='/Home'><p>HOME</p></Link></li>
+            <li><Link to ='/Events'><p>EVENTS</p></Link></li>
             <li><p>STORE</p></li>
             <li><p>FUNDS</p></li>
-        </ul>        
+        </ul>
 
       </div>
 
@@ -71,15 +71,10 @@ export const Landing = () => {
             <img src={mopey} alt='' className='tiny' ></img>
             </div>
           </div>
-  
-
-     
-  
       </div>
-
     </div>
 
-  
+
 
 </>
   )
