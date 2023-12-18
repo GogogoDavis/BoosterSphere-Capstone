@@ -1,11 +1,17 @@
-
-.eventPortion{
-   width: 100%;
+.EventParentContainer {
+   display: flex; 
+   flex-direction: row; 
+   overflow: hidden;
    background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.548));
 }
 
+.eventPortion{
+   width: 100%;
+}
+
 #cal {
-   margin-left: 630px;
+   display: flex; 
+   justify-content: center;
 }
 
 .main {
@@ -72,45 +78,22 @@
 .eventfield {
    margin-bottom: 20px;
  }
- 
- .eventlabel {
-   display: block;
-   margin-bottom: 5px;
-   font-weight: bold;
-   color: #ff69b4; /* Pink color for labels */
- }
- 
- .inputfield {
-   width: 60%;
-   padding: 8px;
-   border: 1px solid #ddd;
-   border-radius: 5px;
-   font-size: 16px;
-   outline: none;
-   transition: border-color 0.3s ease-in-out;
- }
- 
- .inputfield::placeholder {
-   color: black; /* Light grey for placeholder text */
- }
- 
- .inputfield:focus {
-   border-color: #ff69b4; /* Pink border color on focus */
- }
- 
- .eventbutton {
-   padding: 10px 60px;
-   background-color: #ff69b4;
-   color: white;
-   border: none;
-   border-radius: 5px;
-   font-size: 16px;
-   cursor: pointer;
-   transition: background-color 0.3s ease-in-out;
- }
- 
- .eventbutton:hover {
-   background-color: black; /* Lighter pink on hover */
- }
+
+
+ .baby{
+   width: 3%;
+   position: absolute;
+   animation: baby 8s linear infinite alternate-reverse;
+}
+
+
+@keyframes baby {
+   from{
+       left: 4%;
+   }
+   to {
+       left: 97%;
+   }
+}
  
  
