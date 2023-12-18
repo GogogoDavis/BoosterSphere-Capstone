@@ -12,6 +12,7 @@ export const HomePage = () => {
   const [dashboardEvents, setDashboardEvents] = useState([]);
   const [dashboardDonations, setDashboardDonations] = useState([]);
   const [dashboardFunds, setDashboardFunds] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('http://localhost:8080/dashboard/events')
@@ -38,7 +39,7 @@ export const HomePage = () => {
     return (raised / target) * 100;
   };
 
-  return (
+  return (userData ?
     <>
     <div className='Parent-Container'>
       <Sidebar />
@@ -63,13 +64,9 @@ export const HomePage = () => {
             </p>
 
             <div className='home_reg_links'>
-              <Link to='/volunteers'>
-                <button type='submit' className='homePageButtons'>Click to Volunteer</button>
-              </Link>
-              <Link to='/Register'>
-                <button type='submit' className='homePageButtons'>Register for an Account</button>
-              </Link>
-                </div>
+              <button className='homePageButtons' onClick={()=>{ navigate('/volunteers')}}>Click to Volunteer</button>
+              <button className='homePageButtons' onClick={()=>{ navigate('/Register')}}>Register for an Account</button>
+            </div>
           </div>
 
           <div className='event-container'>
@@ -134,6 +131,7 @@ export const HomePage = () => {
       <div className='Landing_wrapper'>
       </div>
     </>
+    : <></>
   );
 };
 
