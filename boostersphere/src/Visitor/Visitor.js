@@ -12,6 +12,7 @@ const { userData } = useContext(userContext);
 const [dashboardEvents, setDashboardEvents] = useState([]);
 const [dashboardDonations, setDashboardDonations] = useState([]);
 const [dashboardFunds, setDashboardFunds] = useState([]);
+const navigate = useNavigate();
 
 useEffect(() => {
     fetch("http://localhost:8080/dashboard/events")
@@ -71,17 +72,9 @@ return (
             Hosting an event to build connections!
             </p>
 
-            <div className="home_reg_links">
-            <Link to="/volunteers">
-                <button type="submit" className="homePageButtons">
-                Click to Volunteer
-                </button>
-            </Link>
-            <Link to="/Register">
-                <button type="submit" className="homePageButtons">
-                Register for an Account
-                </button>
-            </Link>
+            <div className='home_reg_links'>
+                <button className='homePageButtons' onClick={()=>{ navigate('/volunteers')}}>Click to Volunteer</button>
+                <button className='homePageButtons' onClick={()=>{ navigate('/Register')}}>Register for an Account</button>
             </div>
         </div>
 
