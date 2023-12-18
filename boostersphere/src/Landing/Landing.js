@@ -55,7 +55,7 @@ export const Landing = () => {
         <div className='cols cols0'>
             <span className='topline'>Welcome</span>
             <h1 className='Landing_h1'>Del10 <span id="multiText"></span></h1>
-            <p className='Landing_p'>Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome</p>
+            <p className='Landing_p'>Help Make this Organization better by Donating, Volunteering, or Hosting an event to build connections!</p>
             <div className='btns'>
               <button className='Landing_button' onClick={()=>{ navigate('/Login')}}>Login</button>
               <button className='Landing_button' onClick={()=>{ navigate('/Register')}}>Register</button>
