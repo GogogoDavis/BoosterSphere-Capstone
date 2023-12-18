@@ -6,9 +6,9 @@
     font-family: 'poppins' , sans-serif;
 }
 
+
 body{
 
-}
 
 .Landing_container{
     width: 100%;
@@ -70,13 +70,13 @@ body{
 }
 
 .Landing_wrapper{
+    overflow: hidden;
     display: flex;
     width: 100%;
     height: calc(100vh - 80px);
     justify-content: center;
     align-items: center;
     padding: 0 10%;
-    overflow: hidden;
 }
 
 .Landing_wrapper::before{
@@ -86,7 +86,7 @@ body{
     width: 600px;
     border-radius: 50%;
     left: -12%;
-    top: 40%;
+    top: 35%;
     background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.548));
     animation: object1 6s linear infinite;
 }
@@ -97,22 +97,22 @@ body{
     height: 200px;
     width: 200px;
     border-radius: 50%;
-    left: 45%;
+    left: 35%;
     top: 12%;
-    background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.548));
+    background: linear-gradient(45deg, #2300a1cc, rgb(53, 53, 53));
     animation: object2 6s linear infinite;
 }
 
 @keyframes object1{
     50%{
         left: -13%;
-        top: 41%;
+        top: 30%;
     }
 }
 
 @keyframes object2{
     50%{
-        left: 45%;
+        left: 35%;
         top: 10%;
     }
 }
