@@ -1,13 +1,14 @@
 .mainpage{
 
-  height: 200px;
+  height: 100vh;
   width: 100%;
 
   display: flex;
   justify-content: center;
-  background-color: #282c34;
+  background-color: #7f00ff;
   color: white;
-  margin-top: 50px;
+  margin: 0;
+  padding: 10px
 }
 
 .mainpage div h1{
@@ -15,9 +16,10 @@
 }
 
 .mainpage div img {
-  width: 100%;
-  height: 100%;
+  width: 300px;
+  height: 300px;
   border-radius: 5px;
+  margin-top: 10px;
 }
 
 .mainpage div {
@@ -25,22 +27,85 @@
   margin-right: 20px;
 }
 
+.event-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #ab57ff;
+  padding: 10px;
+  height:fit-content;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: solid #f2f2f2;
+  align-items: center;
+}
+
 .event-list {
-  list-style-type: none;
-  padding: 0;
+  display: flex;
+  flex-direction: row;
+  list-style-type:none;
+  height: 100px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .event-list li{
-  border: solid rgb(54, 54, 54) 2px;
-  margin: 5px;
-  padding: 10px;
-  background-color: black;
-  text-align: left;
+  border: solid #f2f2f2;
+  border-radius: 5px;
+  background-color: #f2f2f26b;
+  text-align: center;
   width: 200px;
+  padding-left: 3px;
 }
 
-.event-list li h3, .event-list li p{
-  margin: 0;
+
+.progress-bar-container {
+  width: 85%;
+  height: 10px;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  margin-top: 5px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #4caf50;
+  transition: width 0.3s ease-in-out;
+}
+
+.dashboardTitle {
+  height: 1em;
+}
+
+.leftSideVisPage {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home_reg_links {
+  margin-top: 230px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+
+.homePageButtons {
+  width: 100%;
+  height: 45px;
+  background: #fff;
+  border: none;
+  outline: none;
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0,0,0, .1);
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+  font-weight: 600;
+  padding: 10px;
 }
 
 /* .nav{
