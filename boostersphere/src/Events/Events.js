@@ -140,7 +140,7 @@ export const Events = () => {
         <Sidebar />
         <div className="App">
           <div id='calButton'>
-          <h1 style={{color: "salmon"}}>Calendar</h1>
+          <h1 style={{color: "white"}}>Calendar</h1>
           <h2>
             <button id='togglerBtn' onClick={yesToggler}>Add New Event</button>
           </h2>
