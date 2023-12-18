@@ -67,7 +67,10 @@ function App() {
                 <Events />
               </RequireAuth>} />
 
-            <Route path='/Home' element={<HomePage />}/>
+            <Route path='/Home' element={
+              <RequireAuth>
+                <HomePage />
+              </RequireAuth>} />
 
             <Route path='/Funds' element={
               <RequireAuth>

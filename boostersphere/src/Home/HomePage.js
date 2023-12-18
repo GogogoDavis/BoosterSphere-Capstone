@@ -38,7 +38,7 @@ export const HomePage = () => {
     return (raised / target) * 100;
   };
 
-  return (
+  return (userData ?
     <>
     <div className='Parent-Container'>
       <Sidebar />
@@ -134,6 +134,7 @@ export const HomePage = () => {
       <div className='Landing_wrapper'>
       </div>
     </>
+    : <></>
   );
 };
 
