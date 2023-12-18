@@ -120,7 +120,7 @@ export const HomePage = () => {
               </ul>
               <br></br>
               <div className='mopeyImg'>
-                <img src={mopey} alt='booster club'></img>
+                <img src={mopey} alt=''></img>
               </div>
               <div>
                 <p>Contact fake@email.com to learn more about
@@ -132,22 +132,7 @@ export const HomePage = () => {
       </div>
 
       <div className='Landing_wrapper'>
-        <div className='cols cols0'>
-            <span className='topline'>Hello</span>
-            <h1 className='Landing_h1'>Yo <span id="multiText"></span></h1>
-            <p className='Landing_p'>Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome</p>
-
-        </div>
-          <div class="cols cols1">
-            <div className='imgbox'>
-              <img src={galaxy} id='splash' alt=''></img>
-              <img src={mopey} alt='' ></img>
-            </div>
-            <div>
-            <img src={mopey} alt='' className='tiny' ></img>
-            </div>
-          </div>
-          </div>
+      </div>
     </>
   );
 };

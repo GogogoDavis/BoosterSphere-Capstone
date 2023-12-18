@@ -71,12 +71,7 @@ export const Landing = () => {
             <img src={mopey} alt='' className='tiny' ></img>
             </div>
           </div>
-
-
-
-
       </div>
-
     </div>
 
 
