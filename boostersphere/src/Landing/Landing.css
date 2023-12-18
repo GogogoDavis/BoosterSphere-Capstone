@@ -83,10 +83,10 @@
     height: 600px;
     width: 600px;
     border-radius: 50%;
-    left: -12%;
+    left: 10%;
     top: 35%;
-    background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.548));
-    animation: object1 6s linear infinite;
+    background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.2));
+    animation: object1 20s linear infinite;
 }
 
 .Landing_wrapper::after{
@@ -97,20 +97,20 @@
     border-radius: 50%;
     left: 35%;
     top: 12%;
-    background: linear-gradient(45deg, #2300a1cc, rgb(53, 53, 53));
-    animation: object2 6s linear infinite;
+    background: linear-gradient(45deg, #2300a1cc, rgb(53, 53, 53, 0.2));
+    animation: object2 23s linear infinite;
 }
 
 @keyframes object1{
     50%{
-        left: -13%;
+        left: -19%;
         top: 30%;
     }
 }
 
 @keyframes object2{
     50%{
-        left: 35%;
+        left: 45%;
         top: 10%;
     }
 }

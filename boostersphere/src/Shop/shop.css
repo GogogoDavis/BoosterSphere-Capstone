@@ -4,28 +4,33 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins' , sans-serif;
+    color: #3d535f;
 }
 
 .parent-container{
   display:flex;
-  /* background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.548)); */
-  background: rgba(255, 255, 255, 0.76);
-  background-size: cover;
+  justify-content: center;
+  /* background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.2)); */
+  background-color: #f3f5f8;
   height: 100vh;
+  width: 100%;
+
 }
 
 .main{
   width: 100%;
   min-height: 100%;
+
 }
 
 .header {
-  background-color: rgba(200, 149, 252, 0.3);
+  background: white;
   padding: 10px;
   display: flex;
   align-items: center ;
   gap: 15px;
   border-radius: 12px;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.952);
 }
 
 .headerInputContainer {
@@ -42,7 +47,7 @@
 }
 
 .headerText {
-  color: white;
+  color: #3d535f;
   font-size: 13px;
 }
 
@@ -57,16 +62,19 @@
 .shopBody {
   background-color: f0f0f0;
   height: max-content;
+
+
 }
 
 .bodyItem {
   display: flex;
   flex-wrap: wrap;
   background-color: rgba(127, 0, 255, 0.0);
+
 }
 
 .productItem {
-  background-color: rgba(200, 149, 252, 0.3);
+  background-color: white;
   margin: 10px;
   padding: 30px;
   width: 300px;
@@ -74,6 +82,9 @@
   flex-direction: column;
   gap: 6px;
   border-radius: 12px;
+  color: #3d535f;
+  z-index: 10000;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.952);
 }
 
 .productItem:hover {
@@ -84,7 +95,7 @@
   font-weight: 800;
   height: 3em;
   align-content: center;
-  color: white;
+  color: #3d535f;
 }
 
 .description {
@@ -105,16 +116,18 @@
   flex: 0.7;
   margin: 15px;
   padding: 10px;
-  background-color: rgba(156, 84, 228, 0.2);
+  background-color: white;
   align-content: center;
   border-radius: 10px;
+  z-index: 10000;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.952);
 }
 
 .cartContainer {
   display: flex;
-  margin-bottom: 20px;
-  border: black solid;
-  background-color: rgb(188, 222, 252, 0.3);
+  margin-bottom: 10px;
+  border: rgba(0, 0, 0, 0.219) solid;
+  background-color: rgba(229, 135, 248, 0.3);
   align-items: center;
   border-radius: 5px;
 }
@@ -130,10 +143,11 @@
   margin-right: 5px;
   padding: 10px;
   flex-grow: 1;
-  border: black solid;
-  background-color: rgb(188, 222, 252, 0.3);
+  border: rgba(0, 0, 0, 0.219) solid;
+  background-color: rgba(229, 135, 248, 0.3);
   align-content: center;
   border-radius: 5px;
+  font-weight: 200px;
 }
 
 .cartButtons {
@@ -142,17 +156,20 @@
   justify-content: space-around;
   border-radius: 5px;
   gap: 5px;
-  background-color: rgb(188, 222, 252, 0.5);
+  background-color: rgba(229, 135, 248, 0.3);
+  border: rgba(0, 0, 0, 0.219) solid;
+
 }
 
 .cartButton {
-  background-color: rgb(188, 222, 252, 0.5);
+  background-color: rgba(229, 135, 248, 0.3);
   outline: none;
   border: none;
   padding: 5px;
   border-radius: 5px;
   cursor: pointer;
   margin-top: 10px;
+  border: rgba(0, 0, 0, 0.219) solid;
 }
 
 .cartButtonContainer {
@@ -160,14 +177,18 @@
   flex-direction: column;
   padding: 5px;
   border-radius: 5px;
+
 }
 
 .cartRight {
-  background-color:rgb(188, 222, 252, 0.6);
+  background-color: rgba(229, 135, 248, 0.3);
   flex: 0.3;
   margin: 15px;
   padding: 10px;
   border-radius: 10px;
+  height: 160px;
+  z-index: 10000;
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.952);
 }
 
 .checkoutContainer {
@@ -189,11 +210,15 @@
   border: none;
   outline: none;
   border-radius: 40px;
-  box-shadow: 0 0 10px rgba(0,0,0, .1);
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.952);
   cursor: pointer;
   font-size: 16px;
   color: #333;
   font-weight: 600;
+}
+
+.backToShopButton:hover {
+  transform: scale(1.05);
 }
 
 .addToCartButton {
@@ -203,9 +228,10 @@
   border: none;
   outline: none;
   border-radius: 40px;
-  box-shadow: 0 0 10px rgba(0,0,0, .1);
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.952);
   cursor: pointer;
   font-size: 16px;
   color: #333;
   font-weight: 600;
+  z-index: 1110;
 }

@@ -139,7 +139,7 @@ return (
             <img src={mopey} alt=""></img>
             </div>
             <div>
-            <p>
+            <p style={{color:'white'}}>
                 Contact fake@email.com to learn more about how to help with
                 Events, Dontate, or Fundraisers!
             </p>
