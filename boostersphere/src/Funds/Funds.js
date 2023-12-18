@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   LinearProgress,
   Button,
@@ -22,12 +22,34 @@ export const Funds = () => {
       transactions: [],
       showProgress: true,
       isEditMode: false,
+      deadline: new Date('2023-12-31T23:59:59'), // Set the deadline
       newTransaction: { amount: '', note: '' },
     },
     // Add more initial goals as needed
   ]);
 
   const [selectedGoal, setSelectedGoal] = useState(null);
+  const [editDeadlineGoal, setEditDeadlineGoal] = useState(null);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Force a re-render every second to update the countdown
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const getRemainingTime = (deadline) => {
+    const now = new Date();
+    const timeDifference = deadline.getTime() - now.getTime();
+
+    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+    return { days, hours, minutes, seconds };
+  };
 
   const handleCurrentAmountChange = (event, goalId) => {
     const updatedGoals = goals.map((goal) =>
@@ -97,6 +119,7 @@ export const Funds = () => {
       transactions: [],
       showProgress: false,
       isEditMode: true,
+      deadline: new Date(), // Set a default deadline for new goals
       newTransaction: { amount: '', note: '' },
     };
     setGoals([...goals, newGoal]);
@@ -106,13 +129,32 @@ export const Funds = () => {
     setSelectedGoal(null);
   };
 
+  const handleGoalNameChange = (event, goalId) => {
+    const updatedGoals = goals.map((goal) =>
+      goal.id === goalId ? { ...goal, name: event.target.value } : goal
+    );
+    setGoals(updatedGoals);
+  };
+
+  const handleEditDeadlineClick = (goalId) => {
+    setEditDeadlineGoal(goals.find((goal) => goal.id === goalId));
+  };
+
+  const handleEditDeadlineSave = (goalId, newDeadline) => {
+    const updatedGoals = goals.map((goal) =>
+      goal.id === goalId ? { ...goal, deadline: newDeadline } : goal
+    );
+    setGoals(updatedGoals);
+    setEditDeadlineGoal(null);
+  };
+
   const getProgressBarColor = (completionPercentage) => {
     if (completionPercentage === 100) {
-      return 'green'; 
+      return 'green';
     } else if (completionPercentage >= 50) {
-      return 'yellow'; 
+      return 'yellow';
     } else {
-      return 'red'; 
+      return 'red';
     }
   };
 
@@ -145,6 +187,9 @@ export const Funds = () => {
                     <Button variant="contained" onClick={() => handleTransactionHistoryClick(goal.id)}>
                       Transaction History
                     </Button>
+                    <Button variant="contained" onClick={() => handleEditDeadlineClick(goal.id)}>
+                      Edit Deadline
+                    </Button>
                   </div>
                   <LinearProgress
                     variant="determinate"
@@ -158,6 +203,12 @@ export const Funds = () => {
                     <Typography variant="body2">
                       {((goal.currentAmount / goal.goalAmount) * 100).toFixed(2)}% Complete
                     </Typography>
+                    {goal.deadline && (
+                      <Typography variant="body2">
+                        Time Remaining: {getRemainingTime(goal.deadline).days} days, {getRemainingTime(goal.deadline).hours} hours,
+                        {getRemainingTime(goal.deadline).minutes} minutes, {getRemainingTime(goal.deadline).seconds} seconds
+                      </Typography>
+                    )}
                   </div>
                   <Button variant="contained" onClick={() => handleEditClick(goal.id)}>
                     Edit
@@ -228,9 +279,29 @@ export const Funds = () => {
               <Button onClick={handleCloseDialog}>Close</Button>
             </DialogActions>
           </Dialog>
+
+          <Dialog open={editDeadlineGoal !== null} onClose={() => setEditDeadlineGoal(null)}>
+            <DialogTitle>Edit Deadline</DialogTitle>
+            <DialogContent>
+              <TextField
+                type="datetime-local"
+                value={editDeadlineGoal ? editDeadlineGoal.deadline.toISOString().slice(0, -8) : ''}
+                onChange={(event) => setEditDeadlineGoal({
+                  ...editDeadlineGoal,
+                  deadline: new Date(event.target.value),
+                })}
+                InputLabelProps={{ shrink: true }}
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => setEditDeadlineGoal(null)}>Cancel</Button>
+              <Button onClick={() => handleEditDeadlineSave(editDeadlineGoal.id, editDeadlineGoal.deadline)}>
+                Save
+              </Button>
+            </DialogActions>
+          </Dialog>
         </div>
       </div>
     </>
   );
 };
-
