@@ -12,6 +12,7 @@ import './Events.css'
 import { id } from 'date-fns/locale';
 import { userContext } from '../App';
 import { useNavigate } from 'react-router-dom';
+import mopey from '../DaMopester-nobackground.png'
 // import Calendar from 'react-calendar';
 // import './Events.css';
 
@@ -136,7 +137,7 @@ export const Events = () => {
 
   return !allEvents ? null : ((
     <>
-      <div className="parent-container">
+      <div className="EventParentContainer">
         <Sidebar />
         <div className="eventPortion">
           <div id='cal'>
@@ -267,9 +268,12 @@ export const Events = () => {
             style={{ height: 800, color: 'white', marginBottom: '50px', marginRight: '50px', marginLeft: '50px'}}
             onSelectEvent={handleDetails}
           />
+          <div>
+          <img src={mopey} alt= '' className='baby'></img> 
+          </div>
           <div id='centerBtn'>
             <button id='togglerBtn' onClick={yesToggler}>Add New Event</button>  
-            </div>       
+            </div>     
         </div>
       </div>
     </>
