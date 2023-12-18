@@ -139,11 +139,10 @@ export const Events = () => {
       <div className="parent-container">
         <Sidebar />
         <div className="eventPortion">
-          <div id='calButton'>
+          <div id='cal'>
           <h1 style={{color: "#3d535f"}}>Calendar</h1>
-          <h2>
-            <button id='togglerBtn' onClick={yesToggler}>Add New Event</button>
-          </h2>
+          <div>
+          </div>
           </div>
           {toggleForm ? (
             <div id="postEventFields">
@@ -172,7 +171,6 @@ export const Events = () => {
                   }
                 />
               </div>
-
               <div>
                 <label>Description: </label>
                 <input
@@ -269,7 +267,9 @@ export const Events = () => {
             style={{ height: 800, color: '#3d535f', marginBottom: '50px', marginRight: '50px', marginLeft: '50px'}}
             onSelectEvent={handleDetails}
           />
-          
+          <div id='centerBtn'>
+            <button id='togglerBtn' onClick={yesToggler}>Add New Event</button>  
+            </div>       
         </div>
       </div>
     </>
