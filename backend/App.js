@@ -222,6 +222,7 @@ app.delete('/volunteers', (req, res) => {
 app.get('/funds', (req, res) => {
   knex('funds')
   .select('*')
+  .orderBy('id', 'desc')
   .then(data => res.send(data))
   .catch(e => res.status(500).send())
 })
@@ -242,17 +243,29 @@ app.post('/funds', async (req, res) => {
 })
 
 app.patch('/funds', (req, res) => {
-  const {id, type, amount, event_id} = req.body
+  const {id, type, amount, event_id, currRaised} = req.body
   knex('funds')
   .where('id', id)
   .update({
     type: type,
     amount: amount,
+    currRaised: currRaised,
     event_id: event_id,
   })
   .then(res.status(200).send())
   .catch(e => res.status(500).send())
 })
+
+
+app.put('/funds/:id', (req, res) => {
+  knex('funds').where('id', req.params.id)
+  .update({
+    currRaised: req.body.currRaised,
+  })
+  .then(res.status(200).send())
+  .catch(e => res.status(500).send())
+})
+
 
 app.delete('/funds/:id', (req, res) => {
   knex('funds').where('id', req.params.id)
