@@ -91,7 +91,7 @@ function App() {
             <RequireAuth><Setting />
             </RequireAuth>} />
 
-            <Route path='/volunteers' element={<Volunteers />} />
+            <Route path='/volunteers' element={<RequireAuth><Volunteers /></RequireAuth>} />
             <Route path='/VisitorVolunteers' element={<VisitorVolunteers />} />
 
             <Route path='/Shop' element={<Shop />} />
