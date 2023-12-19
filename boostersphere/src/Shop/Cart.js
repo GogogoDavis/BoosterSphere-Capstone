@@ -40,7 +40,7 @@ export const Cart = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      await fetch(`https://fakestoreapi.com/products/category/men's%20clothing`)
+      await fetch('http://localhost:8080/shop/images')
         .then((res) => res.json())
         .then((data) => setProducts(data));
     };
@@ -116,12 +116,11 @@ export const Cart = () => {
             <div key={index} className="cartContainer">
 
               <div className='cartImage'>
-              <img style={{height: 100, width: 100, borderRadius: '8px'}} src={item.image}/>
+              <img style={{height: 100, width: 100, borderRadius: '8px'}} src={item.image_path}/>
               </div>
 
               <div className='cartDescription'>
                 <p>{item.title}</p>
-                <p style={{fontSize:'12px'}}>{item.description.length >80 ? item.description.substr(0,80) : item.description}</p>
                 <p >${item.price}</p>
               </div>
 
