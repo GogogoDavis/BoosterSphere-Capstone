@@ -56,11 +56,13 @@ export const Details = ({ item }) => {
   console.log(editDetails);
 
   return (
-    <container className='details_container'>
+    <>
+    <div className='details_container'>
+    <Sidebar />
        {/* <div className='mopeyImg'>
             <img src={mopey} alt=''></img>
               </div> */}
-      <div id="wrap">
+      <div style="overflow:hidden" id="wrap">
         <ul>
           <h1
             id="detailstitle"
@@ -72,7 +74,7 @@ export const Details = ({ item }) => {
           > Event Details</h1>
 
          <div className="detail_row"> 
-          <div className="detail_container2">
+          <div className="detail_container2" >
 
           <div className="detail_div"><label className="event_label">Event ID: </label></div>
 
@@ -245,7 +247,7 @@ export const Details = ({ item }) => {
       </div>
       <div className='detail_wrapper2'>
       </div>
-    </container>
-    
+    </div>
+    </>
   );
 };
