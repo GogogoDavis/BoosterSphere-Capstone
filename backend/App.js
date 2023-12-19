@@ -369,3 +369,38 @@ app.get('/dashboard/funds', (req, res) => {
     .then(data => res.status(200).send(data))
     .catch(e => res.status(500).send());
 });
+
+
+
+
+/// --------------------- Home Page / Dashboard --------------------- ///
+
+
+
+app.get('/funds/transaction', (req, res) => {
+  knex('transaction')
+  .select('*')
+  .orderBy('id', 'desc')
+  .then(data => res.status(200).send(data))
+  .catch(e => res.status(500).send())
+})
+
+app.post('/funds/transaction', (req, res) => {
+  const {title, amount, event_id, status} = req.body
+  knex('transaction')
+  .insert({
+    title: title,
+    amount: amount,
+    event_id: event_id,
+    status: status
+  })
+  .then(res.status(201).send())
+  .catch(e => res.status(500).send())
+})
+
+
+app.delete('/funds/transaction/:id', (req, res) => {
+  knex('transaction').where('id', req.params.id)
+.del()
+.then(() => res.json({message: `it done got gone, it OUTTA HERE`}))
+})
