@@ -404,3 +404,13 @@ app.delete('/funds/transaction/:id', (req, res) => {
 .del()
 .then(() => res.json({message: `it done got gone, it OUTTA HERE`}))
 })
+
+
+// -----------Shop -----------------//
+
+app.get('/shop/images', async (req, res) => {
+    knex('shop')
+    .select('*')
+    .then(data => res.status(200).send(data))
+    .catch(e => res.status(500).send())
+});
