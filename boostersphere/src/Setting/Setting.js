@@ -1,9 +1,6 @@
 
 import { Sidebar } from "../Sidebar/Sidebar"
 import { useState, useContext, useEffect } from 'react';
-import { doc, setDoc, addDoc, collection, getDocs, deleteDoc, onSnapshot  } from "firebase/firestore"; 
-import { db, storage, auth} from '../firebase';
-import { getAuth } from "firebase/auth";
 import './Setting.css'
 
 
@@ -26,7 +23,7 @@ return !list ? null : ((
 <div className="Container">
         <Sidebar />
         <div className="Userdata">
-              hello
+              Dark Mode Engage...
         </div>
 </div>        
 </>        
