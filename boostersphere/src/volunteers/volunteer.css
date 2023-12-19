@@ -13,9 +13,9 @@
   border: solid black 2px;
   list-style-type: none;
   width: 90%;
-  height: 90%;
-  max-height: 450px;
+  height: 380px;
   text-align: center;
+  margin-bottom: 30px;
 }
 
 .volunteer-event-list-container ul {
