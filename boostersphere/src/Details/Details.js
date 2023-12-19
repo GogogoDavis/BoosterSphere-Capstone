@@ -57,12 +57,10 @@ export const Details = ({ item }) => {
 
   return (
     <>
-    <div className='details_container'>
-    <Sidebar />
-       {/* <div className='mopeyImg'>
+    <div className='details_container'>       {/* <div className='mopeyImg'>
             <img src={mopey} alt=''></img>
               </div> */}
-      <div style="overflow:hidden" id="wrap">
+      <div ="overflow:hidden" id="wrap">
         <ul>
           <h1
             id="detailstitle"
