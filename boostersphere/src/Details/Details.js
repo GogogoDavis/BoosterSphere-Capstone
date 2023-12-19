@@ -56,7 +56,7 @@ export const Details = ({ item }) => {
   console.log(editDetails);
 
   return (
-    <container id='detailscontainer'>
+    <container className='details_container'>
        {/* <div className='mopeyImg'>
             <img src={mopey} alt=''></img>
               </div> */}
@@ -71,12 +71,12 @@ export const Details = ({ item }) => {
             // }}
           > Event Details</h1>
 
-         <div className="div_row"> 
+         <div className="detail_row"> 
           <div className="detail_container2">
 
-          <div className="div_label"><label className="event_label">Event ID: </label></div>
+          <div className="detail_div"><label className="event_label">Event ID: </label></div>
 
-          <div className="div_input">
+          <div className="detail_input">
             <input
             className="detail_value"
             value= {item.id}
@@ -86,11 +86,11 @@ export const Details = ({ item }) => {
           </div>
         
           
-          <div className="div_row"> 
+          <div className="detail_row"> 
 
-            <div className="div_label"><label  className="event_label">Event Title: </label></div>
+            <div className="detail_div"><label  className="event_label">Event Title: </label></div>
 
-            <div className="div_input">
+            <div className="detail_input">
             <input
               className="detail_value"
               type="text"
@@ -103,11 +103,11 @@ export const Details = ({ item }) => {
             </div>
           </div>
 
-          <div className="div_row"> 
+          <div className="detail_row"> 
 
-            <div className="div_label"><label className="event_label">Party Type: </label></div>
+            <div className="detail_div"><label className="event_label">Party Type: </label></div>
 
-            <div className="div_input">
+            <div className="detail_input">
               <input
                 className="detail_value"
                 type="text"
@@ -120,11 +120,11 @@ export const Details = ({ item }) => {
             </div>
           </div>
 
-          <div className="div_row"> 
+          <div className="detail_row"> 
 
-            <div className="div_label"><label className="event_label">Event Details: </label></div>
+            <div className="detail_div"><label className="event_label">Event Details: </label></div>
 
-            <div className="div_input">
+            <div className="detail_input">
               <input
                 className="detail_value"
                 type="text"
@@ -138,11 +138,11 @@ export const Details = ({ item }) => {
             </div>
           </div>
 
-          <div className="div_row"> 
+          <div className="detail_row"> 
      
-          <div className="div_label"><label className="event_label">Start Date: </label></div>
+          <div className="detail_div"><label className="event_label">Start Date: </label></div>
 
-          <div className="div_input">
+          <div className="detail_input">
             <DatePicker
               className="detail_value"
               placeholderText={item.start}
@@ -154,11 +154,11 @@ export const Details = ({ item }) => {
           </div>
       </div>
       
-      <div className="div_row"> 
+      <div className="detail_row"> 
 
-          <div className="div_label"><label className="event_label">End Date: </label></div>
+          <div className="detail_div"><label className="event_label">End Date: </label></div>
 
-          <div className="div_input">
+          <div className="detail_input">
             <DatePicker
               className="detail_value"
               placeholderText={item.end}
@@ -170,11 +170,11 @@ export const Details = ({ item }) => {
           </div>
       </div>
 
-      <div className="div_row"> 
+      <div className="detail_row"> 
 
-            <div className="div_label"><label className="event_label">Amount of Funds Required: </label></div>
+            <div className="detial_div"><label className="event_label">Amount of Funds Required: </label></div>
 
-            <div className="div_input">
+            <div className="detail_input">
               <input
                 className="detail_value"
                 type="integer"
@@ -188,11 +188,11 @@ export const Details = ({ item }) => {
             </div>
           </div>
 
-          <div className="div_row"> 
+          <div className="detail_row"> 
 
-            <div className="div_label"><label className="event_label">Number of Volunteers Needed:</label></div>
+            <div className="detail_div"><label className="event_label">Number of Volunteers Needed:</label></div>
 
-            <div className="div_input">
+            <div className="detail_input">
               <input
                 className="detail_value"
                 type="integer"
@@ -209,11 +209,11 @@ export const Details = ({ item }) => {
             </div>
           </div>
 
-          <div className="div_row"> 
+          <div className="detail_row"> 
 
-            <div className="div_label"><label className="event_label">User ID: </label></div>
+            <div className="detail_div"><label className="event_label">User ID: </label></div>
             
-            <div className="div_input">
+            <div className="detail_input">
               <input
                 className="detail_value"
                 type="integer"
