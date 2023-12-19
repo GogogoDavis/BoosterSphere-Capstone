@@ -120,7 +120,7 @@ export const Cart = () => {
               </div>
 
               <div className='cartDescription'>
-                <p >{item.title}</p>
+                <p>{item.title}</p>
                 <p style={{fontSize:'12px'}}>{item.description.length >80 ? item.description.substr(0,80) : item.description}</p>
                 <p >${item.price}</p>
               </div>
@@ -132,10 +132,15 @@ export const Cart = () => {
                   <div onClick={() => incrementItemQuantity(item)} style={{cursor:'pointer'}}>+</div>
                 </div>
                 <button onClick={() => removeItemFromCart(item)} className='cartButton'>Remove Item</button>
-                <h5 style={{marginTop:'3px'}}>{item.price * item.quantity}</h5>
+                <h5 style={{marginTop:'3px'}}>${item.price * item.quantity}</h5>
               </div>
           </div>
           ))}
+                <div>
+      <Link to='/Shop'>
+      <button className="backToShopButton" style={{ marginLeft: '30px'}}>Back to Shop!</button>
+      </Link>
+      </div>
         </div>
         <div className="cartRight">
           <div className="checkoutContainer">
@@ -154,14 +159,10 @@ export const Cart = () => {
           </div>
         </div>
       </div>
-
-      <div>
-      <Link to='/Shop' className='NavBar'>
-      <button className="backToShopButton" style={{ marginLeft: '30px'}}>Back to Shop!</button>
-      </Link>
       </div>
 
       </div>
+      <div className='Landing_wrapper'>
       </div>
   </>
   )

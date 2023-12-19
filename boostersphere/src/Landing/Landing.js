@@ -19,16 +19,20 @@ export const Landing = () => {
     setUserData(null)
   }, []);
 
-  
+
+
+
   useEffect(() => {
     let typingEffect = new Typed("#multiText", {
       strings : ["Events", "Funds", "Mopey!"],
-      loop : true, 
+      loop : true,
       typeSpeed : 100,
       backSpeed : 80,
       backDelay : 1500
     })
   }, []);
+
+
 
 
 
@@ -40,19 +44,18 @@ export const Landing = () => {
       <div className='Landing_nav'>
         <div className = "Landing_logo">BoosterSphere<b className='Landing_bold'>.</b></div>
         <ul className='Landing_navItems'>
-            <li><p>HOME</p></li>
-            <li><p>EVENTS</p></li>
-            <li><p>STORE</p></li>
-            <li><p>FUNDS</p></li>
-        </ul>        
+            <li><Link to='/VisitorHome'><p>HOME</p></Link></li>
+            <li><Link to ='/VisitorVolunteers'><p>VOLUNTEER</p></Link></li>
+            <li><Link to='/VisitorShop'><p>STORE</p></Link></li>
+        </ul>
 
       </div>
 
       <div className='Landing_wrapper'>
         <div className='cols cols0'>
-            <span className='topline'>Hello</span>
-            <h1 className='Landing_h1'>Yo <span id="multiText"></span></h1>
-            <p className='Landing_p'>Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome Welcome</p>
+            <span className='topline'>Welcome</span>
+            <h1 className='Landing_h1'>Del10 <span id="multiText"></span></h1>
+            <p className='Landing_p'>Help Make this Organization better by Donating, Volunteering, or Hosting an event to build connections!</p>
             <div className='btns'>
               <button className='Landing_button' onClick={()=>{ navigate('/Login')}}>Login</button>
               <button className='Landing_button' onClick={()=>{ navigate('/Register')}}>Register</button>
@@ -67,15 +70,10 @@ export const Landing = () => {
             <img src={mopey} alt='' className='tiny' ></img>
             </div>
           </div>
-  
-
-     
-  
       </div>
-
     </div>
 
-  
+
 
 </>
   )

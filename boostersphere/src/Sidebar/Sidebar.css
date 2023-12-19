@@ -7,9 +7,9 @@
     font-family: "Inter", sans-serif
 }
 
-body{
+/* body{
     background-color: #5b6677;
-}
+} */
 
 .container{
     /* position: absolute;
@@ -25,10 +25,13 @@ body{
     display: flex;
     flex-direction: column;
     gap: 20px;
-    background-color: #fff;
+    background-color: transparent;
     padding: 24px;
     border-radius: 30px;
-    transition: all 0.3s
+    transition: all 0.3s;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    z-index: 1500;
 }
 
 .sidebar .head{
@@ -54,7 +57,7 @@ body{
 .menu .title{
     font-size: 10px;
     font-weight: 500;
-    color: #757575;
+    color: black;
     text-transform: uppercase;
     margin-bottom: 10px;
 }
@@ -79,7 +82,7 @@ body{
     gap: 10px;
     font-size: 14px;
     font-weight: 500;
-    color: #757575;
+    color: black;
     text-decoration: none;
     padding: 12px 8px;
     border-radius: 8px;
@@ -116,7 +119,7 @@ body{
     justify-content: center;
     background-color: #fff;
     cursor: pointer;
-    color: #757575;
+    color: black;
     border: 2px solid #f6f6f6;
 }
 

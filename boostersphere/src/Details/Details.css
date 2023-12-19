@@ -1,12 +1,13 @@
-
 #wrap {
+
     display:flex; 
     height: 100vh;
     justify-content: center; 
     align-items: center;
     background-size: cover;
     background-color: slateblue;
-} */
+} 
+
 
 .addWrap{
     display: flex; 
@@ -24,9 +25,9 @@
     color: black;
 }
 
-::placeholder{
-    color: salmon;
-}
+/* ::placeholder{
+    color: black;
+} */
 
 .buttonLayout{
     display: flex; 

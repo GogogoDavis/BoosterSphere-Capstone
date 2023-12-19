@@ -19,7 +19,9 @@ import { Setting } from './Setting/Setting.js'
 import { NewLogin } from './Login/NewLogin.js';
 import { FundEdit } from './Funds/FundEdit.js';
 import { Volunteers } from './volunteers/Volunteers.js';
-
+import { VisitorVolunteers } from './volunteers/Visitor_Volunteers.js';
+import { VisitorShop } from './Shop/VisitorShop.js';
+import { VisitorHome } from './Home/VisitorHome.js';
 
 export const userContext = React.createContext();
 
@@ -31,7 +33,7 @@ function App() {
   const fetchUserData = async () => {
     const storedUserString = Cookies.get('user_data');
     const storedUserObject = storedUserString ? JSON.parse(storedUserString) : null;
-    if (storedUserObject) 
+    if (storedUserObject)
       fetch(`http://localhost:8080/users/image?userId=${storedUserObject.userId}`)
         .then(res => res.json())
         .then(imgData => {
@@ -67,6 +69,7 @@ function App() {
                 <Events />
               </RequireAuth>} />
 
+            <Route path='/VisitorHome' element={<VisitorHome />} />
             <Route path='/Home' element={
               <RequireAuth>
                 <HomePage />
@@ -74,7 +77,7 @@ function App() {
 
             <Route path='/Funds' element={
               <RequireAuth>
-                <Funds />
+                <FundEdit />
               </RequireAuth>} />
 
 
@@ -83,14 +86,16 @@ function App() {
             <Route path='/register' element={<NewRegister />} />
 
             <Route path='/Profile' element={
-            <RequireAuth><Profile /> 
+            <RequireAuth><Profile />
             </RequireAuth>} />
 
             <Route path='/Setting' element={
-            <RequireAuth><Setting /> 
+            <RequireAuth><Setting />
             </RequireAuth>} />
 
-            <Route path='/volunteers' element={<Volunteers />} />
+            <Route path='/volunteers' element={<RequireAuth><Volunteers /></RequireAuth>} />
+            <Route path='/VisitorVolunteers' element={<VisitorVolunteers />} />
+            <Route path='/VisitorShop' element={<VisitorShop />} />
 
             <Route path='/Shop' element={<Shop />} />
             <Route path='/Cart' element={<Cart />} />
