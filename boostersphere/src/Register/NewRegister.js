@@ -4,10 +4,16 @@ import upload from './upload.png';
 import './NewRegister.css'
 import { MdOutlineDriveFolderUpload } from "react-icons/md"
 
+import { IoEye } from "react-icons/io5"
+import { IoEyeOff } from "react-icons/io5"
+
 export const NewRegister = () => {
     const [same, setNotSame] = useState();
     const [formFilled, setFormFilled] = useState(false)
     const [duplicateUser, setDuplicateUser] = useState(false)
+    const [type, setType] = useState('password')
+    const [icon, setIcon] = useState(<IoEye />)
+
     const [formData, setFormData] = useState({
         username: '',
         firstName: '',
@@ -73,6 +79,18 @@ export const NewRegister = () => {
         })
     }
 
+
+    const handleEye = () =>{
+        if (type === 'password'){
+            setIcon(<IoEye />);
+            setType('Text')
+        } else {
+            setIcon(<IoEyeOff/>)
+            setType('password')
+        }
+    }
+
+
     return (
         <>
 
@@ -87,12 +105,13 @@ export const NewRegister = () => {
                         </div>
 
                         <div className='NewRegister_input-box'>
-                            <input name="password" className='NewRegister_input' type="password" placeholder='PASSWORD' onChange={handleInputChange} />
+                            <input name="password" className='NewRegister_input' type={type} placeholder='PASSWORD' onChange={handleInputChange} />
+                            <p className='Register-eye-icon' onClick={()=>{handleEye()}}>{icon}</p>
                         </div>
 
 
                         <div className='NewRegister_input-box'>
-                            <input name="password2" className='NewRegister_input' type="password" placeholder='TYPE PASSWORD AGAIN' onChange={e => { handleInputChange(e); if (e.target.value !== formData.password) { setNotSame('Not Same') } else { setNotSame('Correct!') } }} />
+                            <input name="password2" className='NewRegister_input' type={type} placeholder='TYPE PASSWORD AGAIN' onChange={e => { handleInputChange(e); if (e.target.value !== formData.password) { setNotSame('Not Same') } else { setNotSame('Correct!') } }} />
                             <span className='passerr'>{same}</span>
                         </div>
 
