@@ -65,7 +65,6 @@ export const HomePage = () => {
 
             <div className='home_reg_links'>
               <button className='homePageButtons' onClick={()=>{ navigate('/volunteers')}}>Click to Volunteer</button>
-              <button className='homePageButtons' onClick={()=>{ navigate('/Register')}}>Register for an Account</button>
             </div>
           </div>
 
