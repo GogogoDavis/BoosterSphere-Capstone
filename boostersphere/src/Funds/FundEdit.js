@@ -9,6 +9,8 @@ import { MdDelete } from "react-icons/md"
 import { FaRegEdit } from "react-icons/fa"
 import { BsClockHistory } from "react-icons/bs"
 import { IoIosExit } from "react-icons/io"
+import {IoMdAddCircle } from "react-icons/io"
+import { GrSubtractCircle } from "react-icons/gr"
 
 import {
   LinearProgress,
@@ -68,6 +70,12 @@ export const FundEdit = () => {
         'Content-Type': 'application/json',
       },
     })
+
+    setinputTitle('')
+    setInputDetails('')
+    setinputAmount(0.00)
+    setcurrRaised(0.00)
+
     setTimeout(() => { settoggleRefresh(!toggleRefresh) }, 100)
   }
 
@@ -110,6 +118,7 @@ export const FundEdit = () => {
   const handleFundAdd = (selected) =>{
     console.log(selected.currRaised)
     let total = (selected.currRaised == undefined) ? 0 + parseFloat(moneytoAdd) : parseFloat(selected.currRaised) + parseFloat(moneytoAdd)
+
 
     fetch('http://localhost:8080/funds', {
       method: 'PATCH',
@@ -169,10 +178,9 @@ export const FundEdit = () => {
 
 
 
+ console.log(funds) 
+
   const deleteTransactions = (selected, elem) =>{
-    fetch(`http://localhost:8080/funds/transaction/${elem.id}`, {
-      method: 'DELETE',
-    })
 
 
     if(elem.status == "subtract"){
@@ -203,14 +211,13 @@ export const FundEdit = () => {
     })
   }
 
-
-
-
-console.log(selectedEvent)
-
+  fetch(`http://localhost:8080/funds/transaction/${elem.id}`, {
+    method: 'DELETE',
+  })
+  setFormShowingHistory(false)
     setTimeout(() => { settoggleRefresh(!toggleRefresh) }, 100)
+    
   }
-
 
 
 
@@ -268,11 +275,30 @@ console.log(fundsHistory)
 
           
           <div className='Funds_add'>
-            <input type='text' placeholder='Event Title' onChange={(e) => { setinputTitle(e.target.value) }} value={inputTitle} />
-            <input type='text' placeholder='Details' onChange={(e) => { setInputDetails(e.target.value) }} value={inputDetails} />
-            <input type='number' placeholder='Amount' onChange={(e) => { setinputAmount(e.target.value) }} value={inputAmount} />
+
+            <h1>Add Fundraiser!</h1>
+            <div className='funds_addingitem'>
+              <label>Event Title</label>
+               <input type='text' placeholder='Event Title' onChange={(e) => { setinputTitle(e.target.value) }} value={inputTitle} />
+            </div>
+
+            <div className='funds_addingitem'>
+              <label>Details</label>
+              <input type='text' placeholder='Details' onChange={(e) => { setInputDetails(e.target.value) }} value={inputDetails} />
+            </div>
+
+            <div className='funds_addingitem'>
+              <label>Amount Needed</label>
+              <input type='number' placeholder='Amount' onChange={(e) => { setinputAmount(e.target.value) }} value={inputAmount} />
+            </div>
+            <div className='funds_addingitem'>
+
+            <label>Amount Raised</label>
             <input type='number' placeholder='Amount' onChange={(e) => { setcurrRaised(e.target.value) }} value={currRaised} />
+            </div>
+            <div className='funds_addingitem'>
             <button onClick={() => { addFund() }}>Add Fundraiser</button>
+            </div>
           </div>
 
         </div>
@@ -283,10 +309,16 @@ console.log(fundsHistory)
             <div className="funds_volunteer-form-container funds_form-names-span">
               <h3>{selectedEvent.title}</h3>
               <p>Currently Raised: ${selectedEvent.currRaised}</p>
-              <input placeholder="Amount" onChange={(e) => { setmoneytoAdd(e.target.value) }} value={moneytoAdd}/>
-              <button className="funds_volunteer-button volunteer-button-form" onClick={() => setFormShowing(false)}>Cancel</button>
-              <button className="funds_volunteer-button volunteer-button-form"  onClick={()=>{handleFundAdd(selectedEvent)}}>Add</button>
-              <button className="funds_volunteer-button volunteer-button-form"  onClick={()=>{handleFundDelete(selectedEvent)}}>Subtract</button>
+              <div className='funds-inputandbuttoncontainer'>
+
+                <input placeholder="Amount" onChange={(e) => { setmoneytoAdd(e.target.value) }} value={moneytoAdd}/>
+    
+                  <div className='funds-twobuttons'>
+                    <p className="funds_editaddcancel" onClick={()=>{handleFundAdd(selectedEvent)}}><IoMdAddCircle /></p>
+                    <p className="funds_editaddcancel" onClick={()=>{handleFundDelete(selectedEvent)}}><GrSubtractCircle /></p>
+                  </div>
+              </div>
+              <p className="funds_editaddcancel" onClick={() => setFormShowing(false)}>Cancel</p>
             </div>
           </div>
         )}
@@ -295,27 +327,22 @@ console.log(fundsHistory)
 
         {formShowingHistory && (
           <div className="funds_volunteer-overlay">
-            <div className="funds_volunteer-form-container funds_form-names-span">
+            <div className="funds_volunteer-form-container-transaction funds_form-names-span">
 
               <div className='funds_titleexit'>
                 <h3>{selectedEvent.title} Transaction History</h3>
                 <button className="funds_exitbutton" onClick={() => setFormShowingHistory(false)}><IoIosExit /></button>
               </div>
-               
-
               <ul>
               {fundsHistory.filter(elem => elem.event_id == selectedEvent.id).map((elem, index) => {return <li className="funds_transactionli" style={{ background: elem.status == "add" ? "lightgreen" : "pink"}}>${elem.amount}<button onClick={()=>{deleteTransactions(selectedEvent, elem)}}>delete</button></li>})}
               </ul>
-
-
-
-
             </div>
           </div>
         )}
 
 
-
+      <div className='funds_Landing_wrapper'>
+      </div>
 
       </div>
     </>

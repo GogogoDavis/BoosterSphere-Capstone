@@ -1,18 +1,18 @@
-.Container{
-    display:flex
+.Container {
+  display: flex;
 }
 
-.form{
-    width: 100%;
+.form {
+  width: 100%;
 }
+
 .profile-parent-container {
   display: flex;
-
 }
 
 .top-half {
   width: 100%;
-  background-image: linear-gradient(316deg, #988b9c 0%, #36225c 74%);
+  background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.548));
 }
 
 .profile-container {
@@ -40,12 +40,11 @@
   justify-content: space-evenly;
   width: 100%;
   height: 60%;
-  background-image: linear-gradient(22deg, #818181 0%, #ffffff 74%);
-  /* border: solid rgb(56, 40, 102) 10px; */
-
+  background-color: white;
 }
 
-.details-identifier li, .details-identifier {
+.details-identifier li,
+.details-identifier {
   width: 250px;
   font-weight: 600;
 }
@@ -64,16 +63,17 @@
   padding-top: 30px;
   padding-left: 30px;
   padding-bottom: 10px;
-  border-bottom: solid rgba(0, 0, 0, 0.65) 1px;
+  border-bottom: solid rgba(255, 255, 255, 0.65) 1px;
   border-radius: 35px;
 }
 
 .details-identifier p li {
+  color: #86b5ce;
   height: 40px;
   margin: 0;
 }
 
-.form-details{
+.form-details {
   min-width: 400px;
 }
 
@@ -84,14 +84,14 @@
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.2);
   font-weight: 600;
-  color: rgb(183, 184, 207);
+  color: #ffffff;
   border: none;
   margin: 0;
 }
 
 .profile-user-data {
   font-size: 27px !important;
-  color: rgb(183, 184, 207);
+  color: #ffffff !important;
 }
 
 .profile-edit-form {
@@ -99,7 +99,8 @@
   flex-direction: column;
   align-items: center;
 }
-.profile-edit-form input{
+
+.profile-edit-form input {
   width: 300px;
   height: 50px;
   font-size: 25px;
@@ -127,7 +128,7 @@
   color: #fffdfd;
   cursor: pointer;
   display: inline-block;
-  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 24px;
   font-weight: 600;
   line-height: normal;
@@ -176,7 +177,8 @@
   flex-direction: column;
 }
 
-.header-names span, .header-names h2 {
+.header-names span,
+.header-names h2 {
   font-size: 3em;
   font-weight: 600;
   color: white;
@@ -217,12 +219,13 @@
   margin-left: 5%;
 }
 
-.profile-img-container label{
+.profile-img-container label {
   position: absolute;
   bottom: -20px;
   right: -10px;
 }
-.profile-img-container label img{
+
+.profile-img-container label img {
   width: 45px;
   height: 45px;
   border-radius: 0px;
@@ -244,13 +247,14 @@
   border: none;
   margin-left: 20px;
 }
+
 .css-i4bv87-MuiSvgIcon-root {
   font-size: 3em !important;
   color: white;
 }
 
 .profile-edit-button:hover {
-  background: rgba(0, 0, 0, 0.2)
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .profile-header {
@@ -262,14 +266,14 @@
   color: white;
 }
 
-.profile-header button{
+.profile-header button {
   margin-right: 20px;
   align-self: center;
 }
-.profile-header h1{
+
+.profile-header h1 {
   display: flex;
   align-items: center;
   width: 300px;
   font-size: 40px;
 }
-
