@@ -13,7 +13,6 @@ import { id } from 'date-fns/locale';
 import { userContext } from '../App';
 import { useNavigate } from 'react-router-dom';
 import mopey from '../DaMopester-nobackground.png'
-import { spin } from './animista.css';
 // import Calendar from 'react-calendar';
 // import './Events.css';
 
@@ -276,7 +275,7 @@ export const Events = () => {
             onSelectEvent={handleDetails}
           />
           <div>
-          <img src={mopey} alt= '' className='baby'></img> 
+          <img src={mopey} alt= '' className='baby' onClick= 'rotate'></img>           
           </div>
           <div id='centerBtn'>
             <button id='togglerBtn' onClick={yesToggler}>Add New Event</button>  
