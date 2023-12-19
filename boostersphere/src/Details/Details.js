@@ -107,6 +107,7 @@ export const Details = ({ item }) => {
             type="text"
             placeholder={item.description}
             value={editDetails.description}
+            style={{ height: 'auto', width: '800px', padding: '50px', margin: '10px' }}
             onChange={(e) =>
               setEditDetails({ ...editDetails, description: e.target.value })
             }

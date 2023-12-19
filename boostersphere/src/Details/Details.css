@@ -8,11 +8,13 @@
 
 /* CSS */
 #detailscontainer {
-    display: flex;
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
     flex-direction: column;
     align-items: center;
     font-family: 'Arial', sans-serif;
-    color: #333;
+    background-color: #f3f5f8;
   }
   
   @keyframes moveMopey {
@@ -36,8 +38,8 @@
   }
   
   #wrap {
-    width: 80%;
-    max-width: 600px;
+    width: 100%;
+    max-width: 300px;
   }
   
   ul {
@@ -46,14 +48,21 @@
   }
   
   .detail_value {
-    margin-bottom: 15px;
-    padding: 8px;
-    border: 1px solid black;
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
-    font-size: 16px;
-    font-weight: 800;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    color: #3d535f;
+    background-color: white;
+    padding: 10px 20px; /* Adjust padding */
+    margin: 15px 15px; /* Adjust margin */
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    box-shadow: 0 15px 10px rgba(0,0,0,0.4);
+}
+  .detail_value::placeholder{
+    color: black;
   }
   
   
@@ -95,4 +104,53 @@
     color: #7f00ff;
     margin-bottom: 5px;
   }
+
+  .detail_wrapper{
+    overflow: hidden;
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 80px);
+    justify-content: center;
+    align-items: center;
+    padding: 0 10%;
+}
+
+.detail_wrapper::before{
+    position: absolute;
+    content: '';
+    height: 600px;
+    width: 600px;
+    border-radius: 50%;
+    left: 3%;
+    top: 10%;
+    background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.2));
+    animation: ball_1 15s linear infinite;
+}
+
+.detail_wrapper::after{
+    position: absolute;
+    content: '';
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    right: 5%;
+    bottom:10%;
+    background: linear-gradient(45deg, #2300a1cc, rgb(53, 53, 53, 0.2));
+    animation: ball_2 15s linear infinite;
+}
+
+@keyframes ball_1{
+    50%{
+        left: -10%;
+        top: 20%;
+    }
+}
+
+@keyframes ball_2{
+    50%{
+        right: 20%;
+        bottom: 10%;
+    }
+}
+
 
