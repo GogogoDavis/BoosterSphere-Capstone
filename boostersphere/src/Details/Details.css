@@ -182,8 +182,8 @@
 .detail_wrapper2::after{
     position: absolute;
     content: '';
-    height: 600px;
-    width: 600px;
+    height: 300px;
+    width: 300px;
     background: transparent;
     border-radius: 50%;
     right: 1%;
