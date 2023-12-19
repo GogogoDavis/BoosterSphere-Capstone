@@ -30,7 +30,7 @@ export const VisitorShop = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      await fetch(`https://fakestoreapi.com/products/category/men's%20clothing`)
+      await fetch('http://localhost:8080/shop/images')
         .then((res) => res.json())
         .then((data) => setProducts(data));
     };
@@ -45,7 +45,7 @@ export const VisitorShop = () => {
         <div className = "Landing_logo">BoosterSphere<b className='Landing_bold'>.</b></div>
         <ul className='Landing_navItems'>
             <li onClick={()=>{ navigate('/')}}><p>Front Page</p></li>
-        </ul>        
+        </ul>
       </div>
 
     <div className="parent-container">
@@ -120,7 +120,7 @@ export const VisitorShop = () => {
                   marginRight: "auto",
                   borderRadius: '12px',
                 }}
-                src={item.image}
+                src={item.image_path}
               />
               <p className="itemTitle">
                 {item.title}
