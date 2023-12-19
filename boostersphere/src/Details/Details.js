@@ -1,9 +1,9 @@
-// import "./Details.css";
+import "./Details.css";
 import { useNavigate, useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import React, {useState} from 'react';
 import mopey from '../DaMopester-nobackground.png'
-import { Sidebar } from '../Sidebar/Sidebar';
+// import { Sidebar } from '../Sidebar/Sidebar';
 
 
 export const Details = ({ item }) => {
@@ -58,13 +58,13 @@ export const Details = ({ item }) => {
   return (
     <>
     <div className='details_container'>
-    <Sidebar />
+    {/* <Sidebar /> */}
        {/* <div className='mopeyImg'>
             <img src={mopey} alt=''></img>
               </div> */}
-      <div style="overflow:hidden" id="wrap">
+      <div style={{overflow:"hidden"}} id="wrap">
         <ul>
-          <h1
+          <h1 
             id="detailstitle"
             // style={{
             //   // display: "flex",
