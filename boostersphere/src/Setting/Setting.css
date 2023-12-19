@@ -1,7 +1,10 @@
 .Userdata{
     text-align: center;
-    width: 100%
+    width: 100%;
+    background-color: rgb(37, 37, 37);
+    color: white;
 }
 .Container{
     display: flex;
 }
+
