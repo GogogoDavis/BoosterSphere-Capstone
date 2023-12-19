@@ -1,5 +1,5 @@
 import "./shop.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Logout } from "../Logout/Logout";
 import { Sidebar } from "../Sidebar/Sidebar.js"
 import mopey from '../DaMopester-nobackground.png'
@@ -18,7 +18,7 @@ import { useSelector, useDispatch } from "react-redux";
 export const Shop = () => {
   const [products, setProducts] = useState([]);
   const cart = useSelector((state) => state.cart.cart)
-  const [images, setImages] = useState([]);
+  const navigate = useNavigate();
 
   const dispatch = useDispatch()
   const addItemToCart = (item) => {
@@ -40,6 +40,12 @@ export const Shop = () => {
 
   return (
     <>
+    <div className='Landing_nav'>
+        <div className = "Landing_logo">BoosterSphere<b className='Landing_bold'>.</b></div>
+        <ul className='Landing_navItems'>
+            <li onClick={()=>{ navigate('/')}}><p>Front Page</p></li>
+        </ul>
+      </div>
     <div className="store_parent-container">
       <Sidebar />
       <div className="main">
