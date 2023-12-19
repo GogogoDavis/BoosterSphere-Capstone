@@ -122,12 +122,12 @@ margin: 30px 0;
     }
 
  .funds_addingitem input {
-
   border-radius: 10px;
   font-size: 16px;
   padding: 20px 45px 20px 20px;
-
+  resize: both;
  }   
+
 
 
 
@@ -227,6 +227,10 @@ margin: 30px 0;
 
 
   .funds_transactionli{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     list-style: none;
     margin-top: 5px;
 
@@ -288,6 +292,16 @@ margin: 30px 0;
   animation: object1 20s linear infinite;
   z-index: -1;
 }
+
+
+
+
+.funds-transaction-delete{
+  background: transparent;
+  font-size: larger;
+  cursor: pointer;
+}
+
 
 .funds_Landing_wrapper::after{
   position: absolute;
