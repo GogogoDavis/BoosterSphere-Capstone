@@ -109,7 +109,7 @@ export const Events = () => {
     })
   }
 
-      setTimeout(()=>{settoggleRefresh(!toggleRefresh)},100)
+      setTimeout(()=>{settoggleRefresh(!toggleRefresh)},50)
     }
 
 
@@ -141,89 +141,93 @@ export const Events = () => {
         <Sidebar />
         <div className="eventPortion">
           <div id='cal'>
-          <h1 style={{color: "white"}}>Calendar</h1>
+          <h1 id='calHead' style={{color: "#3d535f"}}>Calendar</h1>
           <div>
           </div>
           </div>
           {toggleForm ? (
             <div id="postEventFields">
-              <div>
-              <label>Event Title: </label>
-                <input
+              <div className='fieldContainer'>
+             <div><label className='inputLabels'>Event Title: </label></div>
+              <div className='eventsInputField'><input
                   type="text"
                   placeholder="Add Event"
-                  style={{ width: "40%", marginRight: "10px" }}
+                  style={{ width: "100%", marginRight: "0px" }}
                   value={newEvent.title}
                   onChange={(e) =>
                     setNewEvent({ ...newEvent, title: e.target.value })
                   }
-                />
+                /></div>
               </div>
-
-              <div>
-              <label>Event Type: </label>
-                <input
+              <div className='fieldContainer'>
+              <div><label className='inputLabels'>Event Type: </label></div>
+              <div className='eventsInputField'><input
                   type="text"
                   placeholder="Event Type"
-                  style={{ width: "40%", marginRight: "10px" }}
+                  style={{ width: "100%", marginRight: "0px" }}
                   value={newEvent.type}
                   onChange={(e) =>
                     setNewEvent({ ...newEvent, type: e.target.value })
                   }
-                />
+                /></div>
               </div>
-              <div>
-                <label>Description: </label>
-                <input
+              <div className='fieldContainer'>
+              <div><label className='inputLabels'>Description: </label></div>
+               <div className=' eventsInputField'><input
                   type="text"
                   placeholder="Event Description"
-                  style={{ width: "40%", marginRight: "10px" }}
+                  style={{ width: "100%", marginRight: "0px" }}
                   value={newEvent.description}
                   onChange={(e) =>
                     setNewEvent({ ...newEvent, description: e.target.value })
                   }
-                />
-                
+                /></div>           
               </div>
-
-              <label>Start Date: </label>
+              <div className='fieldContainer'>
+             <div><label className='inputLabels'>Start Date: </label></div>
+              <div className='eventsInputField'>
                 <DatePicker
                 placeholderText="Start Date"
                 showTimeSelect
                 style={{ marginRight: "10px" }}
                 selected={newEvent.start}
                 onChange={(start) => setNewEvent({ ...newEvent, start })}
-              />
+              /></div>
+              </div>
 
-              <br></br><label>End Date: </label>
-              <DatePicker
+              <br></br>
+
+              <div className='fieldContainer'>
+              <div><label className='inputLabels'>End Date: </label></div>
+              <div className='eventsInputField'>
+                <DatePicker
                 placeholderText="End Date"
                 showTimeSelect
                 style={{ marginRight: "10px" }}
                 selected={newEvent.end}
                 onChange={(end) => {setNewEvent({ ...newEvent, end }); console.log(end)}}
-              />
+              /></div>
+              </div>
 
-              <div>
-              <label>Funds Required: </label>
-                <input
+              <div className='fieldContainer'>
+              <div><label className='inputLabels'>Funds Required: </label></div>
+                <div className='eventsInputField'><input
                   type="integer"
                   placeholder="Funds Required"
-                  style={{ width: "40%", marginRight: "10px" }}
+                  style={{ width: "100%", marginRight: "0px" }}
                   value={newEvent.fundRequired}
                   onChange={(e) =>
                     setNewEvent({ ...newEvent, fundRequired: e.target.value })
                   }
-                />
-                
+                /></div>            
               </div>
 
-              <div>
-              <label>Volunteers Needed: </label>
-                <input
+              <div className='fieldContainer'>
+              <div><label className='inputLabels'>Volunteers Needed: </label></div>
+                <div className= 'eventsInputField'><input
                   type="integer"
                   placeholder="Volunteers Needed"
-                  style={{ width: "40%", marginRight: "10px" }}
+                  style={{ width: "100%", marginRight: "0px" }}
                   value={newEvent.volunteerNeeded}
                   onChange={(e) =>
                     setNewEvent({
@@ -231,31 +235,32 @@ export const Events = () => {
                       volunteerNeeded: e.target.value,
                     })
                   }
-                />
+                /></div>
               </div>
-
-              <div>
-              <label>User ID: </label>
-
-                <input
+              <div className='fieldContainer'>
+              <div><label className='inputLabels'>User ID: </label></div>
+                <div className='eventsInputField'><input
                   type="integer"
                   placeholder="User ID"
-                  style={{ width: "40%", marginRight: "10px" }}
+                  style={{ width: "100%", marginRight: "0px" }}
                   value={newEvent.userId}
                   onChange={(e) =>
                     setNewEvent({ ...newEvent, userId: e.target.value })
                   }
-                />
+                /></div>
               </div>
-              <button style={{ marginTop: "10px" }} onClick={()=>HandleAddEvent()}>
+            <div className='eventInputButton'>
+              <button 
+                className='eventButtonStyle'
+                onClick={()=>HandleAddEvent()}>
                 Submit New Event!
               </button>
               <button
-                style={{ marginLeft: "5px", width: "20%" }}
+                className= 'eventButtonStyle'
+                style={{ marginLeft: "5px", width: "30%" }}
                 onClick={yesToggler}
-              >
-                Return
-              </button>
+              >Return</button>
+            </div>
             </div>
           ) : null}
 
@@ -265,7 +270,8 @@ export const Events = () => {
             events={allEvents}
             startAccessor={(event) => { return new Date(event.start) }}
             endAccessor={(event) => { return new Date(event.end) }}
-            style={{ height: 800, color: 'white', marginBottom: '50px', marginRight: '50px', marginLeft: '50px'}}
+            style={{ height: 800, color: '#3d535f', marginBottom: '50px', marginRight: '50px', background: 'transparent',
+            backdropFilter: 'blur(20px)', marginLeft: '50px', zIndex: '999'}}
             onSelectEvent={handleDetails}
           />
           <div>
@@ -275,6 +281,8 @@ export const Events = () => {
             <button id='togglerBtn' onClick={yesToggler}>Add New Event</button>  
             </div>     
         </div>
+        <div className='Events_Landing_wrapper'>
+      </div>
       </div>
     </>
   ));
