@@ -7,19 +7,26 @@
 .Funds_main{
     width: 100%;
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    margin-top: 20px;
+}
 
+.Funds_carddiv{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
 }
 
 
 .Funds_card{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: 30%;
+    width: 70%;
     margin: 20px;
     border-radius: 5px;
+    background-color: white;
 }
 
 .Funds_card:hover {
@@ -28,6 +35,8 @@
 
 .Funds_Card_Container{
     padding: 2px 16px;
+    width: 100%;
+    position: relative;
 }
 
 
@@ -73,14 +82,56 @@
     margin-top: 15px;
 }
 
+.Funds_add{
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  align-items: center;
+
+}
+
+.funds_addingitem{
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+position: relative;
+width: 100%;
+height: 50px;
+margin: 30px 0;
+}
+
+
+.funds_addingitem button{
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 25px;
+  font-weight: 400;
+  color: #fff;
+  background-color: #3d535f;
+  padding: 8px 14px;
+  margin: 40px 5px;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  box-shadow: 0 15px 10px rgba(0,0,0,0.4);
+  }
+
+  .funds_addingitem button:hover{
+    background-color: #7f00ff;
+    }
+
+ .funds_addingitem input {
+
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 20px 45px 20px 20px;
+
+ }   
 
 
 
-
-
-
-
-.volunteer-overlay {
+.funds_volunteer-overlay {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -93,7 +144,22 @@
     background: rgba(0, 0, 0, 0.5);
   }
   
-  .volunteer-form-container {
+  .funds_volunteer-form-container {
+    position: relative;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 30%;
+    height: 30%;
+    text-align: center;
+    overflow: auto;
+  }
+
+
+  .funds_volunteer-form-container-transaction{
     position: relative;
     background-color: white;
     padding: 20px;
@@ -104,9 +170,10 @@
     width: 30%;
     height: 55%;
     text-align: center;
+    overflow: auto;
   }
   
-  .volunteer-form-container input{
+  .funds_volunteer-form-container input{
     align-self: center;
     width: 70%;
     height: 15%;
@@ -114,7 +181,7 @@
     border-radius: 10px;
     margin: 2%;
   }
-  .volunteer-button-form {
+  .funds_volunteer-button-form {
     position: static;
     transform: translateX(0);
     color: white;
@@ -122,7 +189,7 @@
     margin-right: 5px !important;
   }
   
-  .volunteer-button-form:hover {
+  .funds_volunteer-button-form:hover {
     color: #fff;
     background-color: #1A1A1A;
     background-color: rgb(14, 14, 14) !important;
@@ -130,7 +197,7 @@
     transform: translateX(0) !important;
   }
   
-  .volunteer-form-buttons {
+  .funds_volunteer-form-buttons {
     position: absolute;
     bottom: 10px;
     left: 50%;
@@ -141,3 +208,110 @@
   
   
   
+  .Funds_titleandbuttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .Funds_deleteEditbtn{
+    width: 50px;
+    background: transparent;
+    border: none;
+    font-size: larger;
+  }
+
+  .Funds_deleteEditbtn:hover{
+    cursor: pointer;
+  }
+
+
+  .funds_transactionli{
+    list-style: none;
+    margin-top: 5px;
+
+  }
+
+  .funds_titleexit{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .funds_titleexit button {
+    background-color: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: xx-large;
+  }
+
+
+  .funds_editaddcancel{
+    cursor: pointer;
+  }
+
+
+  .funds-inputandbuttoncontainer{
+    display: flex;
+    flex-direction: row;
+    margin-top: 25px;
+  }
+
+  .funds-inputandbuttoncontainer input{
+      width: 100%;
+      height: 100%;
+  }
+
+
+  .funds-twobuttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+  }
+
+
+
+  
+.funds_Landing_wrapper::before{
+  position: absolute;
+  content: '';
+  height: 350px;
+  width: 350px;
+  border-radius: 50%;
+  left: 20%;
+  top: 50%;
+  background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.2));
+  animation: object1 20s linear infinite;
+  z-index: -1;
+}
+
+.funds_Landing_wrapper::after{
+  position: absolute;
+  content: '';
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  left: 10%;
+  top: 12%;
+  background: linear-gradient(45deg, #2300a1cc, rgb(53, 53, 53, 0.2));
+  animation: object2 23s linear infinite;
+  z-index: -1;
+}
+
+@keyframes object1{
+  50%{
+      left:25;
+      top: 30%;
+  }
+}
+
+@keyframes object2{
+  50%{
+      left: 20%;
+      top: 10%;
+  }
+}

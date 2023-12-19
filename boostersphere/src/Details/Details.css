@@ -1,61 +1,203 @@
-#wrap {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap');
+/* *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins' , sans-serif;
+    background-color: #f3f5f8;
+    overflow: hidden;
+    
 
-    display:flex; 
-    height: 100vh;
-    justify-content: center; 
-    align-items: center;
-    background-size: cover;
-    background-color: slateblue;
-} 
-
-
-.addWrap{
-    display: flex; 
-    flex-direction: row;
-    margin: 10px;
-    color: salmon;
-    padding: 5px; 
-    border: 5px solid darkmagenta;
-    border-radius: 5px; 
-    background: slateblue
-}
-
-.addWrap:hover{
-    background-color: red; 
-    color: black;
-}
-
-/* ::placeholder{
-    color: black;
 } */
 
-.buttonLayout{
-    display: flex; 
+/* @keyframes moveMopey {
+    0% {
+      transform: translateX(0);
+    }
+    
+    100% {
+      transform: translateX(calc(100vw - 100px));
+    }
+  } */
+
+
+/* 
+  .mopeyImg img {
+    width: 100px; 
+    height: auto;
+    border-radius: 50%; 
+    margin-bottom: 20px;
+    position: absolute;
+    top: 50%; 
+    animation: moveMopey 8s linear infinite; 
+  } */
+  
+
+  /* #wrap {
+    width: 100%;
+    max-width: 300px;
+  } */
+  
+  #detailscontainer {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
     flex-direction: column;
-    margin: 20px; 
-    padding: 10px;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    /* background-color: #f3f5f8; */
+  }
+
+  #detailstitle {
+    color: #3d535f;
+    text-align: center;
+    font-size:60px;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+
+
+  }
+
+.div_label {
+    float: left;
+    width: 25%;
+    margin-top: 30px;
+  }
+  
+  .div_input {
+    float: right;
+    width: 75%;
+    margin-top: 30px;
+    
+  }
+  
+  .div_row::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .event_label {
+    color: #3d535f;
+    font-size: 17px;
+    font-weight: 800;
+  }
+
+  .detail_value {
+    color: #3d535f;
+    font-size: 17px;
+    font-weight: 800;
+    background-color: white;
+    box-shadow: 0 15px 10px rgba(0,0,0,0.4);
+    border: none;
+    text-transform: capitalize;
+
+
+
+
+  }
+
+
+
+  .buttonLayout {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .detailBtn {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 25px;
+    font-weight: 800;
+    color: #3d535f;
+    background-color: white;
+    padding: 8px 14px;
+    margin: 40px 5px;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    box-shadow: 0 15px 10px rgba(0,0,0,0.4);
+  }
+  
+  .detailBtn:hover {
+    background-color: #3d535f;
+    color: white;
+  }
+
+  .detail_wrapper::before{
+    position: absolute;
+    content: '';
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    left: 3%;
+    top: 10%;
+    background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.2));
+    animation: ball_1 15s linear infinite;
 }
 
-#idLine{
-    width: 40%;
-    margin: 10px;
-    color: salmon;
-    padding: 5px; 
-    border: 5px solid darkmagenta;
-    border-radius: 5px; 
-    background: slateblue
+/* .detail_wrapper::after{
+    position: absolute;
+    content: '';
+    height: 600px;
+    width: 600px;
+    border-radius: 50%;
+    right: 5%;
+    bottom:10%;
+    background: linear-gradient(45deg, #2300a1cc, rgb(53, 53, 53, 0.2));
+    animation: ball_2 15s linear infinite;
+} */
+
+@keyframes ball_1{
+    50%{
+        left: -10%;
+        top: 20%;
+    }
 }
 
-.detailBtn{
-    margin:20px; 
-    padding: 20px;
-    border: 5px solid;
-    border-radius: 5px;
-    background-color: slateBlue;
-    color: rgb(238, 132, 238); 
+/* @keyframes ball_2{
+    50%{
+        right: 20%;
+        bottom: -10%;
+    }
+} */
+
+.detail_wrapper2::before{
+    position: absolute;
+    content: '';
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    left: 20%;
+    top: 60%;
+    background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.2));
+    animation: ball_3 15s linear infinite;
 }
 
-.detailBtn:hover {
-    background-color: slategrey;
-    color: skyblue;
+.detail_wrapper2::after{
+    position: absolute;
+    content: '';
+    height: 600px;
+    width: 600px;
+    background: transparent;
+    border-radius: 50%;
+    right: 1%;
+    bottom:5%;
+    background: linear-gradient(45deg, #2300a1cc, rgb(53, 53, 53, 0.2));
+    animation: ball_4 20s linear infinite;
+}
+
+@keyframes ball_3{
+    50%{
+        left: -10%;
+        top: 20%;
+    }
+}
+
+@keyframes ball_4{
+    50%{
+        right: -5%;
+        bottom: -25%;
+    }
 }
