@@ -13,6 +13,7 @@ import { id } from 'date-fns/locale';
 import { userContext } from '../App';
 import { useNavigate } from 'react-router-dom';
 import mopey from '../DaMopester-nobackground.png'
+import './animista.css';
 // import Calendar from 'react-calendar';
 // import './Events.css';
 
