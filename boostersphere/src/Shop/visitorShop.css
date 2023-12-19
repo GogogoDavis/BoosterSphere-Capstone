@@ -211,3 +211,45 @@
   color: #333;
   font-weight: 600;
 }
+
+
+
+.visitorStore_Landing_wrapper::before{
+  position: absolute;
+  content: '';
+  height: 600px;
+  width: 600px;
+  border-radius: 50%;
+  left: 10%;
+  top: 35%;
+  background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.2));
+  animation: object1 20s linear infinite;
+  z-index: 0;
+}
+
+.visitorStore_Landing_wrapper::after{
+  position: absolute;
+  content: '';
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  left: 35%;
+  top: 12%;
+  background: linear-gradient(45deg, #2300a1cc, rgb(53, 53, 53, 0.2));
+  animation: object2 23s linear infinite;
+  z-index: 0;
+}
+
+@keyframes object1{
+  50%{
+      left: -19%;
+      top: 30%;
+  }
+}
+
+@keyframes object2{
+  50%{
+      left: 45%;
+      top: 10%;
+  }
+}

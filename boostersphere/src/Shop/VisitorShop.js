@@ -137,7 +137,8 @@ export const VisitorShop = () => {
         </div>
         {/* <h2><Link to= '/'>Return Home</Link></h2> */}
       </div>
-
+      <div className='visitorStore_Landing_wrapper'>
+      </div>
       {/* Footer */}
       {/* <div className="headerBottom">
         <MenuIcon style={{ color: "white" }} />

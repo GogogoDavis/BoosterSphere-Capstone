@@ -38,7 +38,7 @@ export const Shop = () => {
 
   return (
     <>
-    <div className="parent-container">
+    <div className="store_parent-container">
       <Sidebar />
       <div className="main">
 
@@ -125,8 +125,9 @@ export const Shop = () => {
             </div>
           ))}
         </div>
+        
       </div>
-      <div className='Landing_wrapper'>
+      <div className='Store_Landing_wrapper'>
       </div>
 
       {/* Footer */}

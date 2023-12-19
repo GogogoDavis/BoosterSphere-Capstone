@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { userContext } from '../App';
 import {Link, useNavigate } from 'react-router-dom' ;
 import { Sidebar } from '../Sidebar/Sidebar';
-import './HomePage.css'
+import './VisitorHome.css'
 import mopey from '../DaMopester-nobackground.png'
 import sd10 from '../Space_Delta_10_emblem.png'
 import galaxy from '../galaxy.png'
 
-export const HomePage = () => {
+export const VisitorHome = () => {
   const { userData } = useContext(userContext);
   const [dashboardEvents, setDashboardEvents] = useState([]);
   const [dashboardDonations, setDashboardDonations] = useState([]);
@@ -39,10 +39,16 @@ export const HomePage = () => {
     return (raised / target) * 100;
   };
 
-  return (userData ?
+  return (
     <>
-    <div className='home-Parent-Container'>
-      <Sidebar />
+      <div className='Landing_nav'>
+        <div className = "Landing_logo">BoosterSphere<b className='Landing_bold'>.</b></div>
+        <ul className='Landing_navItems'>
+            <li onClick={()=>{ navigate('/')}}><p>Front Page</p></li>
+        </ul>        
+      </div>
+
+
       <div className='mainpage'>
           <div className='leftSideVisPage'>
             <h1 className='homePageTitle'>Delta 10 Booster Club</h1>
@@ -126,13 +132,9 @@ export const HomePage = () => {
               </div>
           </div>
       </div>
-      <div className='Home_Landing_wrapper'>
+      <div className='visitorhome_Landing_wrapper'>
       </div>
-      </div>
-
-
     </>
-    : <></>
   );
 };
 

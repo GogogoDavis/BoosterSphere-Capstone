@@ -44,7 +44,7 @@ export const Landing = () => {
       <div className='Landing_nav'>
         <div className = "Landing_logo">BoosterSphere<b className='Landing_bold'>.</b></div>
         <ul className='Landing_navItems'>
-            <li><Link to='/Home'><p>HOME</p></Link></li>
+            <li><Link to='/VisitorHome'><p>HOME</p></Link></li>
             <li><Link to ='/VisitorVolunteers'><p>VOLUNTEER</p></Link></li>
             <li><Link to='/VisitorShop'><p>STORE</p></Link></li>
         </ul>

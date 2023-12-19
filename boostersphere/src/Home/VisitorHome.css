@@ -6,12 +6,6 @@
     font-family: 'poppins' , sans-serif;
 }
 
-.home-Parent-Container{
-  background-color: #f3f5f8;
-  display: flex;
-  flex-direction: row;
-}
-
 
 .mainpage{
   /* height: 100vh;
@@ -156,7 +150,7 @@ text-transform: uppercase;
 }
 
 
-.Home_Landing_wrapper::before{
+.visitorhome_Landing_wrapper::before{
   position: absolute;
   content: '';
   height: 600px;
@@ -169,7 +163,7 @@ text-transform: uppercase;
   z-index: 0;
 }
 
-.Home_Landing_wrapper::after{
+.visitorhome_Landing_wrapper::after{
   position: absolute;
   content: '';
   height: 200px;

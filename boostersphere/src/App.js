@@ -21,6 +21,7 @@ import { FundEdit } from './Funds/FundEdit.js';
 import { Volunteers } from './volunteers/Volunteers.js';
 import { VisitorVolunteers } from './volunteers/Visitor_Volunteers.js';
 import { VisitorShop } from './Shop/VisitorShop.js';
+import { VisitorHome } from './Home/VisitorHome.js';
 
 export const userContext = React.createContext();
 
@@ -68,6 +69,7 @@ function App() {
                 <Events />
               </RequireAuth>} />
 
+            <Route path='/VisitorHome' element={<VisitorHome />} />
             <Route path='/Home' element={
               <RequireAuth>
                 <HomePage />
