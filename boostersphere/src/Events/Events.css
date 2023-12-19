@@ -109,7 +109,7 @@
     color: #fff;
     background-color: #3d535f;
     padding: 8px 14px;
-    margin: 10px;
+    margin-top: 1px;
     letter-spacing: 2px;
     text-transform: capitalize;
     box-shadow: 0 15px 10px rgba(0,0,0,0.4);
@@ -156,7 +156,7 @@ text-transform: uppercase;
    width: 300px;
    border-radius: 50%;
    left: 80%;
-   top: 70%;
+   top: 68%;
    background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.2));
    animation: object1 50s linear infinite;
    z-index: -1;
