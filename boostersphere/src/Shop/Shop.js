@@ -40,12 +40,6 @@ export const Shop = () => {
 
   return (
     <>
-    <div className='Landing_nav'>
-        <div className = "Landing_logo">BoosterSphere<b className='Landing_bold'>.</b></div>
-        <ul className='Landing_navItems'>
-            <li onClick={()=>{ navigate('/')}}><p>Front Page</p></li>
-        </ul>
-      </div>
     <div className="store_parent-container">
       <Sidebar />
       <div className="main">
