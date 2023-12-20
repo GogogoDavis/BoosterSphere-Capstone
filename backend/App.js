@@ -153,8 +153,8 @@ app.patch('/events/:id', (req, res) => {
     title: title,
     type: type,
     description: description,
-    start: new Date (start),
-    end: new Date (end),
+    start: new Date(start),
+    end: new Date(end),
     fundRequired: fundRequired,
     volunteerNeeded: volunteerNeeded,
     userId: userId

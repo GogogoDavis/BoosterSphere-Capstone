@@ -8,6 +8,7 @@ exports.seed = async function(knex) {
   await knex('shop').insert([
     { title:"4 SOPS PVC Patch", image_path: "../images/4 SOPS USSF PVC Patch.jpg", price: 10},
     { title:"75th ISRS PVC Patch", image_path: "../images/75th ISRS.jpg", price: 10},
+    { title:"1 SOPS", image_path: "../images/1 SOPS.jpg", price: 10},
     { title:"4 SPCS PVC Patch", image_path: "../images/4 SPCS.jpg", price: 10},
     { title:"72 ISRS PVC Patch", image_path: "../images/72 ISRS.jpg", price: 10},
     { title:"533 TRS Friday PVC Patch", image_path: "../images/533 TRS Friday PVC Patch.jpg", price: 10},
