@@ -22,7 +22,7 @@ import { Volunteers } from './volunteers/Volunteers.js';
 import { VisitorVolunteers } from './volunteers/Visitor_Volunteers.js';
 import { VisitorShop } from './Shop/VisitorShop.js';
 import { VisitorHome } from './Home/VisitorHome.js';
-
+import { VisitorCart } from './Shop/visitorCart.js';
 export const userContext = React.createContext();
 
 function App() {
@@ -81,7 +81,7 @@ function App() {
               </RequireAuth>} />
 
 
-            <Route path='/shop' element={<Shop />} />
+            {/* <Route path='/shop' element={<Shop />} /> */}
             <Route path='/cart' element={<Cart />} />
             <Route path='/register' element={<NewRegister />} />
 
@@ -97,8 +97,10 @@ function App() {
             <Route path='/VisitorVolunteers' element={<VisitorVolunteers />} />
             <Route path='/VisitorShop' element={<VisitorShop />} />
 
-            <Route path='/Shop' element={<Shop />} />
+            <Route path='/Shop' element={<RequireAuth><Shop /></RequireAuth>} />
             <Route path='/Cart' element={<Cart />} />
+            <Route path='/VisitorShop' element={<VisitorShop />} />
+            <Route path='/VisitorCart' element={<VisitorCart />} />
 
             <Route path='/details/:id' element={<Details item={details} />} />
 

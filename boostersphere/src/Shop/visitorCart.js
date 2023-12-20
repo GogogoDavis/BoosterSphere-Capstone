@@ -1,31 +1,42 @@
-import "./visitorShop.css";
+import React from 'react'
+import "./shop.css";
 import { Link, useNavigate } from "react-router-dom";
 import { Logout } from "../Logout/Logout";
-import { Sidebar } from "../Sidebar/Sidebar.js"
+import { Sidebar } from "../Sidebar/Sidebar"
 import mopey from '../DaMopester-nobackground.png'
 import { userContext } from "../App";
 import { useContext, useState, useEffect } from "react";
-import * as React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MenuIcon from "@mui/icons-material/Menu";
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import { addToCart, removeFromCart } from './CartSlice'
+import { addToCart, removeFromCart, incrementQuantity, decrementQuantity } from './CartSlice'
 import { useSelector, useDispatch } from "react-redux";
 
-export const VisitorShop = () => {
+export const VisitorCart = () => {
   const [products, setProducts] = useState([]);
-  const navigate = useNavigate();
   const cart = useSelector((state) => state.cart.cart)
   const dispatch = useDispatch()
+  const navigate = useNavigate();
   const addItemToCart = (item) => {
     dispatch(addToCart(item))
   }
   const removeItemFromCart = (item) => {
     dispatch(removeFromCart(item))
   }
+  const incrementItemQuantity = (item) => {
+    dispatch(incrementQuantity(item))
+  }
+  const decrementItemQuantity = (item) => {
+    dispatch(decrementQuantity(item))
+  }
+  const total = cart.map((item) => item.price * item.quantity).reduce((curr, prev) => curr +prev,0)
+
+  const tax = (total * 0.029).toFixed(2)
+  const orderTotal = total + parseFloat(tax)
+
   console.log(cart);
 
   useEffect(() => {
@@ -37,9 +48,9 @@ export const VisitorShop = () => {
     fetchProducts();
   }, []);
 
-  return (
-    <>
 
+  return (
+  <>
 
 <div className='Landing_nav'>
         <div className = "Landing_logo">BoosterSphere<b className='Landing_bold'>.</b></div>
@@ -48,17 +59,19 @@ export const VisitorShop = () => {
         </ul>
       </div>
 
-    <div className="parent-container">
-      <Sidebar />
-      <div className="main">
 
+    <div className='parent-container'>
+      <Sidebar />
+      <div className='main'>
+
+    {/* Header */}
       <div className="header">
         <img
           style={{ width: 50, height: 50 }}
           className="logo"
           src={mopey} alt='add image later'
         />
-                <h4 className='headerText'>DELTA SWAG SHOP</h4>
+        <h4 className='headerText'>DELTA 10 SWAG SHOP</h4>
         <div className="headerInputContainer">
           <input
             className="headerInput"
@@ -74,7 +87,7 @@ export const VisitorShop = () => {
           <h4 className="headerText">CUSTOM ORDERS</h4>
         </div>
         <div style={{ position: "relative " }} >
-        <Link to='/VisitorCart' className='NavBar'>
+        <Link to='/Cart' className='NavBar'>
           <Tooltip title='Cart'>
             <ShoppingCartIcon
               style={{
@@ -103,48 +116,61 @@ export const VisitorShop = () => {
           >
             {cart.length}
           </span>
-
         </div>
       </div>
 
-{/*Body */}
-      <div className="shopBody">
-        <div className="bodyItem">
-          {products.map((item, index) => (
-            <div key={index} className="productItem">
-              <img
-                style={{
-                  height: 200,
-                  width: 200,
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  borderRadius: '12px',
-                }}
-                src={item.image_path}
-              />
-              <p className="itemTitle">
-                {item.title}
-              </p>
-              <p style={{color: 'white'}}>${item.price}</p>
+      {/* Body */}
+      <div className="cart">
+        <div className="cartLeft">
+          {cart.map((item, index) => (
+            <div key={index} className="cartContainer">
 
-              {cart.some((x) => x.id === item.id) ? (
-                <button className="addToCartButton" onClick={()=> removeItemFromCart(item)} style={{backgroundColor:'lightgray'}}>Remove From Cart</button>
-              ) : (
-                <button className="addToCartButton" onClick={()=> addItemToCart(item)}>Add to Cart</button>
-              )}
-            </div>
+              <div className='cartImage'>
+              <img style={{height: 100, width: 100, borderRadius: '8px'}} src={item.image_path}/>
+              </div>
+
+              <div className='cartDescription'>
+                <p>{item.title}</p>
+                <p >${item.price}</p>
+              </div>
+
+              <div className='cartButtonContainer'>
+                <div className='cartButtons'>
+                  <div onClick={() => decrementItemQuantity(item)} style={{cursor:'pointer'}}>-</div>
+                  <div>{item.quantity}</div>
+                  <div onClick={() => incrementItemQuantity(item)} style={{cursor:'pointer'}}>+</div>
+                </div>
+                <button onClick={() => removeItemFromCart(item)} className='cartButton'>Remove Item</button>
+                <h5 style={{marginTop:'3px'}}>${item.price * item.quantity}</h5>
+              </div>
+          </div>
           ))}
+                <div>
+
+      </div>
         </div>
-        {/* <h2><Link to= '/'>Return Home</Link></h2> */}
+        <div className="cartRight">
+          <div className="checkoutContainer">
+            <div className="checkout">
+              <h5>Subtotal</h5>
+              <h5>${total}</h5>
+            </div>
+            <div className="checkout">
+              <h5>Tax</h5>
+              <h5>${tax}</h5>
+            </div>
+            <div style={{borderTop:'solid'}} className="checkout">
+              <h5>Order Total</h5>
+              <h5>${orderTotal}</h5>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className='visitorStore_Landing_wrapper'>
       </div>
-      {/* Footer */}
-      {/* <div className="headerBottom">
-        <MenuIcon style={{ color: "white" }} />
-      </div> */}
-</div>
-</div>
-    </>
-  );
-};
+
+      </div>
+      <div className='Landing_wrapper'>
+      </div>
+  </>
+  )
+}
