@@ -275,7 +275,7 @@ export const Events = () => {
             onSelectEvent={handleDetails}
           />
           <div>
-          <img src={mopey} alt= '' className='baby' onClick= 'rotate'></img>           
+         <a href={`https://www.youtube.com/watch?v=dQw4w9WgXcQ`}><img src={mopey} alt= '' className='baby'></img></a>         
           </div>
           <div id='centerBtn'>
             <button id='togglerBtn' onClick={yesToggler}>Add New Event</button>  
