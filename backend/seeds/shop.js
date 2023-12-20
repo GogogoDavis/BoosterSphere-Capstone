@@ -21,6 +21,6 @@ exports.seed = async function(knex) {
     { title:"DEL 10 PVC Patch", image_path: "../images/Space_Delta_10_emblem.png", price: 10},
     { title:"SPOC PVC Patch", image_path: "../images/SPOC.jpg", price: 10},
     { title:"THULE PVC Patch", image_path: "../images/THULE.jpg", price: 10},
+    { title:"DEL 11 PVC Patch", image_path: "../images/Space_Delta_11_emblem.png", price: 10},
   ]);
 };
-
