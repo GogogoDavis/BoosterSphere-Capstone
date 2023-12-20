@@ -1,5 +1,5 @@
 import "./shop.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Logout } from "../Logout/Logout";
 import { Sidebar } from "../Sidebar/Sidebar.js"
 import mopey from '../DaMopester-nobackground.png'
@@ -18,6 +18,8 @@ import { useSelector, useDispatch } from "react-redux";
 export const Shop = () => {
   const [products, setProducts] = useState([]);
   const cart = useSelector((state) => state.cart.cart)
+  const navigate = useNavigate();
+
   const dispatch = useDispatch()
   const addItemToCart = (item) => {
     dispatch(addToCart(item))
@@ -29,7 +31,7 @@ export const Shop = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      await fetch(`https://fakestoreapi.com/products/category/men's%20clothing`)
+      await fetch('http://localhost:8080/shop/images')
         .then((res) => res.json())
         .then((data) => setProducts(data));
     };
@@ -38,6 +40,12 @@ export const Shop = () => {
 
   return (
     <>
+    <div className='Landing_nav'>
+        <div className = "Landing_logo">BoosterSphere<b className='Landing_bold'>.</b></div>
+        <ul className='Landing_navItems'>
+            <li onClick={()=>{ navigate('/')}}><p>Front Page</p></li>
+        </ul>
+      </div>
     <div className="store_parent-container">
       <Sidebar />
       <div className="main">
@@ -110,7 +118,7 @@ export const Shop = () => {
                   marginRight: "auto",
                   borderRadius: '12px',
                 }}
-                src={item.image}
+                src={item.image_path}
               />
               <p className="itemTitle">
                 {item.title}
@@ -125,7 +133,7 @@ export const Shop = () => {
             </div>
           ))}
         </div>
-        
+    </div>
       </div>
       <div className='Store_Landing_wrapper'>
       </div>
@@ -134,7 +142,6 @@ export const Shop = () => {
       {/* <div className="headerBottom">
         <MenuIcon style={{ color: "white" }} />
       </div> */}
-</div>
 </div>
     </>
   );

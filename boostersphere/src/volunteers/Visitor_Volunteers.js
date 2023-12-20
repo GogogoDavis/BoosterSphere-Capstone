@@ -75,10 +75,8 @@ export const VisitorVolunteers = () => {
             return (
               <li key={event.id}>
                 <h1>{event.title}</h1>
-                <h3>{event.description}</h3>
-                <h3>{event.start.slice(0, 10)} @{event.start.slice(11, 16)}Z</h3>
-                <h3>To</h3>
-                <h3>{event.end.slice(0, 10)} @{event.end.slice(11, 16)}Z</h3>
+                <h2>{event.description}</h2>
+                <h3>{event.start.slice(0, 10)} @{event.start.slice(11, 16)}Z - {event.end.slice(0, 10)} @{event.end.slice(11, 16)}Z</h3>
                 <p>Volunteers: { volunteers.filter(volunteer => volunteer.event_id === event.id).length}/{event.volunteerNeeded}</p>
                 {volunteers.filter(volunteer => volunteer.event_id === event.id).length === event.volunteerNeeded ? 
                 <button className="volunteer-button">Max volunteers</button>

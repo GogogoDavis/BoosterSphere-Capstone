@@ -189,3 +189,13 @@ text-transform: uppercase;
       top: 10%;
   }
 }
+
+
+.visithome-Landing_nav{
+ background-color: #f3f5f8; 
+ display:flex;
+ width: 100%;
+ justify-content: space-around;
+ height: 80px;
+ line-height: 80px;
+}

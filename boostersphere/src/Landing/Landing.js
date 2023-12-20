@@ -1,5 +1,5 @@
 import './Landing.css'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { userContext } from '../App'
 import { HomePage } from '../Home/HomePage'
 import Cookies from 'js-cookie';
@@ -7,9 +7,11 @@ import mopey from '../DaMopester-nobackground.png'
 import galaxy from '../galaxy.png'
 import Typed from 'typed.js'
 import { Link, useNavigate } from 'react-router-dom';
+import Confetti from "react-confetti"
 
 export const Landing = () => {
 
+  const [conClick, setconClick] = useState(false);
   const {setUserData} = useContext(userContext)
   const { thisuser } = useContext(userContext)
   const navigate = useNavigate();
@@ -33,13 +35,17 @@ export const Landing = () => {
   }, []);
 
 
+const handleconClick = () =>{
+  setconClick(true);
 
+  setTimeout(() => { setconClick(false) }, 10000)
+}
 
 
 
   return (thisuser ?  <HomePage />:
 <>
-
+{conClick && <Confetti wind={0.05} gravity={0.1} />}
     <div className='Landing_container'>
       <div className='Landing_nav'>
         <div className = "Landing_logo">BoosterSphere<b className='Landing_bold'>.</b></div>
@@ -67,7 +73,7 @@ export const Landing = () => {
               <img src={mopey} alt='' ></img>
             </div>
             <div>
-            <img src={mopey} alt='' className='tiny' ></img>
+            <img src={mopey} alt='' className='tiny' onClick={()=>{handleconClick()}} ></img>
             </div>
           </div>
       </div>

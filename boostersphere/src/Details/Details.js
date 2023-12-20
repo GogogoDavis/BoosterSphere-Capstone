@@ -1,10 +1,11 @@
-// import "./Details.css";
+import "./Details.css";
 import { useNavigate, useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import React, {useState} from 'react';
 import mopey from '../DaMopester-nobackground.png'
-import { Sidebar } from '../Sidebar/Sidebar';
-import './Details.css'
+
+// import { Sidebar } from '../Sidebar/Sidebar';
+
 
 
 export const Details = ({ item }) => {
@@ -58,7 +59,7 @@ export const Details = ({ item }) => {
 
   return (
     <>
-   
+
 
     <div className='details_parent_container'>       
      <div className="details_sidebar">
@@ -76,6 +77,30 @@ export const Details = ({ item }) => {
           <div className="detail_div"><label className="DetailsEvent_label">Event ID: </label></div>
 
           <div className="DetailsInput_Field">
+
+    <div className='details_container'>
+    {/* <Sidebar /> */}
+       {/* <div className='mopeyImg'>
+            <img src={mopey} alt=''></img>
+              </div> */}
+      <div style={{overflow:"hidden"}} id="wrap">
+        <ul>
+          <h1 
+            id="detailstitle"
+            // style={{
+            //   // display: "flex",
+            //   // justifyContent: "center",
+            //   // color: "salmon",
+            // }}
+          > Event Details</h1>
+
+         <div className="detail_row"> 
+          <div className="detail_container2" >
+
+          <div className="detail_div"><label className="event_label">Event ID: </label></div>
+
+          <div className="detail_input">
+
             <input
             className="detail_value"
             value= {item.id}
