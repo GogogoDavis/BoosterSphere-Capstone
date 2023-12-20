@@ -8,17 +8,18 @@ import './Details.css'
 
 export const Details = ({ item }) => {
   const { id } = useParams();
+  const { title, type, description, start, end, fundRequired, volunteerNeeded, userId } = item;
   const navigate = useNavigate();
   const [editDetails, setEditDetails] = useState({
     id: id,
-    title: "",
-    type: "",
-    description: "",
-    start: new Date,
-    end: new Date, 
-    fundRequired: null,
-    volunteerNeeded: null,
-    userId: null
+    title: title,
+    type: type,
+    description: description,
+    start: new Date(start),
+    end: new Date(end), 
+    fundRequired: fundRequired,
+    volunteerNeeded: volunteerNeeded,
+    userId: userId, 
   })
 
   console.log(item);
@@ -44,8 +45,8 @@ export const Details = ({ item }) => {
         description: editDetails.description == "" ? item.description : editDetails.description,
         start: editDetails.start == item.start ? item.start : editDetails.start,
         end: editDetails.end == item.end ? item.end : editDetails.end,
-        funds: editDetails.funds == undefined ? item.funds : Number(editDetails.funds),
-        volunteers: editDetails.volunteers == undefined ? item.volunteers : editDetails.volunteers,
+        fundRequired: editDetails.fundRequired == undefined ? item.fundRequired : (editDetails.fundRequired),
+        volunteerNeeded: editDetails.volunteerNeeded == undefined ? item.volunteerNeeded : editDetails.volunteerNeeded,
         userId: editDetails.userId == undefined ? item.userId : editDetails.userId,      
       })
     })
@@ -165,7 +166,7 @@ export const Details = ({ item }) => {
               showTimeSelect
               style={{ marginRight: "10px" }}
               selected={editDetails.start}
-              value= {item.start}
+              value= {editDetails.start}
               onChange={(start) => setEditDetails({ ...editDetails, start })}
             />
           </div>
@@ -182,7 +183,7 @@ export const Details = ({ item }) => {
               showTimeSelect
               style={{ marginRight: "10px" }}
               selected={editDetails.end}
-              value= {item.end}
+              value= {editDetails.end}
               onChange={(end) => setEditDetails({ ...editDetails, end })}
             />
           </div>
