@@ -11,6 +11,7 @@ import { BsClockHistory } from "react-icons/bs"
 import { IoIosExit } from "react-icons/io"
 import {IoMdAddCircle } from "react-icons/io"
 import { GrSubtractCircle } from "react-icons/gr"
+import {FaTrash} from "react-icons/fa"
 
 import {
   LinearProgress,
@@ -334,7 +335,7 @@ console.log(fundsHistory)
                 <button className="funds_exitbutton" onClick={() => setFormShowingHistory(false)}><IoIosExit /></button>
               </div>
               <ul>
-              {fundsHistory.filter(elem => elem.event_id == selectedEvent.id).map((elem, index) => {return <li className="funds_transactionli" style={{ background: elem.status == "add" ? "lightgreen" : "pink"}}>${elem.amount}<button onClick={()=>{deleteTransactions(selectedEvent, elem)}}>delete</button></li>})}
+              {fundsHistory.filter(elem => elem.event_id == selectedEvent.id).map((elem, index) => {return <li className="funds_transactionli" style={{ background: elem.status == "add" ? "lightgreen" : "pink"}}>${elem.amount}<p className='funds-transaction-delete' onClick={()=>{deleteTransactions(selectedEvent, elem)}}><FaTrash /></p></li>})}
               </ul>
             </div>
           </div>

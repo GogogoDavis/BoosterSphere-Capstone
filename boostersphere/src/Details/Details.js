@@ -1,4 +1,4 @@
-// import "./Details.css";
+import "./Details.css";
 import { useNavigate, useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import React, {useState} from 'react';

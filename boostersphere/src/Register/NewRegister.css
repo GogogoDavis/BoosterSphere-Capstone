@@ -157,3 +157,13 @@
   .NewRegister_icon{
     font-size: 50px;
   }
+
+
+  .Register-eye-icon{
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    cursor: pointer;
+  }
