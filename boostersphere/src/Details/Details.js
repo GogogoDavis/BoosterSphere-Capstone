@@ -8,18 +8,21 @@ import './Details.css'
 
 export const Details = ({ item }) => {
   const { id } = useParams();
+  const { title, type, description, start, end, fundRequired, volunteerNeeded, userId } = item;
   const navigate = useNavigate();
   const [editDetails, setEditDetails] = useState({
     id: id,
-    title: "",
-    type: "",
-    description: "",
-    start: new Date,
-    end: new Date, 
-    fundRequired: 0,
-    volunteerNeeded: 0,
-    userId: 0
+    title: title,
+    type: type,
+    description: description,
+    start: new Date(start),
+    end: new Date(end), 
+    fundRequired: fundRequired,
+    volunteerNeeded: volunteerNeeded,
+    userId: userId, 
   })
+
+  console.log(item);
 
   function handleDeleteEvent() {
     // Fetch to sevrver but it is not getting the request
@@ -35,7 +38,17 @@ export const Details = ({ item }) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(editDetails),
+      body: JSON.stringify({
+        id: id,
+        title: editDetails.title == "" ? item.title : editDetails.title,
+        type: editDetails.type == "" ? item.type : editDetails.type,
+        description: editDetails.description == "" ? item.description : editDetails.description,
+        start: editDetails.start == item.start ? item.start : editDetails.start,
+        end: editDetails.end == item.end ? item.end : editDetails.end,
+        fundRequired: editDetails.fundRequired == undefined ? item.fundRequired : (editDetails.fundRequired),
+        volunteerNeeded: editDetails.volunteerNeeded == undefined ? item.volunteerNeeded : editDetails.volunteerNeeded,
+        userId: editDetails.userId == undefined ? item.userId : editDetails.userId,      
+      })
     })
       .then(() => {
         console.log("Event updated successfully");
@@ -47,6 +60,8 @@ export const Details = ({ item }) => {
         console.error("Error updating event", error);
       });
   };
+
+  console.log('This be', editDetails.funds)
 
   const calendarReturn = () => {
     navigate(`/events`);
@@ -77,7 +92,7 @@ export const Details = ({ item }) => {
           <div className="DetailsInput_Field">
             <input
             className="detail_value"
-            value= {item.id}
+            value= {editDetails.id}
             readOnly
             />
           </div>
@@ -151,6 +166,7 @@ export const Details = ({ item }) => {
               showTimeSelect
               style={{ marginRight: "10px" }}
               selected={editDetails.start}
+              value= {editDetails.start}
               onChange={(start) => setEditDetails({ ...editDetails, start })}
             />
           </div>
@@ -159,7 +175,7 @@ export const Details = ({ item }) => {
       <div className="Detail_LabelInput_Container"> 
 
           <div className="detail_div"><label className="DetailsEvent_label">End Date: </label></div>
-
+ 
           <div className="DetailsInput_Field">
             <DatePicker
               className="detail_value"
@@ -167,6 +183,7 @@ export const Details = ({ item }) => {
               showTimeSelect
               style={{ marginRight: "10px" }}
               selected={editDetails.end}
+              value= {editDetails.end}
               onChange={(end) => setEditDetails({ ...editDetails, end })}
             />
           </div>
@@ -182,7 +199,7 @@ export const Details = ({ item }) => {
                 type="integer"
                 placeholder={item.fundRequired}
                 // defaultValue={item.fundRequired}
-                // value={editDetails.fundRequired}
+                value={editDetails.fundRequired}
                 onChange={(e) =>
                   setEditDetails({ ...editDetails, fundRequired: e.target.value })
                 }
@@ -200,7 +217,7 @@ export const Details = ({ item }) => {
                 type="integer"
                 placeholder={item.volunteerNeeded}
                 // defaultValue={item.volunteerNeeded}
-                // value={editDetails.volunteerNeeded}
+                value={editDetails.volunteerNeeded}
                 onChange={(e) =>
                   setEditDetails({
                     ...editDetails,
@@ -219,9 +236,9 @@ export const Details = ({ item }) => {
               <input
                 className="detail_value"
                 type="integer"
-                placeholder={item.userId}
+                placeholder= {item.userId}
                 // defaultValue={item.userId}
-                // value={editDetails.userId}
+                value= {editDetails.userId}
                 onChange={(e) =>
                   setEditDetails({ ...editDetails, userId: e.target.value })
                 }
