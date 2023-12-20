@@ -11,7 +11,7 @@ export const Details = ({ item }) => {
   const { title, type, description, start, end, fundRequired, volunteerNeeded, userId } = item;
   const navigate = useNavigate();
   const [editDetails, setEditDetails] = useState({
-    id: id,
+    id: id,  
     title: title,
     type: type,
     description: description,
@@ -22,7 +22,7 @@ export const Details = ({ item }) => {
     userId: userId, 
   })
 
-  console.log(item);
+
 
   function handleDeleteEvent() {
     // Fetch to sevrver but it is not getting the request
@@ -43,8 +43,8 @@ export const Details = ({ item }) => {
         title: editDetails.title == "" ? item.title : editDetails.title,
         type: editDetails.type == "" ? item.type : editDetails.type,
         description: editDetails.description == "" ? item.description : editDetails.description,
-        start: editDetails.start == item.start ? item.start : editDetails.start,
-        end: editDetails.end == item.end ? item.end : editDetails.end,
+        start: editDetails.start,
+        end: editDetails.end,
         fundRequired: editDetails.fundRequired == undefined ? item.fundRequired : (editDetails.fundRequired),
         volunteerNeeded: editDetails.volunteerNeeded == undefined ? item.volunteerNeeded : editDetails.volunteerNeeded,
         userId: editDetails.userId == undefined ? item.userId : editDetails.userId,      
@@ -61,14 +61,14 @@ export const Details = ({ item }) => {
       });
   };
 
-  console.log('This be', editDetails.funds)
+  // console.log('This be', editDetails.funds)
 
   const calendarReturn = () => {
     navigate(`/events`);
   };
 
   // console.log(item);
-  console.log(editDetails);
+  // console.log(editDetails);
 
   return (
     <>
