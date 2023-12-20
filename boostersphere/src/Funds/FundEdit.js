@@ -285,7 +285,7 @@ console.log(fundsHistory)
 
             <div className='funds_addingitem'>
               <label>Details</label>
-              <input type='text' placeholder='Details' onChange={(e) => { setInputDetails(e.target.value) }} value={inputDetails} />
+              <input type='text' placeholder='Details' onChange={(e) => { setInputDetails(e.target.value) }} value={inputDetails} id='fundsdetail-input' />
             </div>
 
             <div className='funds_addingitem'>

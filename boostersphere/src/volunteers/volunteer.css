@@ -49,8 +49,8 @@
 }
 
 .volunteer-button {
-  position: absolute;
-  bottom: -25px;
+  position: relative;
+  /* bottom: -25px;
   left: calc(50% - 150px);
   outline: none;
   border: none !important;
@@ -64,7 +64,7 @@
   letter-spacing: 2px;
   text-transform: capitalize;
   box-shadow: 0 7px 10px rgba(0,0,0,0.4);
-  width: 300px !important;
+  width: 300px !important; */
 }
 
 .volunteer-button:hover {

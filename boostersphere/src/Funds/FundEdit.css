@@ -121,14 +121,15 @@ margin: 30px 0;
     background-color: #7f00ff;
     }
 
- .funds_addingitem input {
+ .funds_addingitem input{
   border-radius: 10px;
   font-size: 16px;
   padding: 20px 45px 20px 20px;
-  resize: both;
  }   
 
-
+#fundsdetail-input{
+    resize: both;
+ }
 
 
 .funds_volunteer-overlay {
