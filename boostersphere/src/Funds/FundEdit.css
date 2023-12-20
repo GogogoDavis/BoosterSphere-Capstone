@@ -330,3 +330,7 @@ margin: 30px 0;
       top: 10%;
   }
 }
+
+.css-nrkw1r-MuiLinearProgress-root {
+  height: 20px !important;
+}
