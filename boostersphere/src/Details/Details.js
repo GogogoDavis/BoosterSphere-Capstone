@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import React, {useState} from 'react';
 import mopey from '../DaMopester-nobackground.png'
 import { Sidebar } from '../Sidebar/Sidebar';
+import './Details.css'
 
 
 export const Details = ({ item }) => {
@@ -57,26 +58,24 @@ export const Details = ({ item }) => {
 
   return (
     <>
-    <div className='details_container'>       {/* <div className='mopeyImg'>
-            <img src={mopey} alt=''></img>
-              </div> */}
-      <div ="overflow:hidden" id="wrap">
-        <ul>
-          <h1
-            id="detailstitle"
-            // style={{
-            //   // display: "flex",
-            //   // justifyContent: "center",
-            //   // color: "salmon",
-            // }}
-          > Event Details</h1>
+   
 
-         <div className="detail_row"> 
-          <div className="detail_container2" >
+    <div className='details_parent_container'>       
+     <div className="details_sidebar">
+    <Sidebar/>
+    </div>
+    <div className='detailMopey'>
+      <img src={mopey} alt=''></img>
+      </div>
+      <div  id="wrap">
+        <h1 id="DetailTitle"> Event Details</h1>
 
-          <div className="detail_div"><label className="event_label">Event ID: </label></div>
+         <div className="Detail_LabelInput_Container"> 
+         
 
-          <div className="detail_input">
+          <div className="detail_div"><label className="DetailsEvent_label">Event ID: </label></div>
+
+          <div className="DetailsInput_Field">
             <input
             className="detail_value"
             value= {item.id}
@@ -84,13 +83,14 @@ export const Details = ({ item }) => {
             />
           </div>
           </div>
+
         
           
-          <div className="detail_row"> 
+          <div className="Detail_LabelInput_Container"> 
 
-            <div className="detail_div"><label  className="event_label">Event Title: </label></div>
+            <div className="detail_div"><label  className="DetailsEvent_label">Event Title: </label></div>
 
-            <div className="detail_input">
+            <div className="DetailsInput_Field">
             <input
               className="detail_value"
               type="text"
@@ -103,11 +103,11 @@ export const Details = ({ item }) => {
             </div>
           </div>
 
-          <div className="detail_row"> 
+          <div className="Detail_LabelInput_Container"> 
 
-            <div className="detail_div"><label className="event_label">Party Type: </label></div>
+            <div className="detail_div"><label className="DetailsEvent_label">Party Type: </label></div>
 
-            <div className="detail_input">
+            <div className="DetailsInput_Field">
               <input
                 className="detail_value"
                 type="text"
@@ -120,17 +120,20 @@ export const Details = ({ item }) => {
             </div>
           </div>
 
-          <div className="detail_row"> 
+          <div className="Detail_LabelInput_Container"> 
 
-            <div className="detail_div"><label className="event_label">Event Details: </label></div>
+            <div className="detail_div"><label className="DetailsEvent_label">Event Details: </label></div>
 
-            <div className="detail_input">
-              <input
-                className="detail_value"
-                type="text"
+            <div className="DetailsInput_Field">
+              <textarea
+                role="textbox"
+                contentEditable
+                id="details_description"
+                className="detail_value autoWidthTextarea"
+                type= "text"
                 placeholder={item.description}
                 value={editDetails.description}
-                style={{ height: 'auto', width: '800px', padding: '50px', margin: '10px' }}
+                // style={{width: '100%', height:'100%'}}
                 onChange={(e) =>
                   setEditDetails({ ...editDetails, description: e.target.value })
                 }
@@ -138,11 +141,11 @@ export const Details = ({ item }) => {
             </div>
           </div>
 
-          <div className="detail_row"> 
+          <div className="Detail_LabelInput_Container"> 
      
-          <div className="detail_div"><label className="event_label">Start Date: </label></div>
+          <div className="detail_div"><label className="DetailsEvent_label">Start Date: </label></div>
 
-          <div className="detail_input">
+          <div className="DetailsInput_Field">
             <DatePicker
               className="detail_value"
               placeholderText={item.start}
@@ -154,11 +157,11 @@ export const Details = ({ item }) => {
           </div>
       </div>
       
-      <div className="detail_row"> 
+      <div className="Detail_LabelInput_Container"> 
 
-          <div className="detail_div"><label className="event_label">End Date: </label></div>
+          <div className="detail_div"><label className="DetailsEvent_label">End Date: </label></div>
 
-          <div className="detail_input">
+          <div className="DetailsInput_Field">
             <DatePicker
               className="detail_value"
               placeholderText={item.end}
@@ -170,11 +173,11 @@ export const Details = ({ item }) => {
           </div>
       </div>
 
-      <div className="detail_row"> 
+      <div className="Detail_LabelInput_Container"> 
 
-            <div className="detial_div"><label className="event_label">Amount of Funds Required: </label></div>
+            <div className="detail_div"><label className="DetailsEvent_label">Funds Required: </label></div>
 
-            <div className="detail_input">
+            <div className="DetailsInput_Field">
               <input
                 className="detail_value"
                 type="integer"
@@ -188,11 +191,11 @@ export const Details = ({ item }) => {
             </div>
           </div>
 
-          <div className="detail_row"> 
+          <div className="Detail_LabelInput_Container">  
 
-            <div className="detail_div"><label className="event_label">Number of Volunteers Needed:</label></div>
+            <div className="detail_div"><label className="DetailsEvent_label">Volunteers Needed:</label></div>
 
-            <div className="detail_input">
+            <div className="DetailsInput_Field">
               <input
                 className="detail_value"
                 type="integer"
@@ -209,11 +212,11 @@ export const Details = ({ item }) => {
             </div>
           </div>
 
-          <div className="detail_row"> 
+          <div className="Detail_LabelInput_Container">  
 
-            <div className="detail_div"><label className="event_label">User ID: </label></div>
+            <div className="detail_div"><label className="DetailsEvent_label">User ID: </label></div>
             
-            <div className="detail_input">
+            <div className="DetailsInput_Field">
               <input
                 className="detail_value"
                 type="integer"
@@ -228,15 +231,15 @@ export const Details = ({ item }) => {
 
           </div>
           </div>
-        </ul>
-        <div className='buttonLayout'>
-          <button className="detailBtn" onClick={calendarReturn}>
+    
+        <div className='DetailButton_Layout'>
+          <button className="DetailButton" onClick={calendarReturn}>
             Return to Calendar
           </button>
-          <button className="detailBtn" onClick={handleDeleteEvent}>
+          <button className="DetailButton" onClick={handleDeleteEvent}>
             Remove Event
           </button>
-          <button className="detailBtn" onClick={handleUpdateEvent}>
+          <button className="DetailButton" onClick={handleUpdateEvent}>
             Update Event
           </button>
         </div>
@@ -245,7 +248,7 @@ export const Details = ({ item }) => {
       </div>
       <div className='detail_wrapper2'>
       </div>
-    </div>
+    
     </>
   );
 };
