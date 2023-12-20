@@ -1,20 +1,5 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap');
-
-/* *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'poppins' , sans-serif;
-    background-color: #f3f5f8;
-    overflow: hidden;
-    
-
-} */
-
-
-
-/* @keyframes moveMopey {
+@keyframes moveMopey {
     0% {
       transform: translateX(0);
     }
@@ -22,124 +7,160 @@
     100% {
       transform: translateX(calc(100vw - 100px));
     }
-  } */
+  } 
 
-
-/* 
-  .mopeyImg img {
+  .detailMopey img {
     width: 100px; 
-    height: auto;
     border-radius: 50%; 
     margin-bottom: 20px;
     position: absolute;
-    top: 50%; 
-    animation: moveMopey 8s linear infinite; 
-  } */
-  
+    top: 0%; 
+    right: 100%;
+    animation: moveMopey 15s linear infinite; 
 
-  /* #wrap {
-    width: 100%;
-    max-width: 300px;
-  } */
-  
-  .details_container {
-    display: inline-flex;
-    justify-content: space-between;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    font-family: 'Arial', sans-serif;
+  } 
+/* Sidebar styles */
+.details_sidebar {
+    /* Style your sidebar here */
+    float: left;
+    background: linear-gradient(45deg, #9570ecea, rgba(77, 54, 54, 0.2));
 
+    /* Additional styles */
   }
+ 
 
-  #detailstitle {
-    color: #3d535f;
+  /* Event Details title styles */
+  #wrap {
     text-align: center;
-    font-size:60px;
+  }
+  
+  #DetailTitle {
+    color: #3d535f;
+    font-size: 60px;
     text-transform: capitalize;
     letter-spacing: 2px;
+    margin-bottom: 20px;
 
-
-  }
-
-.detail_div {
-    float: left;
-    width: 25%;
-    margin-top: 30px;
-    word-wrap: break-word;
   }
   
-  .detail_input {
-    float: right;
-    width: 75%;
-    margin-top: 30px;
+  /* Label and Input fields container styles */
+  .Detail_LabelInput_Container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 20px;
     
+
+    
+    /* Additional styles */
   }
   
-  .detail_row::after {
-    content: "";
-    display: table;
-    clear: both;
-    
-  }
-
-  .event_label {
-    color: #3d535f;
-    font-size: 17px;
+  /* Labels for input fields styles */
+  .DetailsEvent_label {
+    text-align: left;
+    outline: none;
+    border: none;
+    font-size: 25px;
     font-weight: 800;
-    word-wrap: break-word;
+    color:#3d535f;
+    background-color: white;
+    /* padding: 8px 14px;
+    margin: 40px 5px; */
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    box-shadow: 0 15px 10px rgba(0,0,0,0.4);
+
+
+    /* Style your labels here */
+    /* Additional styles */
+  }
+
+  .autoWidthTextarea {
+    resize:both;
+    overflow: hidden;
+    min-width: 100px; /* Set a minimum width */
+    max-width: 100%; /* Limit maximum width */
+    width: 600px; /* Initial width, can be adjusted based on content */
+    height: auto; /* Allow the textarea to adjust its height */
+    padding: 5px; /* Adjust padding as needed */
+  }
+  
+  /* Input fields styles */
+  .DetailsInput_Field {
+    align-items: center;
+    color: #3d535f;
+    text-align: left;
+    width: 100%;
+    box-sizing: border-box;
+    padding:  2px;
+    margin:  5px;
+    /* Style your input fields here */
+    /* Additional styles */
   }
 
   .detail_value {
-    color: #3d535f;
-    font-size: 17px;
-    font-weight: 800;
-    background-color: white;
-    box-shadow: 0 15px 10px rgba(0,0,0,0.4);
+    outline: none;
     border: none;
+    /* cursor: pointer; */
+    font-size: 15px;
+    font-weight: 400;
+    color:#3d535f;
+    background-color: white;
+    padding: 2px 14px;
+    margin: 5px 5px;
+    letter-spacing: 2px;
     text-transform: capitalize;
-
-  }
-
-
-
-  .buttonLayout {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
+    box-shadow: 0 15px 10px rgba(0,0,0,0.4);
   }
   
-  .detailBtn {
-    outline: none;
+  /* Buttons layout styles */
+  .DetailButton_Layout {
+    display: flex;
+    justify-content: space-around;
+    /* Additional styles */
+  }
+
+  .detail_value::placeholder{
+    color:#3d535f;
+  }
+  
+
+  .DetailButton {
+     outline: none;
     border: none;
     cursor: pointer;
     font-size: 25px;
     font-weight: 800;
-    color: #3d535f;
-    background-color: white;
-    padding: 8px 14px;
-    margin: 40px 5px;
+    color: white;
+    background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.2));
+
+    /* background-color: #3d535f; */
+    /* padding: 8px 14px;
+    margin: 40px 5px; */
     letter-spacing: 2px;
     text-transform: capitalize;
     box-shadow: 0 15px 10px rgba(0,0,0,0.4);
-  }
-  
-  .detailBtn:hover {
-    background-color: #3d535f;
-    color: white;
+
   }
 
-  .detail_wrapper::before{
+  .DetailButton:hover {
+    background-color: #7f00ff;
+  }
+
+  
+  /* .detail_wrapper::before{
     position: absolute;
     content: '';
     height: 200px;
     width: 200px;
     border-radius: 50%;
-    left: 3%;
+    left: 2%;
     top: 10%;
     background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.2));
     animation: ball_1 15s linear infinite;
-}
+} */
 
 /* .detail_wrapper::after{
     position: absolute;
@@ -153,12 +174,12 @@
     animation: ball_2 15s linear infinite;
 } */
 
-@keyframes ball_1{
+/* @keyframes ball_1{
     50%{
-        left: -10%;
+        left: -5%;
         top: 20%;
     }
-}
+} */
 
 /* @keyframes ball_2{
     50%{
@@ -180,28 +201,28 @@
 }
 
 .detail_wrapper2::after{
-    position: absolute;
+    position: fixed;
     content: '';
-    height: 300px;
-    width: 300px;
+    height: 200px;
+    width: 200px;
     background: transparent;
     border-radius: 50%;
-    right: 1%;
-    bottom:5%;
+    right: 4%;
+    bottom:10%;
     background: linear-gradient(45deg, #2300a1cc, rgb(53, 53, 53, 0.2));
-    animation: ball_4 20s linear infinite;
+    animation: ball_4 5s linear infinite;
 }
 
 @keyframes ball_3{
     50%{
-        left: -10%;
-        top: 20%;
+        left: -5%;
+        top: 10%;
     }
 }
 
 @keyframes ball_4{
     50%{
-        right: -5%;
-        bottom: -25%;
+        right: 3%;
+        bottom: 20%;
     }
 }
