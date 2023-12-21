@@ -37,7 +37,6 @@ export const Landing = () => {
 
 const handleconClick = () =>{
   setconClick(true);
-
   setTimeout(() => { setconClick(false) }, 10000)
 }
 
@@ -45,8 +44,9 @@ const handleconClick = () =>{
 
   return (thisuser ?  <HomePage />:
 <>
-{conClick && <Confetti wind={0.05} gravity={0.1} />}
+
     <div className='Landing_container'>
+
       <div className='Landing_nav'>
         <div className = "Landing_logo">BoosterSphere<b className='Landing_bold'>.</b></div>
         <ul className='Landing_navItems'>
@@ -58,6 +58,7 @@ const handleconClick = () =>{
       </div>
 
       <div className='Landing_wrapper'>
+      {conClick && <Confetti wind={0.05} gravity={0.1} />}
         <div className='cols cols0'>
             <span className='topline'>Welcome</span>
             <h1 className='Landing_h1'>Del10 <span id="multiText"></span></h1>
