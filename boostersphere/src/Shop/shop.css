@@ -84,6 +84,7 @@
   color: #3d535f;
   z-index: 10000;
   box-shadow: 0 0px 10px rgba(0, 0, 0, 0.952);
+  backdrop-filter: blur(20px);
 }
 
 .productItem:hover {
@@ -120,6 +121,7 @@
   border-radius: 10px;
   z-index: 10000;
   box-shadow: 0 0px 10px rgba(0, 0, 0, 0.952);
+  backdrop-filter: blur(20px);
 }
 
 .cartContainer {

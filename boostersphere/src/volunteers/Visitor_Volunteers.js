@@ -64,7 +64,7 @@ export const VisitorVolunteers = () => {
         <div className = "Landing_logo">BoosterSphere<b className='Landing_bold'>.</b></div>
         <ul className='Landing_navItems'>
             <li onClick={()=>{ navigate('/')}}><p>Front Page</p></li>
-        </ul>        
+        </ul>
       </div>
 
     <div className='profile-parent-container volunteer-parent-container'>
@@ -78,11 +78,11 @@ export const VisitorVolunteers = () => {
                 <h2>{event.description}</h2>
                 <h3>{event.start.slice(0, 10)} @{event.start.slice(11, 16)}Z - {event.end.slice(0, 10)} @{event.end.slice(11, 16)}Z</h3>
                 <p>Volunteers: { volunteers.filter(volunteer => volunteer.event_id === event.id).length}/{event.volunteerNeeded}</p>
-                {volunteers.filter(volunteer => volunteer.event_id === event.id).length === event.volunteerNeeded ? 
+                {volunteers.filter(volunteer => volunteer.event_id === event.id).length === event.volunteerNeeded ?
                 <button className="volunteer-button">Max volunteers</button>
                 :
                 <button className="volunteer-button"  onClick={() => showForm(event)}>Volunteer For Event</button>}
-                
+
               </li>
             )
           })}
@@ -104,6 +104,8 @@ export const VisitorVolunteers = () => {
           </div>
         </div>
       )}
+          <div className='Volunteer_Landing_wrapper'>
+  </div>
     </div>
 
 

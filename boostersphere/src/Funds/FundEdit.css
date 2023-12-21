@@ -9,6 +9,7 @@
     display: flex;
     flex-direction: row;
     margin-top: 20px;
+
 }
 
 .Funds_carddiv{
@@ -17,8 +18,12 @@
   flex-direction: column;
   justify-items: center;
   align-items: center;
+
 }
 
+.MuiLinearProgress-root {
+  height: 20px !important;
+}
 
 .Funds_card{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -26,7 +31,8 @@
     width: 70%;
     margin: 20px;
     border-radius: 5px;
-    background-color: white;
+    background-color: rgb(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
 }
 
 .Funds_card:hover {
@@ -125,7 +131,7 @@ margin: 30px 0;
   border-radius: 10px;
   font-size: 16px;
   padding: 20px 45px 20px 20px;
- }   
+ }
 
 #fundsdetail-input{
     resize: both;
@@ -144,7 +150,7 @@ margin: 30px 0;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
   }
-  
+
   .funds_volunteer-form-container {
     position: relative;
     background-color: white;
@@ -173,7 +179,7 @@ margin: 30px 0;
     text-align: center;
     overflow: auto;
   }
-  
+
   .funds_volunteer-form-container input{
     align-self: center;
     width: 70%;
@@ -189,7 +195,7 @@ margin: 30px 0;
     margin-left: 5px !important;
     margin-right: 5px !important;
   }
-  
+
   .funds_volunteer-button-form:hover {
     color: #fff;
     background-color: #1A1A1A;
@@ -197,7 +203,7 @@ margin: 30px 0;
     box-shadow: rgba(0, 0, 0, 0.35) 0 8px 15px;
     transform: translateX(0) !important;
   }
-  
+
   .funds_volunteer-form-buttons {
     position: absolute;
     bottom: 10px;
@@ -206,9 +212,9 @@ margin: 30px 0;
     display: flex;
     justify-content: center;
   }
-  
-  
-  
+
+
+
   .Funds_titleandbuttons{
     display: flex;
     flex-direction: row;
@@ -280,7 +286,7 @@ margin: 30px 0;
 
 
 
-  
+
 .funds_Landing_wrapper::before{
   position: absolute;
   content: '';
