@@ -3,23 +3,23 @@
     0% {
       transform: translateX(0);
     }
-    
+
     100% {
       transform: translateX(calc(100vw - 100px));
     }
-  } 
+  }
 
 
   .detailMopey img {
-    width: 100px; 
-    border-radius: 50%; 
+    width: 100px;
+    border-radius: 50%;
     margin-bottom: 20px;
     position: absolute;
-    top: 0%; 
+    top: 0%;
     right: 100%;
-    animation: moveMopey 15s linear infinite; 
+    animation: moveMopey 15s linear infinite;
 
-  } 
+  }
 /* Sidebar styles */
 .details_sidebar {
     /* Style your sidebar here */
@@ -28,13 +28,13 @@
 
     /* Additional styles */
   }
- 
+
 
   /* Event Details title styles */
   #wrap {
     text-align: center;
   }
-  
+
   #DetailTitle {
     color: #3d535f;
     font-size: 60px;
@@ -43,7 +43,7 @@
     margin-bottom: 20px;
 
   }
-  
+
   /* Label and Input fields container styles */
   .Detail_LabelInput_Container {
     display: grid;
@@ -52,12 +52,13 @@
     justify-content: center;
     overflow: hidden;
     margin-bottom: 20px;
-    
 
-    
+
+
+
     /* Additional styles */
   }
-  
+
   /* Labels for input fields styles */
   .DetailsEvent_label {
     text-align: left;
@@ -66,12 +67,16 @@
     font-size: 25px;
     font-weight: 800;
     color:#3d535f;
-    background-color: white;
+    background-color: rgb(243, 243, 243);
     /* padding: 8px 14px;
     margin: 40px 5px; */
     letter-spacing: 2px;
     text-transform: capitalize;
     box-shadow: 0 15px 10px rgba(0,0,0,0.4);
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    border: solid white;
 
 
     /* Style your labels here */
@@ -87,7 +92,7 @@
     height: auto; /* Allow the textarea to adjust its height */
     padding: 5px; /* Adjust padding as needed */
   }
-  
+
   /* Input fields styles */
   .DetailsInput_Field {
     align-items: center;
@@ -108,14 +113,19 @@
     font-size: 15px;
     font-weight: 400;
     color:#3d535f;
-    background-color: white;
+    background-color: rgba(238, 238, 238, 0.925);
     padding: 2px 14px;
     margin: 5px 5px;
     letter-spacing: 2px;
     text-transform: capitalize;
     box-shadow: 0 15px 10px rgba(0,0,0,0.4);
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    border: solid white;
+
   }
-  
+
   /* Buttons layout styles */
   .DetailButton_Layout {
     display: flex;
@@ -124,25 +134,29 @@
   }
 
   .detail_value::placeholder{
-    color:#3d535f;
+    color:rgb(61,83,95, 0.3);
   }
-  
+
 
   .DetailButton {
      outline: none;
     border: none;
     cursor: pointer;
     font-size: 25px;
-    font-weight: 800;
+    font-weight: 400;
     color: white;
-    background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.2));
+    /* background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.2)); */
 
-    /* background-color: #3d535f; */
+    background-color: #3d535f;
     /* padding: 8px 14px;
     margin: 40px 5px; */
     letter-spacing: 2px;
     text-transform: capitalize;
     box-shadow: 0 15px 10px rgba(0,0,0,0.4);
+
+    padding-left: 10px;
+    padding-right: 10px;
+    padding: 10px;
 
   }
 
@@ -150,7 +164,7 @@
     background-color: #7f00ff;
   }
 
-  
+
   /* .detail_wrapper::before{
     position: absolute;
     content: '';
@@ -199,6 +213,7 @@
     top: 60%;
     background: linear-gradient(45deg, #4c00ffea, rgba(77, 54, 54, 0.2));
     animation: ball_3 15s linear infinite;
+    z-index: -1;
 }
 
 .detail_wrapper2::after{
@@ -212,6 +227,7 @@
     bottom:10%;
     background: linear-gradient(45deg, #2300a1cc, rgb(53, 53, 53, 0.2));
     animation: ball_4 5s linear infinite;
+    z-index: -1;
 }
 
 @keyframes ball_3{

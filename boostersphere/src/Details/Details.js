@@ -11,28 +11,28 @@ export const Details = ({ item }) => {
   const { title, type, description, start, end, fundRequired, volunteerNeeded, userId } = item;
   const navigate = useNavigate();
   const [editDetails, setEditDetails] = useState({
-    id: id,  
+    id: id,
     title: title,
     type: type,
     description: description,
     start: new Date(start),
-    end: new Date(end), 
+    end: new Date(end),
     fundRequired: fundRequired,
     volunteerNeeded: volunteerNeeded,
-    userId: userId, 
+    userId: userId,
   })
 
 
 
-  function handleDeleteEvent() {
+  async function handleDeleteEvent() {
     // Fetch to sevrver but it is not getting the request
-    fetch(`http://localhost:8080/events/${id}`, {
+    await fetch(`http://localhost:8080/events/${id}`, {
       method: "DELETE",
-    }).then(navigate(`/events`));
+    }).then(x => setTimeout(() => { navigate(`/events`) }, 50));
   }
 
   const handleUpdateEvent = () => {
-  
+
     fetch(`http://localhost:8080/events/${id}`, {
       method: "PATCH",
       headers: {
@@ -47,7 +47,7 @@ export const Details = ({ item }) => {
         end: editDetails.end,
         fundRequired: editDetails.fundRequired == undefined ? item.fundRequired : (editDetails.fundRequired),
         volunteerNeeded: editDetails.volunteerNeeded == undefined ? item.volunteerNeeded : editDetails.volunteerNeeded,
-        userId: editDetails.userId == undefined ? item.userId : editDetails.userId,      
+        userId: editDetails.userId == undefined ? item.userId : editDetails.userId,
       })
     })
       .then(() => {
@@ -72,9 +72,9 @@ export const Details = ({ item }) => {
 
   return (
     <>
-   
 
-    <div className='details_parent_container'>       
+
+    <div className='details_parent_container'>
      <div className="details_sidebar">
     <Sidebar/>
     </div>
@@ -84,8 +84,8 @@ export const Details = ({ item }) => {
       <div  id="wrap">
         <h1 id="DetailTitle"> Event Details</h1>
 
-         <div className="Detail_LabelInput_Container"> 
-         
+         <div className="Detail_LabelInput_Container">
+
 
           <div className="detail_div"><label className="DetailsEvent_label">Event ID: </label></div>
 
@@ -98,9 +98,9 @@ export const Details = ({ item }) => {
           </div>
           </div>
 
-        
-          
-          <div className="Detail_LabelInput_Container"> 
+
+
+          <div className="Detail_LabelInput_Container">
 
             <div className="detail_div"><label  className="DetailsEvent_label">Event Title: </label></div>
 
@@ -117,7 +117,7 @@ export const Details = ({ item }) => {
             </div>
           </div>
 
-          <div className="Detail_LabelInput_Container"> 
+          <div className="Detail_LabelInput_Container">
 
             <div className="detail_div"><label className="DetailsEvent_label">Party Type: </label></div>
 
@@ -134,7 +134,7 @@ export const Details = ({ item }) => {
             </div>
           </div>
 
-          <div className="Detail_LabelInput_Container"> 
+          <div className="Detail_LabelInput_Container">
 
             <div className="detail_div"><label className="DetailsEvent_label">Event Details: </label></div>
 
@@ -155,8 +155,8 @@ export const Details = ({ item }) => {
             </div>
           </div>
 
-          <div className="Detail_LabelInput_Container"> 
-     
+          <div className="Detail_LabelInput_Container">
+
           <div className="detail_div"><label className="DetailsEvent_label">Start Date: </label></div>
 
           <div className="DetailsInput_Field">
@@ -171,11 +171,11 @@ export const Details = ({ item }) => {
             />
           </div>
       </div>
-      
-      <div className="Detail_LabelInput_Container"> 
+
+      <div className="Detail_LabelInput_Container">
 
           <div className="detail_div"><label className="DetailsEvent_label">End Date: </label></div>
- 
+
           <div className="DetailsInput_Field">
             <DatePicker
               className="detail_value"
@@ -189,7 +189,7 @@ export const Details = ({ item }) => {
           </div>
       </div>
 
-      <div className="Detail_LabelInput_Container"> 
+      <div className="Detail_LabelInput_Container">
 
             <div className="detail_div"><label className="DetailsEvent_label">Funds Required: </label></div>
 
@@ -207,7 +207,7 @@ export const Details = ({ item }) => {
             </div>
           </div>
 
-          <div className="Detail_LabelInput_Container">  
+          <div className="Detail_LabelInput_Container">
 
             <div className="detail_div"><label className="DetailsEvent_label">Volunteers Needed:</label></div>
 
@@ -228,10 +228,10 @@ export const Details = ({ item }) => {
             </div>
           </div>
 
-          <div className="Detail_LabelInput_Container">  
+          <div className="Detail_LabelInput_Container">
 
             <div className="detail_div"><label className="DetailsEvent_label">User ID: </label></div>
-            
+
             <div className="DetailsInput_Field">
               <input
                 className="detail_value"
@@ -247,7 +247,7 @@ export const Details = ({ item }) => {
 
           </div>
           </div>
-    
+
         <div className='DetailButton_Layout'>
           <button className="DetailButton" onClick={calendarReturn}>
             Return to Calendar
@@ -264,7 +264,7 @@ export const Details = ({ item }) => {
       </div>
       <div className='detail_wrapper2'>
       </div>
-    
+
     </>
   );
 };

@@ -82,7 +82,7 @@ function App() {
 
 
             {/* <Route path='/shop' element={<Shop />} /> */}
-            <Route path='/cart' element={<Cart />} />
+            {/* <Route path='/cart' element={<Cart />} /> */}
             <Route path='/register' element={<NewRegister />} />
 
             <Route path='/Profile' element={
@@ -98,7 +98,7 @@ function App() {
             <Route path='/VisitorShop' element={<VisitorShop />} />
 
             <Route path='/Shop' element={<RequireAuth><Shop /></RequireAuth>} />
-            <Route path='/Cart' element={<Cart />} />
+            <Route path='/Cart' element={<RequireAuth><Cart /></RequireAuth>} />
             <Route path='/VisitorShop' element={<VisitorShop />} />
             <Route path='/VisitorCart' element={<VisitorCart />} />
 

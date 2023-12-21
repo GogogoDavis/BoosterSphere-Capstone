@@ -133,8 +133,8 @@ app.post('/events', async(req, res) => {
     title: title,
     type: type,
     description: description,
-    start: start,
-    end: end,
+    start: new Date (start),
+    end: new Date (end),
     // date in this format 'yyyy-mm-dd'
     fundRequired: fundRequired,
     volunteerNeeded: volunteerNeeded,
